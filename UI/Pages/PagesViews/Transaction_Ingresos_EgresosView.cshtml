@@ -1,0 +1,16 @@
+@page
+@using API.Controllers
+@{
+     if (!SecurityController.Auth(HttpContext.Session.GetString("sessionKey")))
+    {
+        Response.Redirect("../Security/login");
+        return;
+    }
+    if (!SecurityController.Auth(HttpContext.Session.GetString("sessionKey")))
+    {
+       Response.Redirect("../Security/login");
+        return;
+    }
+}
+<script src='~/Views/Transaction_Ingresos_EgresosView.js' type='module'></script>
+<div id='MainBody'></div>

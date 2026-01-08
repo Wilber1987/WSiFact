@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>" + ContractStyle + @"</head>
+
+<body>" + ContractHeader + @"
+	<h1>CONTRATO DE SISTEMA DE APARTADO PARA COMPRA DE ARTÍCULOS COMERCIALES.</h1>
+	<p style='text-align: justify; font-size:9.5px; margin-top:20px'>Nosotros: {{datos_apoderado}},
+		{{resumen_datos_apoderado}}, actuando en calidad de apoderado generalísimo
+		de la sociedad Anónima denominada: ' EMPEÑOS Y PRESTAMOS S.A ' EMPRE S.A, Sociedad que es de este domicilio,
+		constituida, autorizada y existente de conformidad a las leyes de la República de Nicaragua, en escritura
+		pública
+		#51, Constitución de Sociedad Anónima y estatutos,
+		y bajo el asiento #10011, Pág. 229/245, Tomo 97, Libro segundo de sociedades del Registro público de Carazo, que
+		por brevedad en lo sucesivo del presente contrato se le podrá denominar el VENDEDOR; siendo el domicilio: Del
+		Instituto Juan XXIII, 20 varas al Oeste,
+		en el municipio de San Marcos, Departamento de Carazo, Dirección electrónica: empresociedadanonima@gmail.com; y
+		por otra parte el / la señor (a) : {{primer_nombre}} {{segundo_nombre}} {{primer_apellido}}
+		{{segundo_apellidio}}
+		mayor de edad,
+		con número de cédula: {{identificacion}} con domicilio: {{direccion}} , Estado civil: {{estado_civil}} quien
+		habita en el
+		municipio de: {{municipio}}, Departamento de {{departamento}},
+		a quien en lo sucesivo se le denominará el "COMPRADOR", hemos convenido en celebrar el presente "CONTRATO DE
+		SISTEMA DE APARTADO" PARA COMPRA DE ARTÍCULO COMERCIAL" , el cual se regirá conforme las cláusulas siguientes:
+	</p>
+
+	<p style='text-align: justify; font-size:9.5px;'>
+		<u>1. PRIMERA (DESCRIPCION DEL ARTÍCULO):</u> Se detalla generales del artículo en venta.
+	</p>
+
+	<div style='font-size: 10px;;'>
+		{{tabla_articulos}}
+	</div>
+
+	<p style='text-align: left; font-weight:bold;margin-top:10px;font-size:10px;'>Observaciones: {{observaciones}}</p>
+	<p style='text-align: justify; font-size:9.5px;'>
+		<u>2. SEGUNDA (PRECIO DEL ARTICULO):</u> El valor del artículo es de: C$ {{ PRECIO_ARTICULO_CORDOBAS }} ({{
+		PRECIO_ARTICULO_CORDOBAS_LABEL }}),
+		equivalente a $ {{ PRECIO_ARTICULO_DOLARES }} ({{ PRECIO_ARTICULO_DOLARES_LABEL }}) dólares americanos, Según el
+		valor de la compra del dólar
+		a la fecha de hoy de C$ {{taza_cambio_compra}}
+	</p>
+
+	<p style='text-align: justify; font-size:9.5px;'> <u>3. TERCERA (CUOTA DE APARTADO):</u>
+		El comprador está obligado en realizar el primer pago de su cuota al momento de firmar
+		este contrato, su cuota de apartado es de: de C$ {{cuotafija}} ,
+		({{cuotafija_label}}), equivalente a: $ {{cuotafija_dolares}}, ($ {{cuotafija_dolares_label}}), dólares
+		Americanos,
+		que serán entregados en la fecha de la suscripción de este contrato.
+	</p>
+	<p style='text-align: justify; font-size:9.5px;'>
+		<u>4. CUARTA (FORMA Y PLAZO DE PAGO):</u>
+		En dependencia del precio de venta del /los artículo (s), se definen las cuotas a pagar cada 15 días:
+		Si el artículo tiene un valor menor o Igual a treinta dólares, el comprador deberá cancelar en 2 cuotas
+		máximo, si el/los artículo (s) tienen un valor entre 31 y 60 dólares, las cuotas serán 3, y Si el precio
+		del/los artículo (s) es mayor a 60 dólares se cancelará a un plazo de 4 cuotas. Los pagos se realizarán
+		en cuotas de CC$ {{cuotafija}} ({{cuotafija_label}}), que serán modificables al tipo de cambio del dólar, en la
+		fecha que el cliente
+		haga efectivo su pago. Los pagos se realizarán en córdobas o el equivalente a: $ {{cuotafija_dolares}} ($
+		{{cuotafija_dolares_label}}) Estadounidenses,
+		según la tasa de cambio en la fecha del pago. El comprador se compromete con el pago de su última
+		cuota el día, como se muestra en la siguiente tabla de pago.
+
+	</p>
+	<br></br>
+	" + ContractTable + $"
+	<p style='text-align: justify; font-size:9.5px;'>
+		<u>5. QUINTA (VENCIMIENTO ANTICIPADO Y PRORROGA):
+		</u>
+		El VENDEDOR dará por vencido anticipadamente el sistema de
+		Apartado del artículo comercial,
+		si el comprador faltare a una de las cuotas, en el tiempo establecido, otorgando al
+		COMPRADOR una prorroga no mayor a 5 días para actualizar su cuota, En caso de que no
+		se actualice, automáticamente el/la señor(a): , cede y traspasa todo el dinero
+		abonado al vendedor, y pierde el derecho sobre el/los artículo (s), donde este (os)
+		pasará (n) nuevamente a venta.
+
+	</p>
+	<p style='text-align: justify; font-size:9.5px;'>
+		<u>6. SEXTA (PAGO ANTICIPADO):</u>
+		En caso que El COMPRADOR realice pagos anticipados a la (s) fecha (s) de vencimiento
+		siempre pagará el monto pactado en la cláusula 2 de este contrato.
+	</p>
+	<p style='text-align: justify; font-size:9.5px;'>
+		<u>7. SEPTIMA (DERECHOS DEL COMPRADOR): </u>
+		EL Comprador  tiene los siguientes derechos de conformidad con la Norma sobre la transparencia de las operaciones: a.  Ser informados de forma clara, completa, oportuna y adecuada de los  servicios del vendedor.  b. Recibir información previa antes de la suscripción del contrato,  el VENDEDOR le pondrá a disposición al COMPRADOR el contrato para que este tenga en su poder una copia del mismo. c. Información durante la vigencia de la obligación: A que de previo a la firma del contrato, tiene el derecho de solicitar aclaraciones y que se entregue la tabla de pago del sistema de apartado. d. Atención  por medio de funcionarios u oficinas: El Comprador tiene el derecho de ser atendido oportuna y diligentemente con un trato adecuado por parte del VENDEDOR y que se respete su privacidad. A que se le respondan  sus reclamos,  quejas  y consultas,    en   los    horarios  de  oficina, de Lunes a viernes de 8:30 am  - 5: 00 Pm y los días Sábados    de  8: 30 am a  11:30 am.
+	</p>
+	<p style='text-align: justify; font-size:9.5px;'>
+		<u>8. OCTAVA (ENTREGA DE ARTÍCULO (S) Y GARANTIA): </u>
+		Una vez que el comprador pague todas  las cuotas de su sistema de apartado, el/los artículo (s) se le (s) entregará (n) probado (s) y funcional, Demostrando que todo está en perfectas condiciones, sin derecho a reclamos y sin garantía alguna.
+	</p>
+	<p style='text-align: justify; font-size:9.5px;'>
+		<u>9. NOVENA (ACEPTACION): </u>
+		Los comparecientes declaran que aceptan el presente contrato con los términos relacionados, y luego de haberse leído por  EL VENDEDOR Y EL COMPRADOR,  lo  encontramos  conforme,  aceptamos y  firmamos,  
+		en la ciudad de San Marcos a los {{dias}} dias del mes de {{mes}} del año {{anio}}.
+
+	</p>" + $"<br></br>{Footer}" + @"
+</body>
+
+</html>

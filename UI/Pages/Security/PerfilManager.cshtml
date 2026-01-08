@@ -1,0 +1,20 @@
+@page
+@using API.Controllers
+@using APPCORE.Security
+@{
+    // Layout = null;
+    if (!SecurityController.Auth(HttpContext.Session.GetString("sessionKey")))
+    {
+        Response.Redirect("../Security/login");
+        return;
+    }
+    if (!SecurityController.HavePermission(Permissions.PERFIL_MANAGER.ToString(),
+    HttpContext.Session.GetString("sessionKey")))
+    {
+        Response.Redirect("../Security/permission_error");
+        return;
+    }
+
+}
+
+<script type="module" src="/WDevCore/Security/PerfilManagerView.js"></script>

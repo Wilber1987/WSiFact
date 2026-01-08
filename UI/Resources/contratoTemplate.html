@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contrato</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            font-size: 12px;
+        }
+
+        .logo {
+            width: 150px;
+            position: absolute;
+            margin-top: -30px;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            page-break-after: always;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1em;
+            color: black;
+        }
+
+        p,
+        ul {
+            margin: 10px 0;
+            text-align: justify;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .signature-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .signature-table td {
+            padding: 20px;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .header p {
+            margin: 0px;
+            text-align: center;
+        }
+
+        .header-impresion p {
+            margin-top: 15px;
+            margin-bottom: 0px;
+            text-align: center;
+        }
+
+        .header-contrato {
+            margin-top: 0px;
+        }
+
+        .header-contrato p {
+            text-align: center;
+            margin: 0px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <table class="header-table first" style="width:100%;">
+            <tr>
+                <td><img class="logo" src="{{ logo }}" /></td>
+                <td style="text-align: center; font-size: 16px;  font-weight: bold" colspan="2">
+                    <div>Contrato de Servicio Educativo</div>
+                    <div>Código de Familia: {{ codigo_familia }}</div>
+                </td>
+            </tr>
+        </table>
+
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+            <p style="flex: 1; text-align: center; margin: 0;">
+                <strong>{{ codigo_estudiante }}: {{ nombre_estudiante }}</strong>
+            </p>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <p style="flex: 1; text-align: center; margin: 0;"></p>
+            <p> Impresión: {{ impresion }} </p>
+        </div>
+
+        <div class="header-contrato">
+            <p><strong>CONTRATO DE SERVICIO EDUCATIVO</strong></p>
+            <p><strong>[Año Lectivo {{ current_year }}]</strong></p>
+        </div>
+
+        <div class="section-title">PRIMERA: Definición del Contrato</div>
+        <p>El Colegio Centro América, debidamente representado por el Rector Padre Silvio Javier Avilez Cevasco, que en
+            delante se denominará “El Colegio” y los señores __<span class="underline ">{{ nombre_responsable1 }}</span>__ y
+            ___<span class="underline ">{{ nombre_responsable2 }}</span>____ mayores de edad, identificados con números
+            de
+            cédula de identidad
+            __<span class="underline ">{{ cedula1 }}</span>_ y __<span class="underline ">{{ cedula2 }}</span>__ de este
+            domicilio, en su propio nombre y en su condición
+            de padres, tutores o representantes legales, quienes en adelante y para los efectos de este contrato se
+            denominarán “Los Responsables”.
+        </p>
+        <p>El Colegio y Los Responsables acuerdan celebrar el presente contrato de prestación de servicios educativos a
+            su(s) hijo(s) regido por las siguientes cláusulas:
+        </p>
+
+        <div class="section-title">SEGUNDA: Características del Proceso Educativo Ignaciano</div>
+        <p>El proceso educativo ignaciano se caracteriza por:</p>
+        <ul>
+            <li>A. Un modo de proceder educativo coherente con lo explicitado en los documentos “Características de la
+                Educación de la Compañía de Jesús” y “Pedagogía Ignaciana: “Un Planteamiento Práctico”, y otros
+                documentos del marco referencial de la Compañía.</li>
+            <li>B. La promoción de valores, el desarrollo integral, equilibrado y armónico del estudiante en las
+                dimensiones: afectiva, ética, corporal, espiritual, cognitiva, estética, socio-política y comunicativa.
+            </li>
+            <li>C. El desarrollo de competencias que permitan producir y seguir aprendiendo a lo largo de la vida.</li>
+            <li>D. Los currículos abiertos, flexibles, dinámicos, contextualizados e interdisciplinarios con propuestas
+                académicas de calidad.</li>
+            <li>E. El acompañamiento personal.</li>
+        </ul>
+
+        <div class="section-title">TERCERA: Fecha, Lugar y Forma de Pago de Matrícula, Aranceles y Servicios Adicionales
+        </div>
+        <p>A. Las fechas para cancelar los aranceles, serán los siguientes:</p>
+        <ul>
+            <li>- El monto correspondiente a matrícula y colegiatura del mes de enero, deberán ser cancelados durante el
+                período comprendido desde la fecha de notificación de matrícula, hasta el día 06 de diciembre de 2024.
+            </li>
+            <li>- El monto correspondiente a colegiatura deberá ser cancelado mediante once cuotas iguales, mensuales y
+                consecutivas, entre los primeros diez días de cada mes, de febrero a diciembre. A partir de la fecha en
+                que entre en mora por esta obligación de pago, el Colegio aplicará un recargo consistente en adicionar
+                un 5% sobre el monto pendiente de pago.</li>
+            <li>- Los montos correspondientes a materiales educativos y otras actividades pedagógicas deberán ser
+                cancelados mediante cuotas mensuales durante los primeros diez días del período en que se causen.</li>
+        </ul>
+        <p>B. Todo lo anterior podrá pagarse indicando siempre el código de familia o los apellidos del estudiante en
+            Caja del Colegio o a través de las líneas de tele pagos de BANPRO o del CCA marcando al número 22785738,
+            ext. 1012 y 1055. También mediante transferencias bancarias, indicando el código de familia o los apellidos
+            del estudiante a los siguientes números de cuenta:</p>
+        <ul>
+            <li>- BANPRO córdobas: 10010706678600.</li>
+            <li>- BANPRO dólares: 10010710001467.</li>
+            <li>- BAC córdobas: 360067243.</li>
+            <li>- BAC dólares: 362965139.</li>
+        </ul>
+        <p>C. El monto correspondiente a matrícula no está sujeto a devolución, en caso de que el padre/madre decida
+            retirar a su hijo/hija del CCA.</p>
+        <p>D. En caso de incumplimiento en el pago de los servicios antes descritos, el CCA se reserva el derecho de dar
+            por finalizada la relación contractual.</p>
+
+        <div class="section-title">CUARTA: Mantenimiento al Valor</div>
+        <p>Conforme el Art. 16 de la Ley Monetaria, publicada en La Gaceta, D. O. N°. 2 de 7 de enero de 1992, todas las
+            obligaciones dinerarias a cargo de Los Responsables, mantendrán el valor del adeudo en córdobas con relación
+            al dólar, moneda de curso legal de los Estados Unidos de América, al tipo de cambio oficial del córdoba con
+            respecto al dólar al día efectivo de pago; en consecuencia, si se produjese una modificación en el tipo de
+            cambio oficial del córdoba con relación al dólar a partir de esta fecha, dicho monto en córdobas deberá
+            ajustarse en la misma proporción que la modificación operada en el tipo de cambio oficial.</p>
+        <p>Cuando las circunstancias económicas y/o políticas monetarias establecidas por el Banco Central de Nicaragua,
+            dificultaren la libre adquisición de la moneda dólar, se utilizará el tipo de cambio establecido por la
+            libre oferta y demanda, en el mercado paralelo, necesario para la adquisición de la cantidad de dólares
+            establecida en el Programa de Pagos acordado.</p>
+
+        <div class="section-title">QUINTA: Servicio de Transporte</div>
+        <p>El Colegio ofrece un servicio de transporte mediante un contrato independiente. Se debe solicitar y firmar en
+            la oficina de transporte.</p>
+
+        <div class="section-title">SEXTA: Seguro Escolar Obligatorio</div>
+        <p>El seguro escolar es obligatorio para todos los estudiantes. Los estudiantes que cuenten con póliza de seguro
+            familiar deberán presentarla al momento del pago de la matrícula en administración. El estudiante que no
+            cuente con un seguro escolar podrá avocarse con el corredor de seguro que en el periodo de matrícula estará
+            a disposición en el edificio administrativo.</p>
+
+        <div class="section-title">SÉPTIMA: Obligación Solidaria de Pago</div>
+        <p>El Primer(a) y Segundo(a) Responsable, se obligan solidaria y subsidiariamente al pago total de todos y cada
+            una de las obligaciones dinerarias, conjuntas y relacionadas en las cláusulas anteriores, para lo cual
+            renuncian desde ya, al beneficio de excusión y de la división de las referidas obligaciones, constituyéndose
+            en codeudores individuales e indistintos; es decir, tanto el Primer responsable como el Segundo, quedan
+            obligados a cumplir íntegramente las obligaciones.</p>
+
+        <div class="section-title">OCTAVA: Derechos y Obligaciones del Colegio Centro América</div>
+        <p><strong>Derechos:</strong></p>
+        <ul>
+            <li>1. Exigir a Los Responsables el cumplimiento de la normativa interna vigente o aquella que, durante la
+                duración del presente contrato entre en vigor [Normativa de Convivencia, Protocolo de Protección de
+                Niñas, Niños y Adolescentes, entre otros]; documentos que Los Responsables declaran conocer y que desde
+                ya aceptan.</li>
+            <li>2. Actuar rápida y oportunamente para corregir comportamientos inadecuados en el educando; para lo cual
+                las personas delegadas por el Rector, se encuentran autorizadas para conversar directamente sin la
+                presencia de la madre/padre del estudiante, sobre aspectos académicos, conductuales y espirituales sin
+                perjuicio de citar a la madre/padre de familia para tratar la misma situación en reunión posterior.</li>
+            <li>3. A reservarse el derecho de permanencia del educando y de renovación de matrícula, con base a las
+                actitudes personales y familiares del estudiante y al cumplimiento de las obligaciones establecidas en
+                las normas internas, para las madres/padres de familia, conforme lo decida el Consejo de Dirección del
+                CCA.</li>
+            <li>4. Exigir a los estudiantes el cumplimiento de los deberes académicos que derivan del servicio educativo
+                que brinda el Colegio Centro América y lo reglamentado en sus documentos institucionales.</li>
+            <li>5. Exigir el pago de los aranceles de matrícula, colegiatura, transporte y demás obligaciones dinerarias
+                a cargo de Los Responsables, en los plazos y fechas establecidas, mediante el cobro administrativo,
+                extrajudicial o judicial, según sea el caso. En los casos que así se requiere, los gastos, honorarios y
+                costas de ejecución, correrán por cuenta del Primer y Segundo Responsable sujetos a los referidos
+                trámites.</li>
+            <li>6. A reservarse el derecho de permanencia del estudiante o la entrega de sus calificaciones por
+                cualquier medio escrito o electrónico, como efecto del impago de las obligaciones dinerarias de Los
+                Responsables con el Colegio.</li>
+        </ul>
+        <p><strong>Obligaciones:</strong></p>
+        <ul>
+            <li>1. Formar integralmente al estudiante, conforme las características del Proceso Educativo Ignaciano,
+                mientras sea estudiante activo/a.</li>
+            <li>2. Garantizar ambientes sanos y seguros para la protección integral de los estudiantes, que involucre un
+                esfuerzo conjunto de toda la comunidad educativa.</li>
+            <li>3. Notificar a través de su página WEB o el SIAC, la información correspondiente a: circulares,
+                horarios, cronogramas, boletines informativos, resultados académicos y otros.</li>
+            <li>4. Entregar documentos o informes únicamente a Los Responsables que han sido legalmente registrados a
+                través del presente Contrato, siempre que se encuentren solventes en sus obligaciones de pago.</li>
+        </ul>
+
+        <div class="section-title">NOVENA: Derechos y Obligaciones de Los Responsables</div>
+        <p><strong>Derechos:</strong></p>
+        <ul>
+            <li>1. Recibir la enseñanza contratada para sus hijas/hijos conforme las características del Proceso
+                Educativo Ignaciano.</li>
+            <li>2. Recibir orientación sobre la educación de su hija/hijo.</li>
+            <li>3. Recibir información oportuna sobre la situación académica y conductual de su hija/hijo.</li>
+            <li>4. Participar en las actividades familiares que celebra el CCA (Día familiar, Día de mamá y papá, Ya
+                sabemos leer, Caminata de undécimo grado, entre otras).</li>
+        </ul>
+        <p><strong>Obligaciones:</strong></p>
+        <ul>
+            <li>1. Cumplir y hacer cumplir a sus hijos/estudiantes con las normas internas que rigen a la Comunidad
+                Educativa del CCA, las cuales desde ya declaran conocer y aceptar.</li>
+            <li>2. Respetar la formación ético-religiosa, según el Programa de Formación Cristiana del CCA.</li>
+            <li>3. Pagar en el tiempo, plazo, forma y lugar previamente establecido, los aranceles por matrícula,
+                colegiatura, transporte y demás obligaciones derivadas del servicio educativo que recibe el estudiante
+                en el CCA. Pagar los gastos, honorarios y costas de ejecución, derivadas del cobro administrativo,
+                extrajudicial o judicial, según sea el caso, por incumplimiento de esta obligación.</li>
+            <li>4. Garantizar los requerimientos materiales necesarios para la participación efectiva de su hija/hijo,
+                en las actividades complementarias que ofrece el CCA; tales como: apostolado social, retiros
+                espirituales, cursos de reforzamiento, paseos, convivencias, talleres de danza, de música, de teatro,
+                disciplinas deportivas, club de lectores y laboratorios, entre otros.</li>
+            <li>5. Cumplir con el horario establecido institucionalmente, responsabilizándose de la seguridad de sus
+                hijas/hijos, durante el tiempo intermedio entre las actividades matutinas y vespertinas.</li>
+            <li>6. Retirar puntualmente a su hija/hijo, terminada la jornada escolar, ya que el CCA no dispone de
+                personal para la atención de los estudiantes pasado el horario establecido.</li>
+            <li>7. Colaborar con el Colegio de forma activa y propositiva en todas las actividades académicas,
+                deportivas, culturales y espirituales que se realizan durante el curso escolar, las cuales forman parte
+                del Programa Educativo del CCA, el cual declaran conocer y desde ya aceptan.</li>
+            <li>8. Solicitar permiso a la coordinación respectiva cuando amerite retirar al estudiante antes de
+                finalizar la jornada escolar.</li>
+            <li>9. Actualizar ante la asistente de rectoría (edificio administrativo) los cambios de residencia, números
+                telefónicos, dirección electrónica y otros datos relacionados con el entorno educativo.</li>
+            <li>10. Entregar por escrito a la coordinación respectiva el permiso para que su hija/hijo se retire del
+                colegio con otra persona ajena a los tutores registrados en la coordinación, presentando su debida
+                identificación.</li>
+            <li>11. Respetar dentro y fuera de las instalaciones del Colegio Centro América, las disposiciones
+                establecidas por las leyes, reglamentos y normativas internas asociados a los derechos de la niñez y la
+                adolescencia. Por tanto, es totalmente prohibido abordar directamente con otros estudiantes, situaciones
+                vinculadas a problemas en las relaciones interpersonales con su hija/hijo. Queda terminantemente
+                prohibido tomar acciones correctivas directas en tales casos.</li>
+            <li>12. Respetar los lineamientos sobre la evaluación de los aprendizajes. El estudiante que al terminar el
+                curso escolar haya reprobado una o dos asignaturas, debe presentarse a examen de reparación
+                (extraordinario); quedando establecido únicamente el examen de reparación oficial, no habrá segunda
+                convocatoria.</li>
+        </ul>
+
+        <div class="section-title">DÉCIMA: Documentos integrantes del Contrato</div>
+        <p>Forman parte integrante del presente Contrato, como si a la letra se insertaran:</p>
+        <ul>
+            <li>1. Normativa de Convivencia</li>
+            <li>2. Protocolo de Protección de Niñas, Niños y Adolescentes</li>
+            <li>3. Contrato de Transporte (si aplica)</li>
+        </ul>
+
+        <div class="section-title">DÉCIMA PRIMERA: Vigencia del Contrato</div>
+        <p>La vigencia del presente Contrato inicia desde la fecha de su suscripción y finaliza con la firma de un nuevo
+            contrato o el último día lectivo del año 2025.</p>
+
+        <div class="section-title">DÉCIMA SEGUNDA: Causas de Terminación del Contrato</div>
+        <p>El presente Contrato terminará por las siguientes causas:</p>
+        <ul>
+            <li>1. Por expiración del plazo.</li>
+            <li>2. Por retraso en el pago de la matrícula o aranceles.</li>
+            <li>3. Por resolución del Consejo Directivo del Colegio.</li>
+            <li>4. Por voluntad de Los Responsables.</li>
+            <li>5. Por fallecimiento del estudiante.</li>
+        </ul>
+
+        <div class="section-title">DÉCIMA TERCERA: Disposición Especial</div>
+        <p>El incumplimiento de pago de las obligaciones dinerarias en la forma, fecha y demás condiciones establecidas
+            en este Contrato por parte de Los Responsables, dará lugar a la aplicación de las siguientes medidas por
+            parte del Colegio:</p>
+        <ul>
+            <li>- A los 30 días de mora se suspenderá el acceso al SIAC.</li>
+            <li>- A los 60 días de mora el acceso a las plataformas educativas y correo electrónico.</li>
+            <li>- A los 90 días de mora se suspenderá el ingreso a clases.</li>
+
+        </ul>
+
+        <div class="section-title">DÉCIMA CUARTA: Aceptación</div>
+        <p>Aceptamos el presente Contrato en toda su extensión, firmándolo en la ciudad de Managua, a los {{ dia }} días del
+            mes de {{ mes }} del {{ anio }}.</p>
+
+            <table class="signature-table" style="width: 100%; table-layout: fixed; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 50%; text-align: center; padding: 0px;">                        
+                        <p style="text-align:center">____________________________________</p>   
+                        <p style="text-align:center"><strong>{{ nombre_responsable1 }}</strong><br />Primer Responsable</p>
+                    </td>
+                    <td style="width: 50%; text-align: center; padding: 0px;">
+                        <p style="text-align:center">____________________________________</p>   
+                        <p style="text-align:center"><strong>{{ nombre_responsable2_firma }}</strong><br />Segundo
+                            Responsable</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center; padding: 0px 140px 0px 140px !important;">
+                        <div style="border-top: 1px solid #000000; width: 90%; margin: 0 auto;"></div>
+                        <p style="text-align:center"><strong>SILVIO JAVIER AVILEZ CEVASCO</strong><br />Representante Legal
+                        </p>
+                    </td>
+                </tr>
+            </table>
+    </div>
+
+</body>
+
+</html>

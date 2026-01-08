@@ -1,0 +1,35 @@
+﻿@page
+@using API.Controllers
+@using APPCORE.Security
+@using DataBaseModel
+@{
+    string identify = HttpContext.Session.GetString("sessionKey");
+    var pageConfig = Config.pageConfig();
+    //Layout = null;
+    if (!SecurityController.Auth(HttpContext.Session.GetString("sessionKey")))
+    {
+        Response.Redirect("./Security/Login");
+        return;
+    }
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./App.js" type="module"></script>
+    <script src="./AppTest.js" type="module"></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/template_dasboard.css" />
+    <script src="./Facturacion/Views/FacturaDasboardView.js" type="module"></script>
+</head>
+
+<body id="App">
+    <div id="AppMain">
+        <w-facturacion-dasboard></w-facturacion-dasboard>        
+    </div>
+</body>
+
+</html>

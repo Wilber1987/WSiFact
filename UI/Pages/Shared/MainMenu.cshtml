@@ -1,0 +1,72 @@
+@using API.Controllers
+@using APPCORE.Security
+@using DataBaseModel
+@{
+    string Identify = Context.Session.GetString("sessionKey");
+    var PageConfig = Config.pageConfig();
+}
+
+<a class="title-collapse">TRANSACCIONES</a>
+<a class="menu-item" id="Home" asp-area="" asp-page="/">HOME</a>
+@if (SecurityController.HavePermission(Permissions.GESTION_EMPEÑOS.ToString(), Identify))
+{
+    <a class="title-collapse" id="PrestamosClientesMenu" onclick="changeActive(this)">EMPEÑOS</a>
+    <div class="collapse">
+        @if (SecurityController.HavePermission(Permissions.GESTION_CLIENTES.ToString(), Identify))
+        {
+            <a class="menu-item" id="Gestion_Clientes" asp-area="" asp-page="/PagesViews/Gestion_Clientes">Gestión de clientes</a>
+        }
+        <a class="menu-item" id="Transaction_Valoraciones_View" asp-area=""
+            asp-page="/PagesViews/Transaction_Valoraciones_View">VALORACIONES</a>
+        <a class="menu-item" id="Transaction_ContratosView" asp-area=""
+            asp-page="/PagesViews/Transaction_ContratosView">CONTRATOS</a>
+        <a class="menu-item" id="ActasEntregasView" asp-area=""
+            asp-page="/Facturacion/ActasEntregasView">ACTAS ENTREGAS</a>
+    </div>
+}
+@if (SecurityController.HavePermission(Permissions.GESTION_RECIBOS.ToString(), Identify))
+{
+    <a class="title-collapse" id="GestionRecibosMenu" onclick="changeActive(this)">GESTIÓN DE RECIBOS</a>
+    <div class="collapse">
+        <a class="menu-item" id="Gestion_Recibos" asp-area="" asp-page="/PagesViews/Gestion_Recibos">Nuevo Recibo</a>
+        <a class="menu-item" id="Ver_Recibos" asp-area="" asp-page="/PagesViews/Ver_Recibos">Ver Recibos</a>
+    </div>
+}
+@if (SecurityController.HavePermission(Identify, Permissions.GESTION_COMPRAS, Permissions.GESTION_VENTAS))
+{
+    <a class="title-collapse" id="GestionFacturaCompraMenu" onclick="changeActive(this)">GESTIÓN DE COMPRAS</a>
+    <div class="collapse">
+        @if (SecurityController.HavePermission(Identify, Permissions.GESTION_COMPRAS))
+        {
+            @* <a class="menu-item" id="ComprasComponentView" asp-area="" asp-page="/Facturacion/ComprasComponentView">
+                Nueva Compra</a>
+                <a class="menu-item" id="ComprasManager" asp-area="" asp-page="/Facturacion/ComprasManager">
+                    Ver Compras</a>*@
+            <a class="menu-item" id="ComprasComponentView" asp-area=""
+                asp-page="/PagesViews/Transaction_Valoraciones_View">Nueva Compra</a>
+            <a class="menu-item" id="ComprasComponentView" asp-area=""
+                asp-page="/Facturacion/ComprasManager">Compras realizadas</a>
+
+        }
+    </div>
+    <a class="title-collapse" id="GestionFacturaVentasMenu" onclick="changeActive(this)">GESTIÓN DE VENTAS</a>
+    <div class="collapse">
+        @if (SecurityController.HavePermission(Identify, Permissions.GESTION_VENTAS))
+        {
+            <a class="menu-item" id="FacturasVentasView" asp-area="" asp-page="/Facturacion/FacturasComponentView">Ventas</a>
+        }
+        @if (SecurityController.HavePermission(Permissions.GESTION_LOTES.ToString(), Identify))
+        {
+            <a class="menu-item" id="LotesManager" asp-area="" asp-page="/Facturacion/LotesManager">Existencias</a>
+        }
+    </div>
+}
+
+@if (SecurityController.HavePermission(Permissions.GESTION_MOVIMIENTOS.ToString(), Identify))
+{
+    <a class="title-collapse" id="GestionCuentasMenu" onclick="changeActive(this)">GESTIÓN DE CUENTAS</a>
+    <div class="collapse">        
+        <a class="menu-item" id="Movimientos_CuentasView" asp-area=""
+            asp-page="/PagesViews/Movimientos_CuentasView">Gestión de Cuentas</a>
+    </div>
+}

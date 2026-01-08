@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppCore\AppCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.6.11" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mapping\Entity\" />
+    <Folder Include="Mapping\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Incluye todos los archivos HTML en la carpeta Resources -->
+    <None Update="Resources\**\*.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,21 @@
+@page
+@using API.Controllers
+@using APPCORE.Security
+@{
+    string? identfy = HttpContext.Session.GetString("sessionKey");
+    if (!SecurityController.Auth(identfy))
+    {
+        Response.Redirect("../Security/login");
+        return;
+    }
+
+}
+@if (SecurityController.HavePermission(identfy, Permissions.GESTION_EMPEÑOS, Permissions.GESTION_COMPRAS))
+{
+    <script src='~/Views/Transaction_Valoraciones_View.js' type='module'></script>
+    <div id='MainBody'></div>
+}
+else
+{
+    <h1>No tiene permisos</h1>
+}

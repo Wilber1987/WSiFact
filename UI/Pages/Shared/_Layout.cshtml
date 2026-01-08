@@ -1,0 +1,92 @@
+﻿@using API.Controllers
+@using APPCORE.Security
+@using DataBaseModel
+@{
+    string identify = Context.Session.GetString("sessionKey");
+    var pageConfig = Config.pageConfig();
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] EMPRE S.A</title>
+    <link rel="stylesheet" href="~/css/AdminTemplate.css" />
+    <script>
+        function displayNav() {
+            Aside.className = Aside.className.includes("navActive") ? "" : "navActive";
+        }
+    </script>
+    <script type="module">
+        import { WSecurity } from "/WDevCore/Security/WSecurity.js";
+        const logout = () => {
+            WSecurity.LogOut();
+        }
+        window.addEventListener("load", () => {
+            //active nav
+            document.querySelectorAll(".menu-item").forEach(item => {
+                if (location.href.includes(item.id)) {
+                    item.className = "active";
+                }
+            })
+            //logOut
+            btnLogOut.onclick = logout;
+        })
+    </script>
+</head>
+
+<body id="AdminTemplate">
+    <aside id="Aside">
+        <nav>
+            <img src="~/Media/Image/close.webp" class="navIcon" onclick="displayNav()">
+            <div class="logo-container">
+                <img src="@pageConfig.MEDIA_IMG_PATH@pageConfig.LOGO_PRINCIPAL">
+            </div>
+            <partial name="MainMenu" />
+        </nav>
+    </aside>
+
+    <header id="Header" class="admin-header">
+        <img src="~/Media/Image/navIcon.png" class="navIcon" onclick="displayNav()">
+        <div class="title-container">
+            <label for="" class="title">@pageConfig.TITULO</label>
+            <label for="" class="sub-title">@pageConfig.SUB_TITULO</label>
+        </div>
+
+        @if (SecurityController.IsAdmin(identify))
+        {
+            <a href="~/Admin/Index">Admin Panel</a>
+        }
+        <a href="#" id="btnLogOut">Cerrar Sesión</a>
+    </header>
+    <div class="background"></div>
+
+    <div id="MainContainer">
+        <main role="main" id="Main">
+            @RenderBody()
+        </main>
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        if (sessionStorage.getItem("menu_active") == null) {
+            sessionStorage.setItem("menu_active", "PrestamosClientesMenu")
+        }
+        const changeActive = (target) => {
+            if (target.className.includes("active-title")) {
+                target.className = target.className.replace("active-title", "")
+                sessionStorage.removeItem("menu_active")
+            }
+            else {
+                target.className = target.className + ' active-title';
+                sessionStorage.setItem("menu_active", target.id);
+            }
+        }
+        const menuActive = document.querySelector("#" + sessionStorage.getItem("menu_active"));
+        if (menuActive) {
+            changeActive(menuActive)
+        }
+    </script>
+</body>
+
+</html>

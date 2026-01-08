@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrato</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            font-size: 12px;
+        }
+
+        .logo {
+            width: 80px;
+            position: absolute;
+            margin-top: -30px;
+            margin-left: 5px;
+        }
+
+        .bg-gray {
+            background-color: #DEDAD9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1em;
+            color: black;
+        }
+
+        .celda-datos {
+            border-bottom: 1px dashed black;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table class="header-table" style="width:100%;">
+            <tr>
+                <td><img class="logo" src="{{ logo }}" alt="Logo Colegio Centroamérica" /></td>
+                <td style="text-align: center; font-size: 16px; font-weight: bold" colspan="2">
+                    <div>COLEGIO CENTROAMERICA</div>
+                    <div>NOTIFICACIÓN DE ACTUALIZACIÓN DE DATOS</div>
+                </td>
+            </tr>
+        </table>
+
+        <p>Estimado(a) {{ nombre_padre_familia }},</p>
+
+        <p>Le informamos que los datos de usted y sus hijos han sido actualizados exitosamente en nuestro sistema.</p>
+
+        <p>Además, le enviamos adjunto en este correo el contrato y las boletas de matrícula correspondientes a sus hijos. Le solicitamos revisarlos cuidadosamente y conservarlos para su referencia.</p>
+
+        <p>Si tiene alguna pregunta o necesita asistencia adicional, no dude en contactarnos. Agradecemos su colaboración y confianza en nuestro colegio.</p>
+
+        <p>Atentamente,</p>
+
+        <p>Equipo de Administración<br>Colegio Centroamérica</p>
+
+        <hr>
+
+        <p style="font-size: 10px; color: #666;">Este mensaje es confidencial y está dirigido exclusivamente al destinatario mencionado. Si usted no es el destinatario indicado, le informamos que cualquier revisión, copia, distribución o divulgación de este mensaje y/o sus adjuntos está estrictamente prohibida.</p>
+    </div>
+</body>
+</html>

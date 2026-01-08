@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Boleta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            font-size: 12px;
+        }
+
+        .logo {
+            width: 80px;
+            position: absolute;
+            margin-top: -30px;
+            margin-left: 5px;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .bg-gray {
+            background-color: #DEDAD9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            page-break-after: always;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1em;
+            color: black;
+        }
+
+        .signature-table td {
+            padding: 20px;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .header-contrato {
+            margin-top: 0px;
+        }
+
+        .header-contrato p {
+            text-align: center;
+            margin: 0px;
+        }
+
+        .celda-datos {
+            border-bottom: 1px dashed black;
+            font-size: 16px;
+            font-weight: bold
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table class="header-table first" style="width:100%;">
+            <tr>
+                <td><img class="logo" src="{{ logo }}" /></td>
+                <td style="text-align: center; font-size: 16px; padding-right: 38px; font-weight: bold;" colspan="2">
+                    <div>COLEGIO CENTRO AMERICA</div>
+                    <div>AUTORIZACION DE MATRICULA</div>
+                </td>
+            </tr>
+        </table>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+            <p style="flex: 1; text-align: center; margin: 0;">
+                <strong>NO. DE EXPEDIENTE: {{ no_expediente }}</strong>
+            </p>
+        </div>
+        <hr/>
+        <div class="header-contrato" style="width: 120PX; float: right; text-align: right;">
+            <p><strong style="background-color: #DEDAD9; padding: 5px;">CICLO:</strong> {{ ciclo }}</p>
+        </div>
+        <table class="header-table first" style="width:100%;">
+            <tr>
+                <td class="bg-gray" style="width: 250px;"><strong>NOMBRE:</strong></td>
+                <td class="celda-datos">
+                    {{ nombre }}
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-gray" style="width: 250px;"><strong>CURSO ACTUAL:</strong></td>
+                <td class="celda-datos">
+                    {{ curso_actual }}
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-gray" style="width: 250px;"><strong>PROMUEVE A:</strong></td>
+                <td class="celda-datos">
+                    {{ promueve }}
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-gray" style="width: 250px;"><strong>IMPORTE MATRICULA:</strong></td>
+                <td class="celda-datos">
+                    {{ moneda }} {{ importe_matricula }}
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-gray" style="width: 160px;"><strong>FECHA VENCIMIENTO:</strong></td>
+                <td class="celda-datos">
+                    {{ fecha_vencimiento }}
+                </td>
+            </tr>
+        </table>
+        <hr/>
+        <br/><br/>
+        <div style="width: 100%; text-align: right;">
+            <p style="text-align: center; width: 380px; border-top: 1px dashed black; float: right">
+                <strong>Firma y Sello</strong>
+            </p>
+        </div>
+        <br/><br/>
+    </div>
+
+</body>
+
+</html>

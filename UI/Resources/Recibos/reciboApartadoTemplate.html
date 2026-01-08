@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Recibo</title>
+    <style>
+        .body {
+            font-size: 10px;
+            width: 400px;
+            border: 1px solid #000;
+            margin: 0px auto;
+            padding: 15px;
+        }
+        .body h3 {
+            margin: 2px;
+        }
+        .w-100 {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .w-50 {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .w-50 {
+            width: 48%;
+            box-sizing: border-box;
+        }
+        .w-30 { 
+            width: 33%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+        }
+        .w-70 { 
+            width: 76%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+        }
+        .text-center,
+        .content-center {
+            text-align: center;
+        }
+        .f-10 {
+            font-size: 10px;
+        }
+        .body p {
+            margin-bottom: 0px;
+            padding: 1px;
+        }
+
+        .img-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <h3 class='text-center'>{{ titulo }}</h3>
+        <p class='text-center'>{{ sub-titulo }}</p>
+        <div class='content-center f-10'>
+            <p>{{ ruc }}</p>
+            <p>{{ info_tel }}</p>
+        </div>
+        <p class='content-center'>SISTEMA DE APARTADO</p>
+        {{ cancelation }}
+
+
+        <p class='w-70'><strong>ASFC 06/0003/10/2020/1</strong></p>
+        <p class='w-50'><strong>Recibo Num:</strong> {{ recibo_num }}</p>
+        <div class='w-100'>
+            <p class='w-30'><strong>Contrato:</strong> {{ numero_contrato }}</p>
+            <p class='w-50'><strong>Cambio de C$ A $:</strong> {{ cambio }}</p>
+        </div>  
+        <div class='w-100'>
+            Cuota {{ recibo_index }} de {{ cuotas }} a pagar en C$ {{ cuotafijacordobas }} Equivalente a $ {{ cuotafija }}           
+        </div>
+        <div class='w-100'>
+            <p class='w-50'><strong>Saldo Anterior  C$ {{ saldo_anterior_cordobas }}</strong></p>
+            <p class='w-50'><strong>Equivalente a  $ {{ saldo_anterior }}</strong></p>
+        </div>
+        <div class='w-100'>
+            Recibí de: {{ cliente }}            
+        </div>
+        <div class='w-100'>
+            <p class='w-50'><strong>La cantidad de:</strong>C$ {{ total_pagado }}</p>
+            <p class='w-50'><strong>Equivalente a </strong>$ {{ total_pagado_dolares }}</p>
+        </div>
+        <div class='w-100'>
+            {{ total_pagado_dolares_letras }}, en concepto de pago por el (los) articulo(s) en sistema de apartado.
+        </div>
+         <!--<div class='w-100'>
+             {{ concepto }}       
+        </div>             -->
+        <p><strong>Próximo Pago:</strong> {{ proximo_pago }}</p>
+        <div class='w-100'>
+            <p class='w-50'><strong>Saldo Actual:</strong> C$ {{ saldo_actual_cordobas }}</p>
+            <p class='w-50'><strong>Equivalente a</strong> $ {{ saldo_actual_dolares }}</p>
+        </div>
+        <p class='w-100' style="text-align: center; justify-content: center; border-bottom: solid 1px #000; margin-top: 5px">{{ fecha }}</p>      
+        <p class='w-100'  style="text-align: center; justify-content: center ; margin-bottom: 5px">Recaudado el</p> 
+
+        <div style="margin-top: 5px; display: flex;">
+            <div style="margin: 5px; flex:1; text-align: center">
+                <div style="height: 30px;"></div>
+                <hr/>
+                <p>Recibí Conforme</p>
+            </div>
+            <div style="margin: 5px; flex:1; text-align: center">
+                <div style="height: 30px;"></div>
+                <hr/>
+                <p>Entregue Conforme</p>
+            </div>
+        </div>
+        <br><br>
+        <P class='text-center'>Este recibo no es valido sin la firma del Cajero(a)</P>
+        <P class='text-center'>"Pagando a tiempo, no pierde el tiempo, porque usa su articulo mas tiempo"</P>
+</div>
+</body>
+
+</html>

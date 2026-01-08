@@ -1,0 +1,216 @@
+﻿@import url(./variables.css);
+@import url(./template.css);
+
+.sp-megamenu-parent * {
+    text-transform: capitalize !important;
+}
+
+.container-menu,
+.row-header {
+    height: 80px !important;
+    padding: 0px 20px;
+}
+
+#offcanvas-toggler {
+    height: 80px;
+    line-height: 80px;
+    font-size: 20px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.offcanvas-active {
+    transform: translateX(-300px);
+}
+
+.menu_item>.sp-mega-group-child {
+    display: none;
+}
+
+.menu_item:hover>.sp-mega-group-child {
+    position: absolute;
+    background: #164e81;
+    bottom: 0;
+    transform: translateY(100%);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sp-mega-group-child li {
+    list-style: none;
+}
+
+.sp-megamenu-parent li a {
+    font-size: 14px;
+    color: #e5f2ff;
+}
+
+.sp-megamenu-parent li a:hover {
+    color: #ffffff;
+}
+
+.carrosel li {
+    position: relative;
+}
+
+#offcanvas-toggler {
+    display: none !important;
+}
+.sp-mega-group-child li {
+    list-style: none;
+    border-bottom: 1px solid #fff;
+    padding: 10px 0px;
+}
+
+.sp-megamenu-parent .sp-dropdown.sp-dropdown-main{
+  top: unset;
+}
+
+.text-white a {
+    color: #fff;
+    font-weight: 600;
+}
+
+.com-content-article__body {
+    & table {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    & table,
+    & p {
+        width: 100%;        
+        & tr td {
+            padding: 10px;
+            border: none;
+        }
+        & tr:nth-child(odd) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+}
+
+.com-content-article__body * {
+    font-size: 18px;
+    justify-content: justify;
+
+}
+
+.page-header,
+.com-content-article__body {
+   & h1 {
+     font-size: 28px !important;
+     width: 100%; 
+     margin: 20px 0px;
+   }
+   & h2,  & .title, & .titulo {
+     font-size: 25px !important;
+     width: 100%; 
+     margin: 20px 0px;
+     color: #014f81;
+   }
+
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5 {
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        color: #014f81;
+    }
+
+    & .menu {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+
+        & a img {
+            height: 140px;
+            width: 180px;
+        }
+    }
+}
+
+
+.sp-dropdown.sp-dropdown-main.sp-dropdown-mega.sp-menu-full {
+    left: 0;
+    width: fit-content;
+    gap: 20px;
+    transform: translateX(80px);
+    & li {
+        width:fit-content;
+        padding: 5px 5px;
+        min-width: 120px;   
+        & a {
+            box-sizing: border-box;
+        }
+    }
+    & li:hover,  & li a:hover {        
+        border: none;
+        box-shadow: unset;        
+    }  
+    & li a:hover {        
+        border-bottom: solid #007bff 1px;
+    }
+}
+
+@media(max-width: 800px) {
+    #offcanvas-toggler {
+        display: flex !important;
+    }
+
+    .offcanvas-init {
+        transition: all 0.5s;
+    }
+
+    .sp-megamenu-parent {
+        list-style: none;
+        padding: 0;
+        z-index: 99;
+        display: flex !important;
+        float: right;
+        position: fixed;
+        display: flex !important;
+        flex-direction: column;
+
+        background-color: rgb(31, 44, 82);
+        margin: 0;
+        top: 0;
+        height: 100vh;
+        width: 300px;
+        /* width: -webkit-fill-available; */
+        right: -300px;
+    }
+
+    body.ltr.offcanvs-position-right.offcanvas-active .body-wrapper .sp-megamenu-parent {
+        transform: translateX(-100%);
+    }
+
+    .sp-megamenu-parent>li {
+        display: flex;
+        max-width: none;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .menu_item:hover>.sp-mega-group-child {
+        position: relative;
+        background: #164e81;
+        bottom: 0;
+        transform: unset;
+        display: flex;
+    }
+
+    .sp-megamenu-parent>li:hover,
+    .sp-megamenu-parent>li.active,
+    .sp-megamenu-parent>li.active:hover {
+        color: #fff;
+        border-left: 7px solid #fff;
+        border-bottom: unset;
+    }
+
+    .sp-megamenu-parent>li>a {
+        min-height: 40px;
+    }
+
+}

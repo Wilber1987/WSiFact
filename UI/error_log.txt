@@ -1,0 +1,200 @@
+[8/21/2025 10:48:36 PM] ERROR: Max retries reached. Operation failed.: Timeout expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 282
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 230
+[8/21/2025 10:48:36 PM] Transaction failed and connection restarted.: Timeout expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 282
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 230
+[8/21/2025 10:48:36 PM] Transaction failed and connection restarted.: Timeout expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 282
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 230
+   at APPCORE.GDatosAbstract.TraerDatosSQL(String queryString, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 274
+   at APPCORE.BDCore.Abstracts.WDataMapper.TakeObject[T](EntityClass Inst, String CondSQL, Boolean isSimpleFind) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\DataMapper.cs:line 458
+[8/21/2025 10:48:36 PM] ERROR: TakeList - Tbl_Lotes - SELECT  top 1 Id_Lote,Id_Producto,Precio_Venta,Precio_Compra,Cantidad_Inicial,Cantidad_Existente,Id_Sucursal,Id_User,Fecha_Ingreso,Id_Almacen,Lote,Id_Detalle_Compra,Detalles, Datos_Producto = JSON_QUERY(Datos_Producto), EtiquetaLote = JSON_QUERY(EtiquetaLote),Cat_Almacenes = JSON_QUERY((SELECT  Id_Almacen,Descripcion,Estado,Id_Sucursal FROM facturacion.Cat_Almacenes as YNZ_L_Z_I   WHERE   Id_Almacen = PGG_F_T_L.Id_Almacen  ORDER BY Id_Almacen DESC FOR JSON PATH,  ROOT('object')),'$.object[0]'),Detalle_Compra = JSON_QUERY((SELECT  Id_Detalle_Compra,Id_Compra,Id_Producto,Cantidad,Precio_Unitario,SubTotal,Iva,Total,Presentacion,Cat_Producto = JSON_QUERY((SELECT  Id_Producto,Descripcion,Id_Categoria,Id_Marca,Cat_Marca = JSON_QUERY((SELECT  Id_Marca,Nombre,Descripcion,Estado FROM facturacion.Cat_Marca as JIO_W_B_Q   WHERE   Id_Marca = JKW_D_Y_S.Id_Marca  ORDER BY Id_Marca DESC FOR JSON PATH,  ROOT('object')),'$.object[0]'),Cat_Categorias = JSON_QUERY((SELECT  Id_Categoria,Descripcion,Estado FROM facturacion.Cat_Categorias as NWU_M_S_H   WHERE   Id_Categoria = JKW_D_Y_S.Id_Categoria  ORDER BY Id_Categoria DESC FOR JSON PATH,  ROOT('object')),'$.object[0]') FROM facturacion.Cat_Producto as JKW_D_Y_S   WHERE   Id_Producto = YFH_Q_Z_N.Id_Producto  ORDER BY Id_Producto DESC FOR JSON PATH,  ROOT('object')),'$.object[0]') FROM facturacion.Detalle_Compra as YFH_Q_Z_N   WHERE   Id_Detalle_Compra = PGG_F_T_L.Id_Detalle_Compra  ORDER BY Id_Detalle_Compra DESC FOR JSON PATH,  ROOT('object')),'$.object[0]'),Estado FROM facturacion.Tbl_Lotes as PGG_F_T_L   WHERE Id_Lote = @Id_LoteFIK_X_O_K  AND Id_Producto = @Id_ProductoHAO_H_M_U  AND Precio_Venta = @Precio_VentaRUZ_F_D_K  AND Precio_Compra = @Precio_CompraKVI_X_F_V  AND Cantidad_Inicial = @Cantidad_InicialWAP_O_Q_B  AND Cantidad_Existente = @Cantidad_ExistenteVAH_G_P_U  AND Id_Sucursal = @Id_SucursalNNI_X_M_J  AND Id_User = @Id_UserHOP_T_F_P  AND Fecha_Ingreso = @Fecha_IngresoGCE_J_U_E  AND Id_Almacen = @Id_AlmacenLGN_G_P_I  AND Lote = @LoteDGL_T_B_X  AND Id_Detalle_Compra = @Id_Detalle_CompraZLJ_K_F_W  AND Estado = @EstadoEEU_H_C_J    ORDER BY Id_Lote DESC: Timeout expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 282
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 230
+   at APPCORE.GDatosAbstract.TraerDatosSQL(String queryString, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 274
+   at APPCORE.BDCore.Abstracts.WDataMapper.TakeObject[T](EntityClass Inst, String CondSQL, Boolean isSimpleFind) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\DataMapper.cs:line 458
+[8/21/2025 10:48:36 PM] Error al guardar la factura: Timeout expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.: Timeout expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 282
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 230
+   at APPCORE.GDatosAbstract.TraerDatosSQL(String queryString, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 274
+   at APPCORE.BDCore.Abstracts.WDataMapper.TakeObject[T](EntityClass Inst, String CondSQL, Boolean isSimpleFind) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\DataMapper.cs:line 458
+   at APPCORE.EntityClass.Find[T](FilterData[] where_condition) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 89
+   at UI.CAPA_NEGOCIO.Facturacion.Operations.FacturacionServices.DoSaveFactura(String Identity, Tbl_Factura factura) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\BusinessLogic\Facturacion\Operations\FacturacionServices.cs:line 111
+   at UI.CAPA_NEGOCIO.Facturacion.Operations.FacturacionServices.SaveFactura(String Identity, Tbl_Factura factura) in C:\Users\wilbe\repos\NETCORE\EmpresaUpdated\BusinessLogic\Facturacion\Operations\FacturacionServices.cs:line 19
+[1/7/2026 8:32:46 PM] ERROR: Max retries reached. Operation failed.: Incorrect syntax near 'PROPIA'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass37_0.<TraerDatosSQL>b__0() in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 327
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[1/7/2026 8:32:46 PM] Transaction failed and connection restarted.: Incorrect syntax near 'PROPIA'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass37_0.<TraerDatosSQL>b__0() in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 327
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[1/7/2026 8:34:22 PM] ERROR: Max retries reached. Operation failed.: Incorrect syntax near 'PROPIA'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass37_0.<TraerDatosSQL>b__0() in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 327
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[1/7/2026 8:34:22 PM] Transaction failed and connection restarted.: Incorrect syntax near 'PROPIA'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass37_0.<TraerDatosSQL>b__0() in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 327
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[1/7/2026 8:35:10 PM] ERROR: Max retries reached. Operation failed.: Incorrect syntax near 'PROPIA'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass37_0.<TraerDatosSQL>b__0() in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 327
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[1/7/2026 8:35:10 PM] Transaction failed and connection restarted.: Incorrect syntax near 'PROPIA'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass37_0.<TraerDatosSQL>b__0() in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 327
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[1/7/2026 8:36:33 PM] ERROR: Max retries reached. Operation failed.: Invalid column name 'hora_fecha'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass37_0.<TraerDatosSQL>b__0() in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 327
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[1/7/2026 8:36:33 PM] Transaction failed and connection restarted.: Invalid column name 'hora_fecha'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass37_0.<TraerDatosSQL>b__0() in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 327
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in D:\repos\NETCORE\EmpresaUpdated\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242

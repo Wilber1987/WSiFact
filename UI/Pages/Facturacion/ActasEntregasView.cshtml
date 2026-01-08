@@ -1,0 +1,22 @@
+@page
+@using API.Controllers
+@using APPCORE.Security
+@{
+    if (!SecurityController.Auth(HttpContext.Session.GetString("sessionKey")))
+    {
+        Response.Redirect("../Security/login");
+        return;
+    }
+    @if (!SecurityController.HavePermission(Permissions.GESTION_VENTAS.ToString(), HttpContext.Session.GetString("sessionKey")) )//todo
+    {
+       Response.Redirect("../Security/login");
+        return;
+    }     
+}
+<script type="module" >
+    import {ActasEntregasView} from "/Facturacion/Views/ActasEntregasView.js";
+    window.onload = ()=> {
+        MainBody.append(new ActasEntregasView());
+    }
+</script>
+<div id="MainBody" class="app-container"></div>

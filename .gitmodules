@@ -1,0 +1,10 @@
+[submodule "UI/wwwroot/WDevCore"]
+	path = UI/wwwroot/WDevCore
+	url = https://github.com/Wilber1987/WDevCore.git
+	branch = main
+[submodule "AppCore"]
+	path = AppCore
+	url = https://github.com/Wilber1987/AppCore.git
+[submodule "UI/CSharpAttributes"]
+	path = UI/CSharpAttributes
+	url = https://github.com/Wilber1987/CSharpAttributes.git

@@ -1,0 +1,17 @@
+﻿@page
+@using API.Controllers
+@{
+    // Layout = null;
+    if (!SecurityController.Auth(HttpContext.Session.GetString("sessionKey")))
+    {
+        Response.Redirect("../Security/login");
+        return;
+    }
+    if (!SecurityController.HavePermission("PERFIL_ACCESS", HttpContext.Session.GetString("sessionKey")))
+    {
+        Response.Redirect("../Security/permission_error");
+        return;
+    }
+}
+
+<script src="/WDevCore/Security/ViewProfile.js" type="module"></script>
