@@ -96,7 +96,7 @@ class ActasEntregasView extends HTMLElement {
 		facturaBuscada.Tasa_Cambio_Venta = this.TasaCambio?.Valor_de_venta ?? 1;
 
 		/**@type {Transaction_Contratos} */
-		const contratoBuscado = await new Transaction_Contratos({ numero_contrato: acta.Numero_Contrato }).Find();
+		const contratoBuscado = await new Transaction_Contratos({ Numero_contrato: acta.Numero_Contrato }).Find();
 		const contratoTotalPagado = WArrayF.SumValue(
 			contratoBuscado.Tbl_Cuotas.filter(cuota => cuota.Estado == "CANCELADO"), "total"
 		);

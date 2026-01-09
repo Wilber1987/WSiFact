@@ -13,62 +13,65 @@ export class Transaction_Movimiento {
   /**
    * @type {number} Identificador primario de la transacción
    */
-  id_movimiento;
+  /**
+   * @type {number} Identificador primario de la transacción
+   */
+  Id_movimiento;
 
   /**
    * @type {string} Descripción general de la transacción
    */
-  descripcion;
+  Descripcion;
 
   /**
    * @type {string} Concepto asociado al movimiento
    */
-  concepto;
+  Concepto;
 
   /**
    * @type {number} ID del usuario que crea la transacción
    */
-  id_usuario_crea;
+  Id_usuario_crea;
 
   /**
    * @type {Date} Fecha de la transacción
    */
-  fecha;
+  Fecha;
 
   /**
    * @type {string} Tipo de transacción (ej. ingreso, egreso)
    */
-  tipo;
+  Tipo;
 
   /**
    * @type {string} Moneda utilizada (ej. "C$", "$")
    */
-  moneda;
+  Moneda;
 
   /**
    * @type {number} Tasa de cambio en el momento de la transacción
    */
-  tasa_cambio;
+  Tasa_cambio;
 
   /**
    * @type {boolean} Indica si se ha enviado un correo
    */
-  correo_enviado;
+  Correo_enviado;
 
   /**
    * @type {number} Tasa de cambio para la compra
    */
-  tasa_cambio_compra;
+  Tasa_cambio_compra;
 
   /**
    * @type {boolean} Indica si es parte de una transacción agrupada
    */
-  is_transaction;
+  Is_transaction;
 
   /**
    * @type {number} ID de la sucursal donde se realizó la transacción
    */
-  id_sucursal;
+  Id_sucursal;
 
   /**
    * @type {number} ID de la cuenta origen
@@ -119,20 +122,20 @@ export class Movimientos_Cuentas extends EntityClass {
     Object.assign(this, props);
   }
 
-  /**@type {number}**/ id_movimiento;
+  /**@type {number}**/ Id_movimiento;
   /**@type {number}**/ Id_cuenta_origen;
   /**@type {number}**/ Id_cuenta_destino;
   /**@type {Catalogo_Cuentas}**/ Catalogo_Cuentas_Origen;
   /**@type {Catalogo_Cuentas}**/ Catalogo_Cuentas_Destino;
   //moneda = { type: 'select', Dataset: ["C$", "$"], hiddenInTable: false,hidden:true, disabled: true, require: false, };
-  /**@type {string}**/ moneda;
-  /**@type {number}**/ monto;
-  /**@type {number}**/ tasa_cambio;
+  /**@type {string}**/ Moneda;
+  /**@type {number}**/ Monto;
+  /**@type {number}**/ Tasa_cambio;
   //tasa_cambio_compra = { type: "number", disabled: true , hiddenFilter: true};	
-  /**@type {number}**/ id_usuario_crea;
-  /**@type {Date}**/ fecha;
-  /**@type {string}**/ concepto;
-  /**@type {string}**/ descripcion;
+  /**@type {number}**/ Id_usuario_crea;
+  /**@type {Date}**/ Fecha;
+  /**@type {string}**/ Concepto;
+  /**@type {string}**/ Descripcion;
 }
 
 export class Detail_Movimiento extends EntityClass {
@@ -141,16 +144,16 @@ export class Detail_Movimiento extends EntityClass {
     Object.assign(this, props);
   }
 
-  /**@type {number}**/ id_movimiento;
-  /**@type {DateTime}**/ fecha;
-  /**@type {number}**/ debito;
-  /**@type {number}**/ credito;
-  /**@type {number}**/ debitodolares;
-  /**@type {number}**/ creditodolares;
-  /**@type {number}**/ monto_inicial;
-  /**@type {number}**/ monto_final;
-  /**@type {number}**/ monto_inicialdolares;
-  /**@type {number}**/ monto_finaldolares;
+  /**@type {number}**/ Id_movimiento;
+  /**@type {DateTime}**/ Fecha;
+  /**@type {number}**/ Debito;
+  /**@type {number}**/ Credito;
+  /**@type {number}**/ Debitodolares;
+  /**@type {number}**/ Creditodolares;
+  /**@type {number}**/ Monto_inicial;
+  /**@type {number}**/ Monto_final;
+  /**@type {number}**/ Monto_inicialdolares;
+  /**@type {number}**/ Monto_finaldolares;
   /**@type {Transaction_Movimiento}**/ Transaction_Movimiento;
 }
 
@@ -159,7 +162,7 @@ class Movimientos_Cuentas_ModelComponent extends EntityClass {
     super(props, 'Cuentas');
     Object.assign(this, props);
   }
-	/**@type {ModelProperty} */ id_movimiento = { type: "number", primary: true }
+	/**@type {ModelProperty} */ Id_movimiento = { type: "number", primary: true }
 	/**@type {ModelProperty} */ Id_cuenta_origen = { type: "number", hidden: true }
 	/**@type {ModelProperty} */ Id_cuenta_destino = { type: "number", hidden: true }
 	/**@type {ModelProperty} */ Catalogo_Cuentas_Origen = {
@@ -171,15 +174,15 @@ class Movimientos_Cuentas_ModelComponent extends EntityClass {
     ModelObject: () => new Catalogo_Cuentas(), ForeignKeyColumn: "Id_cuenta_destino"
   };
 	//moneda = { type: 'select', Dataset: ["C$", "$"], hiddenInTable: false,hidden:true, disabled: true, require: false, };
-	/**@type {ModelProperty} */ moneda = { type: "radio", Dataset: ["CORDOBAS", "DOLARES"] };
-	/**@type {ModelProperty} */ monto = { type: "money", hiddenFilter: true };
-	/**@type {ModelProperty} */ tasa_cambio = { type: "money", disabled: true, hiddenFilter: true, hidden: true };
+	/**@type {ModelProperty} */ Moneda = { type: "radio", Dataset: ["CORDOBAS", "DOLARES"] };
+	/**@type {ModelProperty} */ Monto = { type: "money", hiddenFilter: true };
+	/**@type {ModelProperty} */ Tasa_cambio = { type: "money", disabled: true, hiddenFilter: true, hidden: true };
 	//tasa_cambio_compra = { type: "number", disabled: true , hiddenFilter: true};	
-	/**@type {ModelProperty} */ id_usuario_crea = { type: "number", hidden: true, hiddenFilter: true };
-	/**@type {ModelProperty} */ fecha = { type: "datetime", disabled: true, require: false };  
+	/**@type {ModelProperty} */ Id_usuario_crea = { type: "number", hidden: true, hiddenFilter: true };
+	/**@type {ModelProperty} */ Fecha = { type: "datetime", disabled: true, require: false };
   /**@type {ModelProperty} */ Tipo_Movimiento = { type: "Select", Dataset: Object.keys(TipoMovimiento) };
-	/**@type {ModelProperty} */ concepto = { type: "textarea" };
-	/**@type {ModelProperty} */ descripcion = { type: "textarea", require: false, hiddenFilter: true, hiddenInTable: true };
+	/**@type {ModelProperty} */ Concepto = { type: "textarea" };
+	/**@type {ModelProperty} */ Descripcion = { type: "textarea", require: false, hiddenFilter: true, hiddenInTable: true };
 }
 export { Movimientos_Cuentas_ModelComponent }
 
@@ -193,17 +196,17 @@ class Detail_Movimiento_ModelComponent extends EntityClass {
     super(props, 'Cuentas');
     Object.assign(this, props);;
   }
-  id_movimiento = { type: "number", primary: true };
-  fecha = { type: "date" };
+  Id_movimiento = { type: "number", primary: true };
+  Fecha = { type: "date" };
   //moneda = { type: 'select', Dataset: ["C$", "$"], hiddenInTable: false,hidden:true, disabled: true, require: false, };
-  debito = { type: "money" };
-  credito = { type: "money" };
-  debito_dolares = { type: "money" };
-  credito_dolares = { type: "money" };
-  monto_inicial = { type: "money" };
-  monto_final = { type: "money" };
-  monto_inicial_dolares = { type: "money" };
-  monto_final_dolares = { type: "money" };
+  Debito = { type: "money" };
+  Credito = { type: "money" };
+  Debito_dolares = { type: "money" };
+  Credito_dolares = { type: "money" };
+  Monto_inicial = { type: "money" };
+  Monto_final = { type: "money" };
+  Monto_inicial_dolares = { type: "money" };
+  Monto_final_dolares = { type: "money" };
   Transaction_Movimiento = undefined;
 }
 export { Detail_Movimiento_ModelComponent }

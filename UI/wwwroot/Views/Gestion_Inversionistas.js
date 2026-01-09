@@ -103,12 +103,12 @@ class Gestion_InversionistaForm extends HTMLElement {
                     WAlertMessage.Warning("Necesita llenar todos los datos del cliente primeramente");
                     return;
                 }
-                if (this.cliente.codigo_cliente == null || this.cliente.codigo_cliente == undefined) {
+                if (this.cliente.Codigo_cliente == null || this.cliente.Codigo_cliente == undefined) {
                     /**@type {Catalogo_Inversores} */
                     const result = await new Catalogo_Inversores(this.cliente).Save();
 
                     if (result?.id_inversor != null) {
-                        this.cliente.codigo_cliente = result?.id_inversor;
+                        this.cliente.Codigo_cliente = result?.Id_inversor;
                         this.append(ModalMessage("Datos guardados correctamente"));
                     } else {
                         this.append(ModalMessage("Error al guardar intentelo nuevamente"));

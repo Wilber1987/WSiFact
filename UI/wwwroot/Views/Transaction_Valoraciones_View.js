@@ -250,11 +250,11 @@ class Transaction_Valoraciones_View extends HTMLElement {
 		this.valoresModel = {
 			Valoracion_1: {
 				type: "number", label: "Valoración 1 - C$:", action: () => {
-					this.valoresObject.dolares_1 = this.valoresObject.Valoracion_1 / tasasCambio[0].Valor_de_venta;
+					this.valoresObject.Dolares_1 = this.valoresObject.Valoracion_1 / tasasCambio[0].Valor_de_venta;
 					/** @type {HTMLInputElement|undefined|null} */
 					const control = this.valoresForm?.shadowRoot?.querySelector(".dolares_1");
 					if (control != undefined || control != null) {
-						control.value = this.valoresObject.dolares_1.toString();
+						control.value = this.valoresObject.Dolares_1.toString();
 					}
 					this.promediarValoresDolares(this.valoresObject);
 					this.promediarValoresCordobas(this.valoresObject);
@@ -264,7 +264,7 @@ class Transaction_Valoraciones_View extends HTMLElement {
 			},
 			dolares_1: {
 				type: "number", label: "$:", action: () => {
-					this.valoresObject.Valoracion_1 = this.valoresObject.dolares_1 * tasasCambio[0].Valor_de_venta;
+					this.valoresObject.Valoracion_1 = this.valoresObject.Dolares_1 * tasasCambio[0].Valor_de_venta;
 					/** @type {HTMLInputElement|undefined|null} */
 					const control = this.valoresForm?.shadowRoot?.querySelector(".Valoracion_1");
 					if (control != undefined || control != null) {
@@ -278,11 +278,11 @@ class Transaction_Valoraciones_View extends HTMLElement {
 			},
 			Valoracion_2: {
 				type: "number", label: "Valoración 2 - C$:", action: () => {
-					this.valoresObject.dolares_2 = this.valoresObject.Valoracion_2 / tasasCambio[0].Valor_de_venta;
+					this.valoresObject.Dolares_2 = this.valoresObject.Valoracion_2 / tasasCambio[0].Valor_de_venta;
 					/** @type {HTMLInputElement|undefined|null} */
 					const control = this.valoresForm?.shadowRoot?.querySelector(".dolares_2");
 					if (control != undefined || control != null) {
-						control.value = this.valoresObject.dolares_2.toString();
+						control.value = this.valoresObject.Dolares_2.toString();
 					}
 					this.promediarValoresDolares(this.valoresObject);
 					this.promediarValoresCordobas(this.valoresObject);
@@ -292,7 +292,7 @@ class Transaction_Valoraciones_View extends HTMLElement {
 			},
 			dolares_2: {
 				type: "number", label: "$:", action: () => {
-					this.valoresObject.Valoracion_2 = this.valoresObject.dolares_2 * tasasCambio[0].Valor_de_venta;
+					this.valoresObject.Valoracion_2 = this.valoresObject.Dolares_2 * tasasCambio[0].Valor_de_venta;
 					/** @type {HTMLInputElement|undefined|null} */
 					const control = this.valoresForm?.shadowRoot?.querySelector(".Valoracion_2");
 					if (control != undefined || control != null) {
@@ -306,11 +306,11 @@ class Transaction_Valoraciones_View extends HTMLElement {
 			},
 			Valoracion_3: {
 				type: "number", label: "Valoración 3 - C$:", action: () => {
-					this.valoresObject.dolares_3 = this.valoresObject.Valoracion_3 / tasasCambio[0].Valor_de_venta;
+					this.valoresObject.Dolares_3 = this.valoresObject.Valoracion_3 / tasasCambio[0].Valor_de_venta;
 					/** @type {HTMLInputElement|undefined|null} */
 					const control = this.valoresForm?.shadowRoot?.querySelector(".dolares_3");
 					if (control != undefined || control != null) {
-						control.value = this.valoresObject.dolares_3.toString();
+						control.value = this.valoresObject.Dolares_3.toString();
 					}
 					this.promediarValoresDolares(this.valoresObject);
 					this.promediarValoresCordobas(this.valoresObject);
@@ -320,7 +320,7 @@ class Transaction_Valoraciones_View extends HTMLElement {
 			},
 			dolares_3: {
 				type: "number", label: "$:", action: () => {
-					this.valoresObject.Valoracion_3 = this.valoresObject.dolares_3 * tasasCambio[0].Valor_de_venta;
+					this.valoresObject.Valoracion_3 = this.valoresObject.Dolares_3 * tasasCambio[0].Valor_de_venta;
 					/** @type {HTMLInputElement|undefined|null} */
 					const control = this.valoresForm?.shadowRoot?.querySelector(".Valoracion_3");
 					if (control != undefined || control != null) {
@@ -344,7 +344,7 @@ class Transaction_Valoraciones_View extends HTMLElement {
 	}
 	promediarValoresDolares(data) {
 		//console.log(data);
-		data.total_dolares = ((parseFloat(data.dolares_1) + parseFloat(data.dolares_2) + parseFloat(data.dolares_3)) / 3).toFixed(3);
+		data.total_dolares = ((parseFloat(data.Dolares_1) + parseFloat(data.Dolares_2) + parseFloat(data.Dolares_3)) / 3).toFixed(3);
 		const control = this.valoresForm?.shadowRoot?.querySelector(".total_dolares");
 		if (control != undefined || control != null) {
 			// @ts-ignore
@@ -409,9 +409,9 @@ class Transaction_Valoraciones_View extends HTMLElement {
 		return Math.round((this.avgValores().toFixed(0) * (porcentaje / 100))).toFixed(3);
 	}
 	avgValores() {
-		return ((parseFloat(this.valoresObject.dolares_1.toString()) +
-			parseFloat(this.valoresObject.dolares_2.toString()) +
-			parseFloat(this.valoresObject.dolares_3.toString())) / 3);
+		return ((parseFloat(this.valoresObject.Dolares_1.toString()) +
+			parseFloat(this.valoresObject.Dolares_2.toString()) +
+			parseFloat(this.valoresObject.Dolares_3.toString())) / 3);
 	}
 	SetOption() {
 		this.OptionContainer.innerHTML = "";
@@ -464,7 +464,7 @@ class Transaction_Valoraciones_View extends HTMLElement {
 				}
 				newValoracion.Detail_Valores = newValores;
 				newValoracion.Catalogo_Estados_Articulos = this.multiSelectEstadosArticulos?.selectedItems[0];
-				newValoracion.id_estado = this.multiSelectEstadosArticulos?.selectedItems[0].id_estado_articulo;
+				newValoracion.Id_estado = this.multiSelectEstadosArticulos?.selectedItems[0].Id_estado_articulo;
 				// @ts-ignore
 				const serch = this.valoracionesTable?.Dataset.find(f => WArrayF.compareObj(f, newValoracion));
 				this.valoracionesTable?.Dataset.push(newValoracion);
@@ -479,10 +479,10 @@ class Transaction_Valoraciones_View extends HTMLElement {
 				}
 				this.valoracionesForm.DrawComponent();
 				//guardar
-				
+
 				for (const element of this.valoracionesTable?.Dataset ?? []) {
 					if (element.requireReValoracion(parseFloat((await SystemConfigs.FindByName("VENCIMIENTO_VALORACION"))?.Valor ?? "40"))) {
-						element.id_valoracion = null;
+						element.Id_valoracion = null;
 						element.Fecha = new Date();
 					}
 				}
@@ -649,7 +649,7 @@ class Transaction_Valoraciones_View extends HTMLElement {
 			EditObject: { codigo_cliente: -1 },
 			AutoSave: false,
 			ObjectOptions: {
-				SaveFunction: (/** @type {Catalogo_Clientes} */ cliente)=> {
+				SaveFunction: (/** @type {Catalogo_Clientes} */ cliente) => {
 					this.Cliente = cliente;
 					this.GenerateCompra();
 				}
@@ -682,8 +682,8 @@ class Transaction_Valoraciones_View extends HTMLElement {
 		}
 	}
 	selectValoracion = async (/**@type {Transactional_Valoracion}*/ valoracion) => {
-		if (valoracion.id_valoracion != undefined || valoracion.id_valoracion != null) {
-			const valoracionAgregada = this.valoracionesTable?.Dataset.find(d => d.id_valoracion == valoracion.id_valoracion);
+		if (valoracion.Id_valoracion != undefined || valoracion.Id_valoracion != null) {
+			const valoracionAgregada = this.valoracionesTable?.Dataset.find(d => d.Id_valoracion == valoracion.Id_valoracion);
 			if (valoracionAgregada != null) {
 				this.append(ModalMessage("Valoración ya esta agregada"));
 				return;
@@ -697,7 +697,7 @@ class Transaction_Valoraciones_View extends HTMLElement {
 				if (prop == "Tasa_interes") continue;
 				if (prop == "Serie") continue;
 				// @ts-ignore
-				if (prop == "id_valoracion" && valoracion.requireReValoracion(parseFloat((await SystemConfigs.FindByName("VENCIMIENTO_VALORACION"))?.Valor ?? "40"))) continue;
+				if (prop == "Id_valoracion" && valoracion.requireReValoracion(parseFloat((await SystemConfigs.FindByName("VENCIMIENTO_VALORACION"))?.Valor ?? "40"))) continue;
 				this.valoracionesForm.FormObject[prop] = valoracion[prop]
 			}
 			this.valoracionesForm.Config.ModelObject?.Catalogo_Categoria?.action(this.valoracionesForm.FormObject, this.valoracionesForm);
@@ -705,11 +705,11 @@ class Transaction_Valoraciones_View extends HTMLElement {
 				// @ts-ignore
 				if (!valoracion.requireReValoracion(parseFloat((await SystemConfigs.FindByName("VENCIMIENTO_VALORACION"))?.Valor ?? "40"))) {
 					this.valoresObject.Valoracion_1 = valoracion.Detail_Valores?.Valoracion_1 ?? 0;
-					this.valoresObject.dolares_1 = valoracion.Detail_Valores?.dolares_1 ?? 0;
+					this.valoresObject.Dolares_1 = valoracion.Detail_Valores?.Dolares_1 ?? 0;
 					this.valoresObject.Valoracion_2 = valoracion.Detail_Valores?.Valoracion_2 ?? 0;
-					this.valoresObject.dolares_2 = valoracion.Detail_Valores?.dolares_2 ?? 0;
+					this.valoresObject.Dolares_2 = valoracion.Detail_Valores?.Dolares_2 ?? 0;
 					this.valoresObject.Valoracion_3 = valoracion.Detail_Valores?.Valoracion_3 ?? 0;
-					this.valoresObject.dolares_3 = valoracion.Detail_Valores?.dolares_3 ?? 0;
+					this.valoresObject.Dolares_3 = valoracion.Detail_Valores?.Dolares_3 ?? 0;
 					this.promediarValoresDolares(this.valoresObject);
 					this.promediarValoresCordobas(this.valoresObject);
 					this.valoresForm.DrawComponent();
@@ -724,11 +724,11 @@ class Transaction_Valoraciones_View extends HTMLElement {
 	}
 	resetValoresForm() {
 		this.valoresObject.Valoracion_1 = 0;
-		this.valoresObject.dolares_1 = 0;
+		this.valoresObject.Dolares_1 = 0;
 		this.valoresObject.Valoracion_2 = 0;
-		this.valoresObject.dolares_2 = 0;
+		this.valoresObject.Dolares_2 = 0;
 		this.valoresObject.Valoracion_3 = 0;
-		this.valoresObject.dolares_3 = 0;
+		this.valoresObject.Dolares_3 = 0;
 		this.valoresForm?.DrawComponent();
 	}
 	beneficiosDetailUpdate() {
@@ -781,16 +781,16 @@ class Transaction_Valoraciones_View extends HTMLElement {
 		contrato.valoraciones = this.valoracionesTable?.Dataset;
 
 		contrato.Transaction_Contratos = new Transaction_Contratos({
-			tasas_interes: this.getTasaInteres() / 100,
-			fecha: new Date(),
-			plazo: this.valoracionesForm?.FormObject.Plazo ?? 1,
+			Tasas_interes: this.getTasaInteres() / 100,
+			Fecha: new Date(),
+			Plazo: this.valoracionesForm?.FormObject.Plazo ?? 1,
 			// @ts-ignore
-			taza_cambio: this.tasasCambio[0].Valor_de_venta,
+			Tasa_cambio: this.tasasCambio[0].Valor_de_venta,
 			// @ts-ignore
-			taza_cambio_compra: this.tasasCambio[0].Valor_de_compra,
-			taza_interes_cargos: this.InteresBase,
+			Tasa_cambio_compra: this.tasasCambio[0].Valor_de_compra,
+			Taza_interes_cargos: this.InteresBase,
 			Catalogo_Clientes: this.Cliente.codigo_cliente != undefined ? this.Cliente : this.GenerateClient(),
-			gestion_crediticia: this.Cliente.Catalogo_Clasificacion_Interes?.porcentaje ?? 6,
+			Gestion_crediticia: this.Cliente.Catalogo_Clasificacion_Interes?.porcentaje ?? 6,
 		});
 		FinancialModule.calculoAmortizacion(contrato);
 		//console.log(FinancialModule.calculoAmortizacion(contrato));

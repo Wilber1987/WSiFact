@@ -4,8 +4,8 @@ import { StylesControlsV2, StylesControlsV3, StyleScrolls } from "../WDevCore/St
 import { css } from "../WDevCore/WModules/WStyledRender.js";
 import { WModalForm } from "../WDevCore/WComponents/WModalForm.js";
 import { Transaction_Contratos, ValoracionesTransaction } from "../FrontModel/Model.js";
-import {WAjaxTools} from "../WDevCore/WModules/WAjaxTools.js";
-import {WArrayF} from "../WDevCore/WModules/WArrayF.js";
+import { WAjaxTools } from "../WDevCore/WModules/WAjaxTools.js";
+import { WArrayF } from "../WDevCore/WModules/WArrayF.js";
 
 class Transaction_ContratosViewDetail extends HTMLElement {
     /**
@@ -33,9 +33,9 @@ class Transaction_ContratosViewDetail extends HTMLElement {
         this.SetOption();
         const params = new URLSearchParams(window.location.search)
         if (params.get('numero_contrato') != undefined) {
-            this.entity.Transaction_Contratos.numero_contrato = params.get('numero_contrato');
+            this.entity.Transaction_Contratos.Numero_contrato = params.get('numero_contrato');
         }
-        if (this.entity.Transaction_Contratos.numero_contrato != null && this.entity.Transaction_Contratos.numero_contrato != undefined) {
+        if (this.entity.Transaction_Contratos.Numero_contrato != null && this.entity.Transaction_Contratos.Numero_contrato != undefined) {
             const contract = await this.entity.VerContrato();
             this.shadowRoot?.append(WRender.Create({
                 tagName: "iframe", src: contract.value, style: {

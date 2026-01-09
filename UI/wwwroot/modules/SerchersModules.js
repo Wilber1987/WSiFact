@@ -20,7 +20,7 @@ import { WModalForm } from "../WDevCore/WComponents/WModalForm.js";
 const clientSearcher = (actions) => {
     const model = new Catalogo_Clientes_ModelComponent();
     const TableComponent = new WTableComponent({
-        ModelObject: model,  Options: {
+        ModelObject: model, Options: {
             Filter: true,
             FilterDisplay: true,
             UserActions: actions
@@ -41,9 +41,9 @@ const contratosSearcher = (action, anularAction, withNotas = false) => {
     model.Tbl_Cuotas.ModelObject = () => new Tbl_Cuotas_ModelComponent({
         Estado: {
             type: "operation", action: (/** @type {Tbl_Cuotas} */ cuota) => {
-                if (cuota.total == cuota.pago_contado) {
+                if (cuota.Total == cuota.Pago_contado) {
                     return "CANCELADA";
-                } else if (cuota.pago_contado > 0) {
+                } else if (cuota.Pago_contado > 0) {
                     return "PAGO PARCIAL";
                 }
             }
@@ -64,8 +64,8 @@ const contratosSearcher = (action, anularAction, withNotas = false) => {
             name: "Anular",
             rendered: (/** @type { Transaction_Contratos } */ contrato) => {
                 return contrato.IsAnulable
-                //return contrato.estado != "ANULADO" && contrato.estado != "CANCELADO"
-            }, 
+                //return contrato.Estado != "ANULADO" && contrato.Estado != "CANCELADO"
+            },
             action: async (cliente) => {
                 // @ts-ignore
                 await anularAction(cliente);
@@ -76,7 +76,7 @@ const contratosSearcher = (action, anularAction, withNotas = false) => {
         actions.push({
             name: "Agregar nota",
             action: async (cliente) => {
-                document.body.appendChild( new WModalForm({
+                document.body.appendChild(new WModalForm({
                     ModelObject: new Notas_de_contrato(),
                     title: "Agregar nota",
                     ObjectOptions: {
@@ -86,12 +86,12 @@ const contratosSearcher = (action, anularAction, withNotas = false) => {
                             } else {
                                 cliente.Notas = [nuevaNota]
                             }
-                            const response = await  new Transaction_Contratos(cliente).Update();
-                            document.body.appendChild(ModalMessage(response.message));                            
-                        } 
+                            const response = await new Transaction_Contratos(cliente).Update();
+                            document.body.appendChild(ModalMessage(response.message));
+                        }
                     }
                 }));
-               
+
             }
         })
     }
@@ -99,14 +99,14 @@ const contratosSearcher = (action, anularAction, withNotas = false) => {
         name: "Ver detalles",
         action: async (/** @type { Transaction_Contratos } */ contrato) => {
             // @ts-ignore
-            const contratoF = await new Transaction_Contratos({ numero_contrato: contrato.numero_contrato }).Find();
-            document.body.append(new WModalForm({ ObjectModal: new  WDetailObject({ ObjectDetail: contratoF , ModelObject: new Transaction_Contratos_ModelComponent()})}));
+            const contratoF = await new Transaction_Contratos({ Numero_contrato: contrato.Numero_contrato }).Find();
+            document.body.append(new WModalForm({ ObjectModal: new WDetailObject({ ObjectDetail: contratoF, ModelObject: new Transaction_Contratos_ModelComponent() }) }));
         }
     })
     const TableComponent = new WTableComponent({
         EntityModel: model,
         ModelObject: new Transaction_Contratos_ModelComponent({
-            numero_contrato: { type: "Number", primary: false }
+            Numero_contrato: { type: "Number", primary: false }
         }),
         AddItemsFromApi: true,
         Options: {

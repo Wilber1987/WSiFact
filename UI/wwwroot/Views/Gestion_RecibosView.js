@@ -69,10 +69,10 @@ class Gestion_RecibosView extends HTMLElement {
      */
     async generateRecibo(selectContrato) {
         this.ContractData.cuotasPendientes = selectContrato.Tbl_Cuotas
-            .sort((a, b) => a.id_cuota - b.id_cuota)
+            .sort((a, b) => a.Id_cuota - b.Id_cuota)
             .filter(c => c.Estado?.toUpperCase() == "PENDIENTE");
         this.ContractData.cuotasPagadas = selectContrato.Tbl_Cuotas
-            .sort((a, b) => a.id_cuota - b.id_cuota)
+            .sort((a, b) => a.Id_cuota - b.Id_cuota)
             .filter(c => c.Estado?.toUpperCase() == "CANCELADO");
 
         this.ContractData.countPagadas = this.ContractData.cuotasPagadas.length;
@@ -80,20 +80,20 @@ class Gestion_RecibosView extends HTMLElement {
 
         this.CuotaActual = this.ContractData.cuotasPendientes[0];
         this.CuotasPagadas = selectContrato.Tbl_Cuotas?.filter(c => c.Estado?.toUpperCase() == "CANCELADO");
-        this.RecibosPagados = selectContrato.Recibos?.filter(c => c.estado?.toUpperCase() == "CANCELADO") ?? [];
+        this.RecibosPagados = selectContrato.Recibos?.filter(c => c.Estado?.toUpperCase() == "CANCELADO") ?? [];
         this.UltimaCuotaPagada = this.CuotasPagadas[this.CuotasPagadas.length - 1];
         this.UltimaReciboPagado = selectContrato.Recibos[0];
 
 
         this.ContractData.parciales = await new ParcialesData({
-            numero_contrato: selectContrato.numero_contrato,
-            id_cuota: this.CuotaActual.id_cuota
+            Numero_contrato: selectContrato.Numero_contrato,
+            Id_cuota: this.CuotaActual.Id_cuota
         }).GetParcialesData();
 
         this.ContractData.Contrato = selectContrato;
         // console.log( this.Contrato); 
         FinancialModule.UpdateContractData(selectContrato, this.ContractData);
-        this.CuotaActual.interes = this.ContractData.InteresCorriente
+        this.CuotaActual.Interes = this.ContractData.InteresCorriente
 
         /**@type {Transactional_Configuraciones?} */
         const reestructureConfig = this.Configs?.find(c => c.Nombre == "PUEDE_REESTRUCTURAR");
@@ -102,8 +102,8 @@ class Gestion_RecibosView extends HTMLElement {
 
         //console.log(ContractData);
         if (this.ContractData.canReestructure) {
-            this.reciboModel.reestructurar.hidden = false;
-            this.reciboModel.reestructurar_value.max = this.ContractData.max;
+            this.reciboModel.Reestructurar.hidden = false;
+            this.reciboModel.Reestructurar_value.max = this.ContractData.max;
         }
         this.reciboForm = new WForm({
             ModelObject: this.reciboModel,
@@ -113,42 +113,42 @@ class Gestion_RecibosView extends HTMLElement {
                 {
                     Name: "Datos de recibo:", Propertys: [
 
-                        "mora_cordobas",
-                        "interes_demas_cargos_pagar_cordobas",
-                        "mora_interes_cordobas",
-                        "abono_capital_cordobas",
-                        "cuota_pagar_cordobas",
-                        "total_cordobas",
-                        "mora_dolares",
-                        "interes_demas_cargos_pagar_dolares",
-                        "mora_interes_dolares",
-                        "abono_capital_dolares",
-                        "cuota_pagar_dolares",
-                        "total_dolares",
-                        "perdida_de_documento_monto",
-                        "reestructurar_monto",
+                        "Mora_cordobas",
+                        "Interes_demas_cargos_pagar_cordobas",
+                        "Mora_interes_cordobas",
+                        "Abono_capital_cordobas",
+                        "Cuota_pagar_cordobas",
+                        "Total_cordobas",
+                        "Mora_dolares",
+                        "Interes_demas_cargos_pagar_dolares",
+                        "Mora_interes_dolares",
+                        "Abono_capital_dolares",
+                        "Cuota_pagar_dolares",
+                        "Total_dolares",
+                        "Perdida_de_documento_monto",
+                        "Reestructurar_monto",
                     ]
                 },
                 {
                     Name: "Opciones", Propertys: [
-                        "fecha_roc",
-                        "paga_cordobas",
-                        "paga_dolares",
-                        "temporal",
-                        "cancelar",
-                        "perdida_de_documento",
-                        "solo_abono",
-                        "solo_interes_mora",
-                        "reestructurar",
-                        "total_apagar_dolares",
-                        "moneda",
-                        "reestructurar_value",
+                        "Fecha_roc",
+                        "Paga_cordobas",
+                        "Paga_dolares",
+                        "Temporal",
+                        "Cancelar",
+                        "Perdida_de_documento",
+                        "Solo_abono",
+                        "Solo_interes_mora",
+                        "Reestructurar",
+                        "Total_apagar_dolares",
+                        "Moneda",
+                        "Reestructurar_value",
                         "Is_cambio_cordobas",
-                        "monto_dolares",
-                        "monto_cordobas",
-                        "cambio_cordobas",
-                        "cambio_dolares",
-                        "total_apagar_cordobas"
+                        "Monto_dolares",
+                        "Monto_cordobas",
+                        "Cambio_cordobas",
+                        "Cambio_dolares",
+                        "Total_apagar_cordobas"
                     ]
                 },
                 //{Name: "Datos de recibo:", Propertys: []}
@@ -174,8 +174,8 @@ class Gestion_RecibosView extends HTMLElement {
                         return;
                     }
                     this.append(ModalVericateAction(() => {
-                        location.href = "/PagesViews/Ver_Recibos?id_Recibo=" + response.body.id_factura;
-                        //location.href = "/PagesViews/Print_Recibo?id_Recibo=" + response.body.id_recibo;
+                        location.href = "/PagesViews/Ver_Recibos?id_Recibo=" + response.body.Id_factura;
+                        //location.href = "/PagesViews/Print_Recibo?id_Recibo=" + response.body.Id_recibo;
                     }, response.message, false));
                 } else if (response.status == 400) {
                     this.append(ModalVericateAction(() => {
@@ -241,7 +241,7 @@ class Gestion_RecibosView extends HTMLElement {
         this.OptionContainer.append(WRender.Create({
             tagName: 'button', className: 'Block-Primary', innerText: 'Recibo',
             onclick: () => {
-                if (this.ContractData.Contrato.numero_contrato == undefined) {
+                if (this.ContractData.Contrato.Numero_contrato == undefined) {
                     WAlertMessage.Connect({ Message: "Seleccione un contrato", Type: "warning" });
                     return;
                 }
@@ -251,7 +251,7 @@ class Gestion_RecibosView extends HTMLElement {
         this.OptionContainer.append(WRender.Create({
             tagName: 'button', className: 'Block-Tertiary', innerText: 'Proyección de pago',
             onclick: () => {
-                if (this.ContractData.Contrato.numero_contrato == undefined) {
+                if (this.ContractData.Contrato.Numero_contrato == undefined) {
                     WAlertMessage.Connect({ Message: "Seleccione un contrato", Type: "warning" });
                     return;
                 }
@@ -273,28 +273,28 @@ class Gestion_RecibosView extends HTMLElement {
 
         FinancialModule.UpdateContractData(proyeccionContractData.Contrato, proyeccionContractData)
         //reciboModel.fecha.hidden = false;
-        reciboModel.temporal.hidden = true;
-        reciboModel.reestructurar.hidden = true;
-        reciboModel.reestructurar_monto.hidden = true;
-        reciboModel.reestructurar_value.hidden = true;
-        reciboModel.perdida_de_documento.hidden = true;
-        reciboModel.solo_abono.hidden = true;
-        reciboModel.solo_interes_mora.hidden = true;
+        reciboModel.Temporal.hidden = true;
+        reciboModel.Reestructurar.hidden = true;
+        reciboModel.Reestructurar_monto.hidden = true;
+        reciboModel.Reestructurar_value.hidden = true;
+        reciboModel.Perdida_de_documento.hidden = true;
+        reciboModel.Solo_abono.hidden = true;
+        reciboModel.Solo_interes_mora.hidden = true;
         reciboModel.Is_cambio_cordobas.hidden = true;
-        reciboModel.perdida_de_documento_monto.hidden = true;
-        reciboModel.cancelar.hidden = false;
-        reciboModel.fecha_roc.hidden = true;
+        reciboModel.Perdida_de_documento_monto.hidden = true;
+        reciboModel.Cancelar.hidden = false;
+        reciboModel.Fecha_roc.hidden = true;
         // reciboModel.paga_cordobas.type = "OPERATION";
         //reciboModel.paga_dolares.type = "OPERATION";
-        reciboModel.paga_cordobas.disabled = true;
-        reciboModel.paga_dolares.disabled = true;
-        reciboModel.total_apagar_dolares.hidden = true;
-        reciboModel.total_apagar_cordobas.hidden = true;
-        reciboModel.monto_dolares.hidden = true;
-        reciboModel.monto_cordobas.hidden = true;
-        reciboModel.cambio_dolares.hidden = true;
-        reciboModel.cambio_cordobas.hidden = true;
-        reciboModel.moneda.hidden = true;
+        reciboModel.Paga_cordobas.disabled = true;
+        reciboModel.Paga_dolares.disabled = true;
+        reciboModel.Total_apagar_dolares.hidden = true;
+        reciboModel.Total_apagar_cordobas.hidden = true;
+        reciboModel.Monto_dolares.hidden = true;
+        reciboModel.Monto_cordobas.hidden = true;
+        reciboModel.Cambio_dolares.hidden = true;
+        reciboModel.Cambio_cordobas.hidden = true;
+        reciboModel.Moneda.hidden = true;
         this.proyeccion.innerHTML = "";
 
         const proyeccionForm = new WForm({
@@ -319,7 +319,7 @@ class Gestion_RecibosView extends HTMLElement {
             `
         });
         this.calculoRecibo(proyeccionContractData.Contrato, this.tasasCambio, proyeccionForm, proyeccionContractData);
-        const fechaOriginal = new Date(proyeccionForm.FormObject.fecha_original) < new Date() ? new Date() : new Date(proyeccionForm.FormObject.fecha_original);
+        const fechaOriginal = new Date(proyeccionForm.FormObject.Fecha_original) < new Date() ? new Date() : new Date(proyeccionForm.FormObject.Fecha_original);
 
         const inputDate = WRender.Create({
             // @ts-ignore
@@ -330,13 +330,13 @@ class Gestion_RecibosView extends HTMLElement {
                 const form = proyeccionForm
                 const InputControl = ev.target
                 // @ts-ignore
-                const fechaInicio = new Date(recibo.fecha_original);
+                const fechaInicio = new Date(recibo.Fecha_original);
                 fechaInicio.setHours(0, 0, 0, 0);
                 const fechaFin = new Date(InputControl.value + "T23:59:00");
                 /**@type {Number} */
                 // @ts-ignore
                 const diasMora = Math.floor((fechaFin - fechaInicio) / (1000 * 60 * 60 * 24));
-                //console.log(fechaInicio, fechaFin, diasMora, recibo.fecha_original, InputControl.value, new Date(recibo.fecha_original).toStartDate());
+                //console.log(fechaInicio, fechaFin, diasMora, recibo.Fecha_original, InputControl.value, new Date(recibo.Fecha_original).toStartDate());
                 proyeccionContractData.Fecha = fechaFin;
                 //console.log(diasMora);
                 this.proyeccionDetail.innerHTML = "";
@@ -347,14 +347,14 @@ class Gestion_RecibosView extends HTMLElement {
                     </div>`);
                     return;
                 }
-                const montoMora = proyeccionContractData.cuotasPendientes[0].total * (proyeccionContractData.Contrato?.mora / 100) * (diasMora);
+                const montoMora = proyeccionContractData.cuotasPendientes[0].Total * (proyeccionContractData.Contrato?.Mora / 100) * (diasMora);
                 // @ts-ignore
-                recibo.mora_dolares = (montoMora).toFixed(3);
+                recibo.Mora_dolares = (montoMora).toFixed(3);
                 // @ts-ignore
-                recibo.mora_cordobas = (recibo.tasa_cambio * recibo.mora_dolares).toFixed(3);
+                recibo.Mora_cordobas = (recibo.Tasa_cambio * recibo.Mora_dolares).toFixed(3);
                 // @ts-ignore
-                recibo.total_cordobas = (recibo.tasa_cambio * recibo.total_dolares).toFixed(3);
-                proyeccionContractData.cuotasPendientes[0].mora = montoMora
+                recibo.Total_cordobas = (recibo.Tasa_cambio * recibo.Total_dolares).toFixed(3);
+                proyeccionContractData.cuotasPendientes[0].Mora = montoMora
                 Recibos_ModelComponent.DefineMaxAndMinInForm(form, proyeccionContractData);
 
                 this.proyeccionDetail.appendChild(html`<div class="proyeccion-container-detail">
@@ -368,7 +368,7 @@ class Gestion_RecibosView extends HTMLElement {
                     </label>
                     <label class="value-container">
                         MORA $:
-                        <span>${ConvertToMoneyString(recibo.mora_dolares)}</span>
+                        <span>${ConvertToMoneyString(recibo.Mora_dolares)}</span>
                     </label>
                 </div>`);
             }
@@ -377,12 +377,12 @@ class Gestion_RecibosView extends HTMLElement {
         this.proyeccion.append(this.selectContratosDetail(proyeccionContractData.Contrato), inputDate, this.proyeccionDetail, proyeccionForm);
     }
     selectContrato = async (/**@type {Transaction_Contratos} */ selectContrato) => {
-        if (selectContrato.estado != "ACTIVO") {
-            this.append(ModalMessage("Este contrato se encuentra " + selectContrato.estado));
+        if (selectContrato.Estado != "ACTIVO") {
+            this.append(ModalMessage("Este contrato se encuentra " + selectContrato.Estado));
             return;
         }
 
-        this.Contrato = await new Transaction_Contratos({ numero_contrato: selectContrato.numero_contrato }).Find();
+        this.Contrato = await new Transaction_Contratos({ Numero_contrato: selectContrato.Numero_contrato }).Find();
         if (this.reciboForm != undefined) {
             //this.reciboForm.FormObject.Tasa_interes = this.getTasaInteres();
             this.reciboForm.DrawComponent();
@@ -410,7 +410,7 @@ class Gestion_RecibosView extends HTMLElement {
             console.log(contractData.cuotasPendientes);
 
             const cuota = contractData.cuotasPendientes[0];
-            contrato.Tbl_Cuotas.sort((a, b) => a.id_cuota - b.id_cuota);
+            contrato.Tbl_Cuotas.sort((a, b) => a.Id_cuota - b.Id_cuota);
             let primeraCuotaConCapitalMayorACero = 0;
             let interes_cargos = 0;
             let interes_demas_cargos_pagar_cordobas = 0;
@@ -423,16 +423,16 @@ class Gestion_RecibosView extends HTMLElement {
 
             //console.log(contrato.Tbl_Cuotas, cuota);
             if (cuota != null) {
-                fecha = cuota.fecha;
-                primeraCuotaConCapitalMayorACero = cuota.total;
-                interes_cargos = cuota.interes;
+                fecha = cuota.Fecha;
+                primeraCuotaConCapitalMayorACero = cuota.Total;
+                interes_cargos = cuota.Interes;
                 // @ts-ignore
-                interes_demas_cargos_pagar_cordobas = cuota.interes * tasasCambio[0].Valor_de_venta;
-                abono_capital_cordobas = cuota.abono_capital;
+                interes_demas_cargos_pagar_cordobas = cuota.Interes * tasasCambio[0].Valor_de_venta;
+                abono_capital_cordobas = cuota.Abono_capital;
                 mora_interes = this.ContractData.MoraActual;
                 // @ts-ignore
                 mora_interes_cordobas = mora_interes * tasasCambio[0].Valor_de_venta;
-                cuota_total = cuota.total;
+                cuota_total = cuota.Total;
 
                 //this.cuota = cuota;
                 contractData.proximaCuota = contractData.cuotasPendientes[1];
@@ -440,49 +440,49 @@ class Gestion_RecibosView extends HTMLElement {
                 //break;
             }
 
-            formObject["fecha_original"] = cuota?.fecha;
-            formObject["fecha"] = fecha;
-            formObject["numero_contrato"] = contrato["numero_contrato"];
-            formObject["tasa_cambio"] = tasasCambio[0].Valor_de_venta;
-            formObject["tasa_cambio_compra"] = tasasCambio[0].Valor_de_compra;
-            formObject["monto"] = contrato["monto"].toFixed(3);
+            formObject["Fecha_original"] = cuota?.Fecha;
+            formObject["Fecha"] = fecha;
+            formObject["Numero_contrato"] = contrato["Numero_contrato"];
+            formObject["Tasa_cambio"] = tasasCambio[0].Valor_de_venta;
+            formObject["Tasa_cambio_compra"] = tasasCambio[0].Valor_de_compra;
+            formObject["Monto"] = contrato["Monto"].toFixed(3);
             // @ts-ignore
-            formObject["saldo_actual_cordobas"] = (contrato["saldo"] * tasasCambio[0].Valor_de_venta).toFixed(3);
-            formObject["saldo_actual_dolares"] = contrato["saldo"].toFixed(3);
-            formObject["interes_cargos"] = interes_cargos.toFixed(3);
+            formObject["Saldo_actual_cordobas"] = (contrato["Saldo"] * tasasCambio[0].Valor_de_venta).toFixed(3);
+            formObject["Saldo_actual_dolares"] = contrato["Saldo"].toFixed(3);
+            formObject["Interes_cargos"] = interes_cargos.toFixed(3);
 
-            formObject["interes_demas_cargos_pagar_cordobas"] = interes_demas_cargos_pagar_cordobas.toFixed(3);
-            formObject["interes_demas_cargos_pagar_dolares"] = interes_cargos.toFixed(3);
-
-            // @ts-ignore
-            formObject["abono_capital_cordobas"] = (abono_capital_cordobas * tasasCambio[0].Valor_de_venta).toFixed(3);
-            formObject["abono_capital_dolares"] = abono_capital_cordobas.toFixed(3);;
+            formObject["Interes_demas_cargos_pagar_cordobas"] = interes_demas_cargos_pagar_cordobas.toFixed(3);
+            formObject["Interes_demas_cargos_pagar_dolares"] = interes_cargos.toFixed(3);
 
             // @ts-ignore
-            formObject["cuota_pagar_cordobas"] = (primeraCuotaConCapitalMayorACero * tasasCambio[0].Valor_de_venta).toFixed(3);
-            formObject["cuota_pagar_dolares"] = primeraCuotaConCapitalMayorACero.toFixed(3);;
-
-            formObject["mora_cordobas"] = (mora_interes_cordobas).toFixed(3);
-            formObject["mora_dolares"] = mora_interes?.toFixed(3);
-
-            formObject["mora_interes_cordobas"] = (mora_interes_cordobas + interes_demas_cargos_pagar_cordobas).toFixed(3);
-            formObject["mora_interes_dolares"] = (mora_interes + interes_cargos).toFixed(3);
+            formObject["Abono_capital_cordobas"] = (abono_capital_cordobas * tasasCambio[0].Valor_de_venta).toFixed(3);
+            formObject["Abono_capital_dolares"] = abono_capital_cordobas.toFixed(3);;
 
             // @ts-ignore
-            formObject["total_cordobas"] = (cuota_total * tasasCambio[0].Valor_de_venta + mora_interes_cordobas).toFixed(3);
-            formObject["total_dolares"] = (cuota_total + mora_interes).toFixed(3);
+            formObject["Cuota_pagar_cordobas"] = (primeraCuotaConCapitalMayorACero * tasasCambio[0].Valor_de_venta).toFixed(3);
+            formObject["Cuota_pagar_dolares"] = primeraCuotaConCapitalMayorACero.toFixed(3);;
 
+            formObject["Mora_cordobas"] = (mora_interes_cordobas).toFixed(3);
+            formObject["Mora_dolares"] = mora_interes?.toFixed(3);
 
-            formObject["total_parciales"] = 1; //TODO todo preguntar
-            formObject["fecha_roc"] = new Date();
+            formObject["Mora_interes_cordobas"] = (mora_interes_cordobas + interes_demas_cargos_pagar_cordobas).toFixed(3);
+            formObject["Mora_interes_dolares"] = (mora_interes + interes_cargos).toFixed(3);
+
             // @ts-ignore
-            formObject["paga_cordobas"] = this.ContractData.pagoActualCordobas.toFixed(3);
-            formObject["paga_dolares"] = this.ContractData.pagoActual.toFixed(3);
-            formObject["monto_cordobas"] = formObject["paga_cordobas"];
-            formObject["monto_dolares"] = formObject["paga_dolares"];
-            formObject["solo_abono"] = false;
-            formObject["cancelar"] = false;
-            formObject["total_apagar_dolares"] = this.ContractData.pagoActual.toFixed(3);;
+            formObject["Total_cordobas"] = (cuota_total * tasasCambio[0].Valor_de_venta + mora_interes_cordobas).toFixed(3);
+            formObject["Total_dolares"] = (cuota_total + mora_interes).toFixed(3);
+
+
+            formObject["Total_parciales"] = 1; //TODO todo preguntar
+            formObject["Fecha_roc"] = new Date();
+            // @ts-ignore
+            formObject["Paga_cordobas"] = this.ContractData.pagoActualCordobas.toFixed(3);
+            formObject["Paga_dolares"] = this.ContractData.pagoActual.toFixed(3);
+            formObject["Monto_cordobas"] = formObject["Paga_cordobas"];
+            formObject["Monto_dolares"] = formObject["Paga_dolares"];
+            formObject["Solo_abono"] = false;
+            formObject["Cancelar"] = false;
+            formObject["Total_apagar_dolares"] = this.ContractData.pagoActual.toFixed(3);;
         }
 
     };
@@ -578,11 +578,11 @@ class Gestion_RecibosView extends HTMLElement {
     `;
 
     /**
-     * @param {{ fecha: string | number | Date; total: number; }} cuota
-     * @param {{ mora: any; }} contrato
+     * @param {{ Fecha: string | number | Date; Total: number; }} cuota
+     * @param {{ Mora: any; }} contrato
      */
     forceMora(cuota, contrato) {
-        const fechaOriginal = new Date(cuota.fecha);
+        const fechaOriginal = new Date(cuota.Fecha);
         // @ts-ignore
         const fechaActual = new Date().addDays(33);
         fechaOriginal.setHours(0, 0, 0, 0);
@@ -591,7 +591,7 @@ class Gestion_RecibosView extends HTMLElement {
         const diferencia = fechaActual - fechaOriginal;
         const diasDeDiferencia = (diferencia / (1000 * 60 * 60 * 24)) >= 0 ? (diferencia / (1000 * 60 * 60 * 24)) : 0;
         //console.log(diasDeDiferencia, (diferencia / (1000 * 60 * 60 * 24)) < 0);
-        const montoMora = cuota.total * ((contrato?.mora ?? 0 / 100) ?? 0.005) * diasDeDiferencia;
+        const montoMora = cuota.Total * ((contrato?.Mora ?? 0 / 100) ?? 0.005) * diasDeDiferencia;
         this.diasMora = diasDeDiferencia;
         //console.log(this.diasMora, fechaActual, fechaOriginal);
         //console.log(diasDeDiferencia);
@@ -620,7 +620,7 @@ class Gestion_RecibosView extends HTMLElement {
                     </div>
                     <div class="DataContainer">
                         <span>contrato #:</span>
-                        <label>${selectContrato.numero_contrato}</label>
+                        <label>${selectContrato.Numero_contrato}</label>
                     </div>
                     <div class="DataContainer">
                             <span>Tipo de articulo:</span>
@@ -631,27 +631,27 @@ class Gestion_RecibosView extends HTMLElement {
                     <div class="DataContainer">
                         <span>Fecha de contrato:</span>
                         <label>${// @ts-ignore
-            selectContrato.fecha?.toDateFormatEs() ?? "-"}</label>
+            selectContrato.Fecha?.toDateFormatEs() ?? "-"}</label>
                     </div>
                     <div class="DataContainer">
                         <span>F/Último pago:</span>
                         <label>${ // @ts-ignore 
-            this.UltimaReciboPagado?.fecha?.toDateFormatEs() ?? "-"}</label>
+            this.UltimaReciboPagado?.Fecha?.toDateFormatEs() ?? "-"}</label>
                     </div>
                     <div class="DataContainer">
                         <span>F/Última actualización:</span>
                         <label>${ // @ts-ignore 
-            this.UltimaCuotaPagada?.fecha?.toDateFormatEs() ?? "-"}</label>
+            this.UltimaCuotaPagada?.Fecha?.toDateFormatEs() ?? "-"}</label>
                     </div>
                     <div class="DataContainer">
                         <span>F/Próximo pago:</span>
                         <label>${  // @ts-ignore 
-            this.CuotaActual?.fecha?.toDateFormatEs() ?? "-"}</label>
+            this.CuotaActual?.Fecha?.toDateFormatEs() ?? "-"}</label>
                     </div>
                     <div class="DataContainer">
                         <span>Fecha de cancelación:</span>
                         <label>${// @ts-ignore
-            this.Contrato?.fecha_cancelar?.toDateFormatEs() ?? "-"}</label>
+            this.Contrato?.Fecha_cancelar?.toDateFormatEs() ?? "-"}</label>
                     </div>
                </div>
                <div>
@@ -665,15 +665,15 @@ class Gestion_RecibosView extends HTMLElement {
                     </div>
                     <div class="DataContainer">
                         <span>Saldo actual C$:</span>
-                        <label>${ConvertToMoneyString((selectContrato.saldo) * this.tasasCambio[0].Valor_de_venta)}</label>
+                        <label>${ConvertToMoneyString((selectContrato.Saldo) * this.tasasCambio[0].Valor_de_venta)}</label>
                     </div>
                     <div class="DataContainer">
                         <span>Saldo actual $:</span>
-                        <label>${ConvertToMoneyString(selectContrato.saldo)}</label>
+                        <label>${ConvertToMoneyString(selectContrato.Saldo)}</label>
                     </div>
                     <div class="DataContainer">
                         <span>Intereses y demás cargos:</span>
-                        <label>${(selectContrato.tasas_interes * 100).toFixed(0)} %</label>
+                        <label>${(selectContrato.Tasas_interes * 100).toFixed(0)} %</label>
                     </div>
                     
                </div>
@@ -688,7 +688,7 @@ class Gestion_RecibosView extends HTMLElement {
                     </div>
                     <div class="DataContainer">
                         <span>Reestructuraciones:</span>
-                        <label>${selectContrato.reestructurado ?? "-"}</label>
+                        <label>${selectContrato.Reestructurado ?? "-"}</label>
                     </div>  
                     <div class="DataContainer">
                         <span>Tasa de cambio compra:</span>

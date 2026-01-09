@@ -53,8 +53,8 @@ class Ver_RecibosView extends HTMLElement {
 												await WAjaxTools.PostRequest("../api/ApiRecibos/anularRecibo",
 													{
 														id_recibo: factura.id_factura,
-														tasa_cambio: tasa[0].Valor_de_venta,
-														tasa_cambio_compra: tasa[0].Valor_de_compra,
+														Tasa_cambio: tasa[0].Valor_de_venta,
+														Tasa_cambio_compra: tasa[0].Valor_de_compra,
 														motivo_anulacion: factura.motivo_anulacion
 													});
 
@@ -106,7 +106,7 @@ class Ver_RecibosView extends HTMLElement {
 
 	async printRecibo(id_factura, tasa, factura) {
 		const response = await WAjaxTools.PostRequest("../api/ApiRecibos/printRecibo",
-			{ id_recibo: id_factura, tasa_cambio: tasa[0].Valor_de_compra });
+			{ id_recibo: id_factura, Tasa_cambio: tasa[0].Valor_de_compra });
 		if (response.status == 200 && response.body.documents != null && response.body.documents != undefined) {
 			const docs = [];
 			response.body.documents.forEach(element => {

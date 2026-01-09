@@ -60,12 +60,12 @@ class Transaction_ContratosView extends HTMLElement {
         this.tasasCambio = await new Catalogo_Cambio_Divisa_ModelComponent().Get();
         this.Intereses = await new Transactional_Configuraciones().getConfiguraciones_Intereses();
         this.InteresBase = WArrayF.SumValAtt(this.Intereses, "Valor");
-        this.entity.Transaction_Contratos.taza_interes_cargos = this.InteresBase;
+        this.entity.Transaction_Contratos.Tasa_interes_cargos = this.InteresBase;
         FinancialModule.calculoAmortizacion(this.entity);
         /**@type  {Catalogo_Cambio_Divisa_ModelComponent}*/
         this.tasaActual = this.tasasCambio[0];
         // @ts-ignore
-        const isVehiculo = this.entity.Transaction_Contratos?.Detail_Prendas?.find(p => p.Catalogo_Categoria.tipo == "Vehículos");
+        const isVehiculo = this.entity.Transaction_Contratos?.Detail_Prendas?.find(p => p.Catalogo_Categoria.Tipo == "Vehículos");
         // console.log(isVehiculo);
         const modelPrendas = new Detail_Prendas_ModelComponent({
             Detail_Prendas_Vehiculos: {
@@ -101,7 +101,7 @@ class Transaction_ContratosView extends HTMLElement {
         const fechaCancelacion = WRender.Create({ tagName: 'label', innerText: this.fechaCancelacion() })
         this.inputPlazo = WRender.Create({
             tagName: 'input', type: 'number', className: "input-contrato", onchange: (ev) => {
-                this.entity.Transaction_Contratos.plazo = ev.target.value;
+                this.entity.Transaction_Contratos.Plazo = ev.target.value;
                 this.update();
                 fechaCancelacion.innerText = this.fechaCancelacion()
             }, value: 1, min: 1, max: this.prioridadEnElPlazo()
@@ -118,7 +118,7 @@ class Transaction_ContratosView extends HTMLElement {
         this.setPlazo();
         this.inputObservacion = WRender.Create({
             tagName: 'textarea', placeholder: "observaciones...", className: "input-observacion", onchange: (ev) => {
-                this.entity.Transaction_Contratos.observaciones = ev.target.value;
+                this.entity.Transaction_Contratos.Observaciones = ev.target.value;
             }
         });
 
@@ -141,11 +141,11 @@ class Transaction_ContratosView extends HTMLElement {
      */
     prioridadEnElPlazo() {
         const prioridad = this.entity.Transaction_Contratos?.Detail_Prendas?.find(p =>
-            p.Transactional_Valoracion_ModelComponent.Catalogo_Categoria.prioridad ==
+            p.Transactional_Valoracion_ModelComponent.Catalogo_Categoria.Prioridad ==
             WArrayF.MinValue(this.entity.Transaction_Contratos.Detail_Prendas.map(
-                sp => sp.Transactional_Valoracion_ModelComponent.Catalogo_Categoria), "prioridad"));
+                sp => sp.Transactional_Valoracion_ModelComponent.Catalogo_Categoria), "Prioridad"));
         // @ts-ignore
-        return prioridad?.Catalogo_Categoria?.plazo_limite ?? 1
+        return prioridad?.Catalogo_Categoria?.Plazo_limite ?? 1
 
     }
     /**
@@ -157,7 +157,7 @@ class Transaction_ContratosView extends HTMLElement {
             // @ts-ignore
             return new Date().toString().toDateFormatEs();
         }
-        const prioridad = WArrayF.MaxDateValue(this.entity.Transaction_Contratos.Tbl_Cuotas, "fecha");
+        const prioridad = WArrayF.MaxDateValue(this.entity.Transaction_Contratos.Tbl_Cuotas, "Fecha");
         // @ts-ignore
         return prioridad.toString().toDateFormatEs();
 
@@ -206,7 +206,7 @@ class Transaction_ContratosView extends HTMLElement {
                         isVehiculoValidation = false;
                     }
                     // @ts-ignore
-                    if (element.serie == null || element.serie == undefined || element.serie.replaceAll(" ", "") == "") {
+                    if (element.Serie == null || element.Serie == undefined || element.Serie.replaceAll(" ", "") == "") {
                         isSerieValidation = false;
                     }
                 });
@@ -222,7 +222,7 @@ class Transaction_ContratosView extends HTMLElement {
                 const response = await this.entity.SaveContract();
                 if (response.status == 200) {
                     this.shadowRoot?.append(ModalVericateAction(() => {
-                        location.href = "/PagesViews/Transaction_ContratosViewDetail?numero_contrato=" + response.body.numero_contrato;
+                        location.href = "/PagesViews/Transaction_ContratosViewDetail?numero_contrato=" + response.body.Numero_contrato;
                     }, response.message, false));
                 } else {
                     this.shadowRoot?.append(ModalMessage(response.message));
@@ -242,7 +242,7 @@ class Transaction_ContratosView extends HTMLElement {
      */
     valoracionResumen(entity) {
         this.amortizacionResumen.innerHTML = "";
-        if (entity.Transaction_Contratos.total_pagar_cordobas == undefined) {
+        if (entity.Transaction_Contratos.Total_pagar_cordobas == undefined) {
             this.amortizacionResumen.innerHTML = `<div class="detail-container">Agregue prendas</div>`;
             return;
         }
@@ -251,11 +251,11 @@ class Transaction_ContratosView extends HTMLElement {
             <div>
                 <label class="value-container">
                     CARGOS A PAGAR:
-                    <span>${entity.Transaction_Contratos.taza_interes_cargos} %</span>
+                    <span>${entity.Transaction_Contratos.Tasa_interes_cargos} %</span>
                 </label>
                 <label class="value-container">
                     GESTIÓN CREDITICIA:
-                    <span>${entity.Transaction_Contratos.gestion_crediticia} %</span>
+                    <span>${entity.Transaction_Contratos.Gestion_crediticia} %</span>
                 </label>
 
                 <label class="value-container">
@@ -275,15 +275,15 @@ class Transaction_ContratosView extends HTMLElement {
                 <label class="value-container">
                     Int. y demas cargo C$:
                     <span>${// @ts-ignore
-            ConvertToMoneyString(entity.Transaction_Contratos.interes * this.tasaActual.Valor_de_venta)}</span>
+            ConvertToMoneyString(entity.Transaction_Contratos.Interes * this.tasaActual.Valor_de_venta)}</span>
                 </label>
                 <label class="value-container">
                     Cuota fija C$:
-                    <span>${ConvertToMoneyString(entity.Transaction_Contratos.cuotafija)}</span>
+                    <span>${ConvertToMoneyString(entity.Transaction_Contratos.Cuotafija)}</span>
                 </label>
                 <label class="value-container">
                     Total a pagar C$:
-                    <span>${ConvertToMoneyString(entity.Transaction_Contratos.total_pagar_cordobas)}</span>
+                    <span>${ConvertToMoneyString(entity.Transaction_Contratos.Total_pagar_cordobas)}</span>
                 </label>
             </div>
             <div>
@@ -293,15 +293,15 @@ class Transaction_ContratosView extends HTMLElement {
                 </label>
                 <label class="value-container">
                     Int. y demas cargos $:
-                    <span>${ConvertToMoneyString(entity.Transaction_Contratos.interes)}</span>
+                    <span>${ConvertToMoneyString(entity.Transaction_Contratos.Interes)}</span>
                 </label>
                 <label class="value-container">
                     Cuota fija $:
-                    <span>${ConvertToMoneyString(entity.Transaction_Contratos.cuotafija_dolares)}</span>
+                    <span>${ConvertToMoneyString(entity.Transaction_Contratos.Cuotafija_dolares)}</span>
                 </label>
                 <label class="value-container">
                     Total a pagar $:
-                    <span>${ConvertToMoneyString(entity.Transaction_Contratos.total_pagar_dolares)}</span>
+                    <span>${ConvertToMoneyString(entity.Transaction_Contratos.Total_pagar_dolares)}</span>
                 </label>
             </div>  
         </div>`);
@@ -324,7 +324,7 @@ class Transaction_ContratosView extends HTMLElement {
     // @ts-ignore
     selectValoracion = (valoracion) => {
         // @ts-ignore
-        const existInList = this.entity.Transaction_Contratos.Detail_Prendas?.find(p => p.serie == valoracion.Serie);
+        const existInList = this.entity.Transaction_Contratos.Detail_Prendas?.find(p => p.Serie == valoracion.Serie);
         if (existInList != undefined) {
             this.shadowRoot?.append(ModalMessage("La valoración ya esta en la lista"));
             return;
@@ -342,34 +342,34 @@ class Transaction_ContratosView extends HTMLElement {
             return;
         }
         this.entity.Transaction_Contratos.Detail_Prendas = this.entity.Transaction_Contratos.Detail_Prendas ?? [];
-        this.entity.valoraciones = this.entity.valoraciones ?? [];
-        this.entity.valoraciones.push(valoracion);
+        this.entity.Valoraciones = this.entity.Valoraciones ?? [];
+        this.entity.Valoraciones.push(valoracion);
         this.entity.Transaction_Contratos.Detail_Prendas?.push(new Detail_Prendas({
             Descripcion: valoracion.Descripcion,
-            modelo: valoracion.Modelo,
-            mara: valoracion.Marca,
-            serie: valoracion.Serie,
-            monto_aprobado_cordobas: valoracion.Valoracion_empeño_cordobas,
-            monto_aprobado_dolares: valoracion.Valoracion_empeño_dolares,
-            en_manos_de: undefined,
+            Modelo: valoracion.Modelo,
+            Marca: valoracion.Marca,
+            Serie: valoracion.Serie,
+            Monto_aprobado_cordobas: valoracion.Valoracion_empeño_cordobas,
+            Monto_aprobado_dolares: valoracion.Valoracion_empeño_dolares,
+            En_manos_de: undefined,
             Catalogo_Categoria: valoracion.Catalogo_Categoria,
             Transactional_Valoracion_ModelComponent: valoracion
         }))
         // @ts-ignore
-        this.entity.Transaction_Contratos.taza_cambio = this.tasaActual?.Valor_de_venta;
+        this.entity.Transaction_Contratos.Tasa_cambio = this.tasaActual?.Valor_de_venta;
         // @ts-ignore
-        this.entity.Transaction_Contratos.taza_cambio_compra = this.tasaActual?.Valor_de_compra;
+        this.entity.Transaction_Contratos.Tasa_cambio_compra = this.tasaActual?.Valor_de_compra;
         this.setPlazo();
         this.update();
         this.Manager.NavigateFunction("valoraciones");
     }
     setPlazo() {
-        if (this.entity.valoraciones) {
+        if (this.entity.Valoraciones) {
             // @ts-ignore
-            this.inputPlazo.value = this.entity?.valoraciones[0]?.Plazo;
+            this.inputPlazo.value = this.entity?.Valoraciones[0]?.Plazo;
             // @ts-ignore
-            this.entity.Transaction_Contratos.plazo = this.entity?.valoraciones[0]?.Plazo ?? 1;
-            this.entity.Transaction_Contratos.fecha = new Date();
+            this.entity.Transaction_Contratos.Plazo = this.entity?.Valoraciones[0]?.Plazo ?? 1;
+            this.entity.Transaction_Contratos.Fecha = new Date();
         }
     }
 
@@ -381,7 +381,7 @@ class Transaction_ContratosView extends HTMLElement {
         // @ts-ignore
         this.CuotasTable.Dataset = undefined;
         // @ts-ignore
-        this.entity.valoraciones = this.entity.Transaction_Contratos.Detail_Prendas.map(p => p.Transactional_Valoracion_ModelComponent);
+        this.entity.Valoraciones = this.entity.Transaction_Contratos.Detail_Prendas.map(p => p.Transactional_Valoracion_ModelComponent);
         this.update();
 
     }
@@ -389,7 +389,7 @@ class Transaction_ContratosView extends HTMLElement {
         FinancialModule.calculoAmortizacion(this.entity);
         if (this.prendasTable != undefined && this.entity.Transaction_Contratos.Detail_Prendas != undefined) {
             this.entity.Transaction_Contratos?.Detail_Prendas.forEach(detalle => {
-                detalle.monto_aprobado_dolares = detalle.Transactional_Valoracion_ModelComponent.Valoracion_empeño_dolares
+                detalle.Monto_aprobado_dolares = detalle.Transactional_Valoracion_ModelComponent.Valoracion_empeño_dolares
             })
             this.prendasTable.Dataset = this.entity.Transaction_Contratos.Detail_Prendas;
             this.prendasTable?.DrawTable();
@@ -476,11 +476,11 @@ class MainContract extends HTMLElement {
         {
             name: "Contratos", action: () => {
                 this.Manager.NavigateFunction("contratos", contratosSearcher((contrato) => {
-                    location.href = "/PagesViews/Transaction_ContratosViewDetail?numero_contrato=" + contrato.numero_contrato;
+                    location.href = "/PagesViews/Transaction_ContratosViewDetail?numero_contrato=" + contrato.Numero_contrato;
                 }, (/** @type {Transaction_Contratos} */ contrato) => {
                     const modal = new WModalForm({
                         ModelObject: {
-                            motivo_anulacion: { type: "TEXTAREA" }
+                            Motivo_anulacion: { type: "TEXTAREA" }
                         }, EditObject: contrato,
                         title: "ANULACIÓN DE CONTRATO",
                         ObjectOptions: {

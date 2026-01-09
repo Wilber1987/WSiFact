@@ -6,11 +6,11 @@ export class ParcialesData extends EntityClass {
         Object.assign(this, props);
     }
     /**@type {Number} */
-    numero_contrato;
+    Numero_contrato;
     /**@type {Number} */
-    id_cuota;
+    Id_cuota;
     /**@type {Number} */
-    pagoParciales;
+    PagoParciales;
 
     /**
     * @returns {Promise<ParcialesData>}

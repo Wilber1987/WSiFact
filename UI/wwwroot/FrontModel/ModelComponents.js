@@ -6,20 +6,22 @@ class Tbl_Cuotas_ModelComponent {
         Object.assign(this, props);
     }
     /**@type {ModelProperty} */
-    fecha = { type: "date",  label: "FECHA" };   
+    Fecha = { type: "date", label: "FECHA" };
     /**@type {ModelProperty} */
-    interes = { type: "money", label: "IDCP $"  };    
+    Interes = { type: "money", label: "IDCP $" };
     /**@type {ModelProperty} */
-    abono_capital = { type: "money", label: "ABONO AL CAPITAL $" };
+    Abono_capital = { type: "money", label: "ABONO AL CAPITAL $" };
     /**@type {ModelProperty} */
-    total = { type: "money",  label: "CUOTA A PAGAR $" };
+    Total = { type: "money", label: "CUOTA A PAGAR $" };
     /**@type {ModelProperty} */
-    total_cordobas = { type: "OPERATION",  label: "CUOTA A PAGAR CORDOBAS", action: (/**@type {Tbl_Cuotas} */ cuota)=>{
-        return ConvertToMoneyString(cuota.total * cuota.tasa_cambio);
-    } };
+    Total_cordobas = {
+        type: "OPERATION", label: "CUOTA A PAGAR CORDOBAS", action: (/**@type {Tbl_Cuotas} */ cuota) => {
+            return ConvertToMoneyString(cuota.Total * cuota.Tasa_cambio);
+        }
+    };
     /**@type {ModelProperty} */
-    capital_restante = { type: "money", label: "MONTO RESTANTE $" };
+    Capital_restante = { type: "money", label: "MONTO RESTANTE $" };
     /**@type {ModelProperty} */
-    Estado = { type: "text"};
+    Estado = { type: "text" };
 }
 export { Tbl_Cuotas_ModelComponent }

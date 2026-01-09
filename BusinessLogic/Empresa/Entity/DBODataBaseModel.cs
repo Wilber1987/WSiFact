@@ -63,7 +63,7 @@ namespace DataBaseModel
 				{
 					if (valoracion?.Id_valoracion == null)
 					{
-						valoracion.Fecha = DateTime.Now;
+						valoracion!.Fecha = DateTime.Now;
 						valoracion?.Save();
 					}
 				}
@@ -342,7 +342,7 @@ namespace DataBaseModel
 	{
 		[PrimaryKey(Identity = true)]
 		public int? Id_producto { get; set; }
-		public string Descripcion { get; set; }
+		public string? Descripcion { get; set; }
 		public int? Id_categoria { get; set; }
 		public int? Id_marca { get; set; }
 	}
@@ -351,9 +351,9 @@ namespace DataBaseModel
 	{
 		[PrimaryKey(Identity = true)]
 		public int? Id_marca { get; set; }
-		public string Nombre { get; set; }
-		public string Descripcion { get; set; }
-		public string Estado { get; set; }
+		public string? Nombre { get; set; }
+		public string? Descripcion { get; set; }
+		public string? Estado { get; set; }
 
 		[OneToMany(TableName = "Catalogo_Producto", KeyColumn = "id_marca", ForeignKeyColumn = "id_marca")]
 		public List<Catalogo_Producto>? Detalle_Factura { get; set; }
@@ -364,19 +364,19 @@ namespace DataBaseModel
 	{
 		[PrimaryKey(Identity = true)]
 		public int? Id_categoria { get; set; }
-		public string Descripcion { get; set; }
-		public string Estado { get; set; }
+		public string? Descripcion { get; set; }
+		public string? Estado { get; set; }
 	}
 
 	public class Transaction_Lotes : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
 		public int? Id_transaccion { get; set; }
-		public string Descripcion { get; set; }
+		public string? Descripcion { get; set; }
 		public DateTime? Fecha { get; set; }
 		public int? Id_usuario { get; set; }
 		public int? Id_tipo_transaccion { get; set; }
-		public string Estado { get; set; }
+		public string? Estado { get; set; }
 	}
 
 

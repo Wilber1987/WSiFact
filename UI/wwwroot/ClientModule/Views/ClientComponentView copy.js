@@ -59,17 +59,17 @@ class ClientComponentView extends HTMLElement {
 			tagName: 'button', className: 'Block-Success', innerText: 'Guardar',
 			onclick: async () => {
 				if (!this.FormularioCliente?.Validate()) {
-					this.Manager?.NavigateFunction("formularioCliente", this.FormularioCliente)					
-					WAlertMessage.Warning("Necesita llenar todos los datos del cliente primeramente"); 
+					this.Manager?.NavigateFunction("formularioCliente", this.FormularioCliente)
+					WAlertMessage.Warning("Necesita llenar todos los datos del cliente primeramente");
 					return;
 				}
 
-				if (this.cliente.codigo_cliente == null || this.cliente.codigo_cliente == undefined) {
+				if (this.cliente.Codigo_cliente == null || this.cliente.Codigo_cliente == undefined) {
 					/**@type {Catalogo_Clientes} */
 					const result = await new Catalogo_Clientes(this.cliente).Save();
 
-					if (result?.codigo_cliente != null) {
-						this.cliente.codigo_cliente = result?.codigo_cliente;
+					if (result?.Codigo_cliente != null) {
+						this.cliente.Codigo_cliente = result?.Codigo_cliente;
 						this.append(ModalMessage("Datos guardados correctamente"));
 						this.updateForms();
 					} else {

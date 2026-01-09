@@ -34,7 +34,7 @@ class Tbl_Lotes extends EntityClass {
 	/**@type {Detalle_Compra} */ Detalle_Compra;
 	/**@type {Boolean}*/ IsActivo;
 	/**@type {String}*/ Estado;
-	
+
 	async DarDeBaja(/**@type {Tbl_Transaccion}*/Transaction) {
 		return await this.SaveData("ApiTransactionLotes/DarDeBaja", Transaction)
 	}
@@ -45,21 +45,21 @@ class Tbl_Lotes extends EntityClass {
 		return `${this.Detalle_Compra.Cat_Producto.Descripcion}`;
 	}
 	/**@type {String}*/  get Estado_Producto() {
-		console.log(this.Datos_Producto.Catalogo_Estados_Articulos.nombre);
-		
-		return `${this.Datos_Producto.Catalogo_Estados_Articulos.nombre}`;
+		console.log(this.Datos_Producto.Catalogo_Estados_Articulos.Nombre);
+
+		return `${this.Datos_Producto.Catalogo_Estados_Articulos.Nombre}`;
 	}
 }
 export { Tbl_Lotes };
 class Transactional_Valoracion extends EntityClass {
-	 /** 
-	 * @param {Partial<Transactional_Valoracion>} [props] 
-	 */
+	/** 
+	* @param {Partial<Transactional_Valoracion>} [props] 
+	*/
 	constructor(props) {
 		super(props, 'TransactionLotes');
 		Object.assign(this, props);
 	}
-	/** @type {Number} */ id_valoracion;
+	/** @type {Number} */ Id_valoracion;
 	/** @type {String} */ Descripcion;
 	/** @type {String} */ Serie;
 	/** @type {String} */ Marca;
@@ -76,25 +76,25 @@ class Transactional_Valoracion extends EntityClass {
 	/** @type {Catalogo_Estados_Articulos} */ Catalogo_Estados_Articulos;
 	/** @type {Number} */ Precio_venta_empeño_cordobas;
 	/** @type {Number} */ Precio_venta_empeño_cordobas;
-	/** @type {Number} */ id_estado;
+	/** @type {Number} */ Id_estado;
 	/** @type {Detail_Valores} */ Detail_Valores;
 
 	GuardarValoraciones = async (valoraciones) => {
 		return await this.SaveData("Transactional_Valoracion/GuardarValoraciones", { valoraciones: valoraciones })
 	}
 	requireReValoracion(dias = 40) {
-        // @ts-ignore
-        return new Date().subtractDays(dias) > new Date(this.Fecha);
-    }
+		// @ts-ignore
+		return new Date().subtractDays(dias) > new Date(this.Fecha);
+	}
 
 }
 class Detail_Valores {
 	/** @type {Number} */Valoracion_1;
-	/** @type {Number} */dolares_1;
+	/** @type {Number} */Dolares_1;
 	/** @type {Number} */Valoracion_2;
-	/** @type {Number} */dolares_2;
+	/** @type {Number} */Dolares_2;
 	/** @type {Number} */Valoracion_3;
-	/** @type {Number} */dolares_3;
+	/** @type {Number} */Dolares_3;
 }
 export { Transactional_Valoracion }
 export class EtiquetaLote {
