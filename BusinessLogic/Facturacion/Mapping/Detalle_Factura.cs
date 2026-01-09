@@ -26,5 +26,6 @@ namespace DataBaseModel {
 				
 				[ManyToOne(TableName = "Tbl_Lotes", KeyColumn = "Id_Lote", ForeignKeyColumn = "Id_Lote")]
 				public Tbl_Lotes? Lote { get; set; }
-		}
+        public double Precio_Venta_Dolares { get; internal set; }
+    }
 }

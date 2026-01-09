@@ -44,12 +44,12 @@ namespace BusinessLogic.Facturacion.Mapping
                 foreach (var tbl_Acta in tbl_Acta_Entregas)
                 {
                     var producto = ArticulosRemplazados
-                        .Find(articulo => articulo.Lote?.Datos_Producto?.Modelo == tbl_Acta?.Detail_Prenda?.modelo
-                            && articulo?.Lote?.Datos_Producto?.Marca == tbl_Acta?.Detail_Prenda?.marca);
+                        .Find(articulo => articulo.Lote?.Cat_Producto?.Modelo == tbl_Acta?.Detail_Prenda?.modelo
+                            && articulo?.Lote?.Cat_Producto?.Cat_Marca?.Descripcion == tbl_Acta?.Detail_Prenda?.marca);
                             
                     var productoOriginal = facturaOriginal?.Detalle_Factura?
-                        .Find(detalle => detalle.Lote?.Datos_Producto?.Modelo == tbl_Acta?.Detail_Prenda?.modelo
-                            && detalle?.Lote?.Datos_Producto?.Marca == tbl_Acta?.Detail_Prenda?.marca);                            
+                        .Find(detalle => detalle.Lote?.Cat_Producto?.Modelo == tbl_Acta?.Detail_Prenda?.modelo
+                            && detalle?.Lote?.Cat_Producto?.Cat_Marca?.Descripcion == tbl_Acta?.Detail_Prenda?.marca);                            
                     //var descuento = productoOriginal!.Sub_Total > producto!.Sub_Total ? productoOriginal.Sub_Total - producto.Sub_Total : 0;
                     //var pre        
                     if (producto != null)

@@ -149,7 +149,7 @@ namespace DataBaseModel
 		[OneToOne(TableName = "Detail_Prendas_Vehiculos", KeyColumn = "numero_prenda", ForeignKeyColumn = "numero_prenda")]
 		public Detail_Prendas_Vehiculos? Detail_Prendas_Vehiculos { get; set; }
 		[ManyToOne(TableName = "Catalogo_Categoria", KeyColumn = "id_categoria", ForeignKeyColumn = "id_categoria")]
-		public Catalogo_Categoria? Catalogo_Categoria { get; set; }
+		public Cat_Categorias? Catalogo_Categoria { get; set; }
 		[ManyToOne(TableName = "Transactional_Valoracion", KeyColumn = "id_valoracion", ForeignKeyColumn = "id_valoracion")]
 		public Transactional_Valoracion? Transactional_Valoracion { get; set; }
 

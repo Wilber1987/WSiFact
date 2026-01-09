@@ -4,7 +4,7 @@ import { StylesControlsV2, StylesControlsV3, StyleScrolls } from "../WDevCore/St
 import { WTableComponent } from "../WDevCore/WComponents/WTableComponent.js";
 import { ComponentsManager, ConvertToMoneyString, html, WRender } from "../WDevCore/WModules/WComponentsTools.js";
 // @ts-ignore
-import { Catalogo_Cambio_Divisa_ModelComponent, Catalogo_Categoria_ModelComponent, Catalogo_Clientes, Catalogo_Estados_Articulos, Transactional_Valoracion_ModelComponent } from "../FrontModel/DBODataBaseModel.js";
+import { Catalogo_Cambio_Divisa_ModelComponent, Catalogo_Categoria_ModelComponent, Catalogo_Estados_Articulos, Transactional_Valoracion_ModelComponent } from "../FrontModel/DBODataBaseModel.js";
 import { WForm } from "../WDevCore/WComponents/WForm.js";
 
 

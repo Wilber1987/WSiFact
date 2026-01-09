@@ -105,7 +105,8 @@ namespace Model
 			Transaction_Contratos.fecha_cancelar = Transaction_Contratos.Tbl_Cuotas.Select(c => c.fecha).ToList().Max();
 			Transaction_Contratos.fecha_vencimiento = Transaction_Contratos.Tbl_Cuotas.Select(c => c.fecha).ToList().Max();
 			var valoracion = Transaction_Contratos.Detail_Prendas[0];
-			if (Transaction_Contratos?.tipo == Contratos_Type.APARTADO_QUINCENAL
+			Transaction_Contratos.tipo = Contratos_Type.EMPENO;
+			/*if (Transaction_Contratos?.tipo == Contratos_Type.APARTADO_QUINCENAL
 			|| Transaction_Contratos?.tipo == Contratos_Type.APARTADO_MENSUAL)
 			{
 				valoracion.Catalogo_Categoria.tipo = valoracion.Catalogo_Categoria.tipo;
@@ -125,7 +126,7 @@ namespace Model
 			else
 			{
 				Transaction_Contratos.tipo = Contratos_Type.PRESTAMO;
-			}
+			}*/
 
 			Transaction_Contratos.monto = Transaction_Contratos.Valoracion_empeño_dolares;
 			Transaction_Contratos.saldo = Transaction_Contratos.Valoracion_empeño_dolares;

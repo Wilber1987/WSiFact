@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using APPCORE;
 using APPCORE.BDCore.Abstracts;
 using APPCORE.SystemConfig;
-using DataBaseModel;
 using Microsoft.Extensions.Configuration;
 
 namespace BusinessLogic.Connection

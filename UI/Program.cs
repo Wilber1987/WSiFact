@@ -7,13 +7,8 @@ using System.Text.Json.Serialization;
 using DataBaseModel;
 using CAPA_NEGOCIO.SystemConfig;
 
-
-
-
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddRazorPages();
-
 builder.Services.AddControllers()
 	.AddJsonOptions(JsonOptions => JsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null)// retorna los nombres reales de las propiedades
 	.AddJsonOptions(options => options.JsonSerializerOptions.WriteIndented = false)// Desactiva la indentación
@@ -77,5 +72,6 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapRazorPages();
+app.MapControllers();
 
 app.Run();

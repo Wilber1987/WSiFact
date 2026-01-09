@@ -1,11 +1,10 @@
 
-import { Catalogo_Tipo_Identificacion } from "../ClientModule/FrontModel/Catalogo_Clientes.js";
+import { Catalogo_Clientes_ModelComponent } from "../ClientModule/FrontModel/Catalogo_Clientes.js";
 import { WForm } from "../WDevCore/WComponents/WForm.js";
 import { ModelProperty } from "../WDevCore/WModules/CommonModel.js";
 import { EntityClass } from "../WDevCore/WModules/EntityClass.js";
 import { Detail_Prendas_Vehiculos } from "./Model.js";
 import { Tbl_Cuotas_ModelComponent } from "./ModelComponents.js";
-import { Recibos } from "./Recibos.js";
 class Catalogo_Estados_Articulos extends EntityClass {
     constructor(props) {
         super(props, 'EntityDBO');
@@ -18,56 +17,7 @@ class Catalogo_Estados_Articulos extends EntityClass {
     porcentaje_empeno = { type: 'number' };
 }
 export { Catalogo_Estados_Articulos }
-class Transactional_Valoracion_ModelComponent extends EntityClass {
-    requireReValoracion(dias = 40) {
-        //console.log("dias: ", new Date().subtractDays(dias) > new Date(this.Fecha));
-        return new Date().subtractDays(dias) > new Date(this.Fecha);
-    }
-    /**
-     * 
-     * @param {Partial<Transactional_Valoracion_ModelComponent>} [props] 
-     */
-    constructor(props) {
-        super(props, 'EntityDBO');
-        Object.assign(this, props);
-    }
-    /**@type {ModelProperty} */ id_valoracion = { type: 'number', primary: true };
-    /**@type {ModelProperty} */ Descripcion = { type: 'textarea' };
-    /**@type {ModelProperty} */ Serie = { type: 'text', require: false };
-    /**@type {ModelProperty} */ Marca = { type: 'text' };
-    /**@type {ModelProperty} */ Modelo = { type: 'text' };
-    /**@type {ModelProperty} */ Catalogo_Categoria = {
-        type: 'WSELECT',
-        ModelObject: () => new Catalogo_Categoria_ModelComponent(), action: (ObjectF, /**@type {WForm} */ form, InputControl, prop) => {
-            // console.log(ObjectF.Catalogo_Categoria.plazo_limite);
-            this.Plazo.max = ObjectF?.Catalogo_Categoria?.plazo_limite ?? 6;
-            if (ObjectF.Plazo > this.Plazo.max) {
-                ObjectF.Plazo = this.Plazo.max;
-            }
-            form.DrawComponent();
-        }, hiddenFilter: true
-    };
-    /**@type {ModelProperty} */ Plazo = { type: 'number', hiddenInTable: true, max: 24, min: 1, hiddenFilter: true };
-    /**@type {ModelProperty} */ Tasa_interes = { type: 'number', hiddenInTable: true, enabled: false, Dataset: [], hiddenFilter: true };
-    /**@type {ModelProperty} */ Fecha = { type: 'date', hiddenInTable: true, hiddenFilter: true };
-    /**@type {ModelProperty} */ Tasa_de_cambio = { type: 'money', hiddenInTable: true, hiddenFilter: true };
-    /**@type {ModelProperty} */ Valoracion_compra_cordobas = { type: 'money', hiddenFilter: true };
-    /**@type {ModelProperty} */ Valoracion_compra_dolares = { type: 'money', hiddenFilter: true };
-    /**@type {ModelProperty} */ Valoracion_empeño_cordobas = { type: 'money', hiddenFilter: true };
-    /**@type {ModelProperty} */ Valoracion_empeño_dolares = { type: 'money', hiddenFilter: true };
-    /**@type {ModelProperty} */ Catalogo_Estados_Articulos = { type: 'WSELECT',  ModelObject: () => new Catalogo_Estados_Articulos(), hiddenFilter: true };
-    //TASAS DE INTERES
-    //Valoracion_empeño_dolares = { type: 'operation' };
 
-    /**@type {ModelProperty} */ Precio_venta_empeño_cordobas = { type: 'number', hidden: true };
-    /**@type {ModelProperty} */ Precio_venta_empeño_dolares = { type: 'number', hidden: true };
-    /**@type {ModelProperty} */ Detail_Valores = { type: 'MASTERDETAIL', hidden: true }
-    /**@type {ModelProperty} */ requiere_valoracion;
-    GuardarValoraciones = async (valoraciones) => {
-        return await this.SaveData("Transactional_Valoracion/GuardarValoraciones", { valoraciones: valoraciones })
-    }
-}
-export { Transactional_Valoracion_ModelComponent }
 //TODO ELIMINAR A POSTERIOR LO DE LOS AGENTES
 class Catalogo_Agentes extends EntityClass {
     constructor(props) {
@@ -109,76 +59,6 @@ class Catalogo_Clasificacion_Interes extends EntityClass {
 }
 export { Catalogo_Clasificacion_Interes }
 
-class Catalogo_Clientes extends EntityClass {
-    /**
-    * @param {Partial<Catalogo_Clientes>} props 
-    */
-    constructor(props) {
-        super(props, 'EntityDBO');
-        Object.assign(this, props);
-    }
-    codigo_cliente = { type: 'number', primary: true };
-    primer_nombre = { type: 'text' };
-    segundo_nombre = { type: 'text', hiddenFilter: true, require: false };
-    primer_apellido = { type: 'text' };
-    segundo_apellidio = { type: 'text', require: false };
-    Catalogo_Tipo_Identificacion = {
-        type: 'WSELECT', ModelObject: () => new Catalogo_Tipo_Identificacion(), label: "Tipo Identificación",
-        hiddenFilter: true, hiddenInTable: true
-    };
-    identificacion = { type: 'text' };
-    sexo = {
-        type: 'select',
-        Dataset: [{ id: "Masculino", Descripcion: "Masculino" }, { id: "Femenino", Descripcion: "Femenino" }], hiddenInTable: true, hiddenFilter: true
-    };
-    fecha_nacimiento = { type: 'date', hiddenInTable: true, hiddenFilter: true, hiddenInTable: true };
-    id_departamento = { type: 'number', hiddenInTable: true, hiddenFilter: true, hidden: true };
-    id_municipio = { type: 'number', hiddenInTable: true, hiddenFilter: true, hidden: true };
-    //id_tipo_identificacion = { type: 'number', hiddenInTable: true, hiddenFilter: true, hidden: true };
-    correo = { type: 'text', hiddenInTable: true, hiddenFilter: true, require: false };
-    operadora_celular = { type: 'select', Dataset: ["Tigo", "Claro"], hiddenInTable: true, hiddenFilter: true };
-    telefono = { type: 'tel', hiddenInTable: true, hiddenFilter: true };
-    direccion = { type: 'text', hiddenInTable: true, hiddenFilter: true };
-    hora = { type: 'text', hiddenInTable: true, hiddenFilter: true, hidden: true };
-    fecha = { type: 'date', hiddenInTable: true, hiddenFilter: true, hidden: true };
-    observaciones = { type: 'text', hiddenInTable: true, hiddenFilter: true, hidden: true };
-    estado_civil = { type: 'select', Dataset: ["Soltero", "Casado", "Unión libre", "Viudo"], hiddenInTable: true, hiddenFilter: true };
-
-    tipo_firma = { type: 'select', Dataset: ["Iletrado", "Ilegible", "Legible"], hiddenInTable: true, hiddenFilter: true };
-    valor_cliente = { type: 'select', Dataset: [{ id: "MP", Descripcion: "Más prestamos" }, { id: "NMP", Descripcion: "No más prestamos" }], hiddenInTable: true, hiddenFilter: true };
-
-    //valor_interes = { type: 'number', hiddenInTable: true, hiddenFilter: true };
-    solo_acreedor = { type: 'radio', Dataset: ["Ambos", "Si"], hiddenInTable: true, hiddenFilter: true };
-
-    Catalogo_Clasificacion_Interes = { type: 'WSELECT', ModelObject: () => new Catalogo_Clasificacion_Interes(), hiddenFilter: true };
-    //promedio = { type: 'number', hiddenInTable: true, hiddenFilter: true };
-    Catalogo_Clasificacion_Cliente = { type: 'WSELECT', ModelObject: () => new Catalogo_Clasificacion_Cliente(), hiddenFilter: true };
-
-    Catalogo_Profesiones = { type: 'WSELECT', ModelObject: () => new Catalogo_Profesiones(), hiddenInTable: true, hiddenFilter: true };
-    Condicion_Laboral_Cliente = { type: 'WSELECT', ModelObject: () => new Condicion_Laboral_Cliente(), hiddenInTable: true, hiddenFilter: true, hidden: true };
-    Catalogo_Departamento = {
-        type: 'WSELECT', ModelObject: () => new Catalogo_Departamento(), hiddenFilter: true,
-        action: async (editObject, /** @type {WForm} */ Form) => {
-            await Catalogo_Departamento.ChargeMunicipios(editObject, Form);
-        },
-        hiddenInTable: true
-    };
-
-    Catalogo_Municipio = {
-        type: 'WSELECT', ModelObject: () => new Catalogo_Municipio(), hiddenFilter: true,
-        action: async (editObject, /** @type {WForm} */ Form) => {
-            const findObject = this.Catalogo_Departamento.Dataset.find(d => d.id_departamento == editObject.Catalogo_Municipio.id_departamento);
-            editObject.Catalogo_Departamento = findObject;
-            Form.shadowRoot.querySelector("#ControlValueCatalogo_Departamento").selectedItems = [findObject]
-            Form.shadowRoot.querySelector("#ControlValueCatalogo_Departamento").Draw();
-        },
-        hiddenInTable: true
-    };
-
-
-}
-export { Catalogo_Clientes }
-
 
 class Catalogo_Categoria_ModelComponent extends EntityClass {
     constructor(props) {
@@ -204,7 +84,7 @@ class Condicion_Laboral_Cliente extends EntityClass {
     nombre_empresa = { type: 'text' };
     ingresos_mensuales = { type: 'number' };
     direccion = { type: 'text' };
-    /*Catalogo_Clientes = { type: 'WSELECT', ModelObject: () => new Catalogo_Clientes() };*/
+    /*Catalogo_Clientes = { type: 'WSELECT', ModelObject: () => new Catalogo_Clientes_ModelComponent() };*/
     Catalogo_Departamento = {
         type: 'WSELECT', ModelObject: () => new Catalogo_Departamento(), hiddenFilter: true,
         action: async (editObject, /** @type {WForm} */ Form) => {
@@ -239,7 +119,7 @@ class Transaction_Contratos_ModelComponent extends EntityClass {
         Object.assign(this, props);
     }
     numero_contrato = { type: "number", primary: true };
-    Catalogo_Clientes = { type: 'WSELECT', ModelObject: () => new Catalogo_Clientes() };
+    Catalogo_Clientes = { type: 'WSELECT', ModelObject: () => new Catalogo_Clientes_ModelComponent() };
     fecha_contrato = { type: "date", hiddenFilter: true };
     fecha_cancelar = { type: "date", hiddenInTable: true, hiddenFilter: true };
     monto = { type: "MONEY", label: "monto $", hiddenInTable: true, hiddenFilter: true };
@@ -608,7 +488,7 @@ class Transaccion_Factura extends EntityClass {
         Object.assign(this, props);
     }
     /**@type {ModelProperty}*/
-    Catalogo_Clientes = { type: 'WSELECT', ModelObject: () => new Catalogo_Clientes(), ForeignKeyColumn: "id_cliente", hiddenInTable: true };
+    Catalogo_Clientes = { type: 'WSELECT', ModelObject: () => new Catalogo_Clientes_ModelComponent(), ForeignKeyColumn: "id_cliente", hiddenInTable: true };
     id_factura = { type: "number", primary: true, label: "Número recibo" };
     Consecutivo = { type: "text" };
     tipo = { type: "text", hidden: true };
@@ -638,14 +518,8 @@ class Factura_contrato {
     mora = { type: "money" };
     interes_demas_cargos_pagar = { type: "money" };
     abono_capital = { type: "money" };
-    //proximo_pago_pactado = { type: "date" };
-    //total_parciales = { type: "money" };//todo revisar por que manda valores
-    //tipo = { type: "number" };
-    //tipo_cuenta = { type: "number" };
     total = { type: "money" };
     tasa_cambio = { type: "number" };
-    //reestructuracion = { type: "number" }
-    //Solo_Interes_Mora = { type: "text" }
 
 }
 export { Factura_contrato }

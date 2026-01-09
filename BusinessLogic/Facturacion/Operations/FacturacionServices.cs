@@ -260,8 +260,7 @@ namespace UI.CAPA_NEGOCIO.Facturacion.Operations
 		{
 			var contrato = new ContractServices();
 			// @ts-ignore
-			contrato.valoraciones = factura.Detalle_Factura?.Select(detalle => detalle.Lote?.Datos_Producto
-				?? new Transactional_Valoracion()).ToList();
+			
 
 			contrato.Transaction_Contratos = new Transaction_Contratos
 			{
@@ -282,20 +281,19 @@ namespace UI.CAPA_NEGOCIO.Facturacion.Operations
 				observaciones = factura.Observaciones,
 				Detail_Prendas = factura.Detalle_Factura?.Select(detalle =>
 				{
-					var valoracion = detalle.Lote?.Datos_Producto;
+					var valoracion = detalle.Lote?.Cat_Producto;
 					return new Detail_Prendas
 					{
 						Descripcion = valoracion?.Descripcion,
 						modelo = valoracion?.Modelo,
-						marca = valoracion?.Marca,
-						serie = valoracion?.Serie,
-						monto_aprobado_cordobas = valoracion?.Valoracion_empeño_cordobas,
-						monto_aprobado_dolares = valoracion?.Valoracion_empeño_dolares,
+						marca = valoracion?.Cat_Marca?.Nombre,
+						//serie = valoracion?.Serie,
+						monto_aprobado_cordobas = detalle?.Precio_Venta,
+						monto_aprobado_dolares = detalle?.Precio_Venta_Dolares ,
 						color = "-",
 						en_manos_de = EnManosDe.ACREEDOR,
-						precio_venta = valoracion?.Precio_venta_empeño_dolares,
-						Catalogo_Categoria = valoracion?.Catalogo_Categoria,
-						Transactional_Valoracion = valoracion
+						precio_venta = detalle?.Precio_Venta,
+						Catalogo_Categoria = valoracion?.Cat_Categorias
 					};
 				}).ToList()
 			};

@@ -85,7 +85,6 @@ namespace BusinessLogic.Facturacion.Mapping
 					Lote = $"{loteOriginal.Lote}-MV{DateTime.Now.Ticks}", // Identificador nuevo
 					Id_Detalle_Compra = loteOriginal.Id_Detalle_Compra,
 					Estado = EstadoEnum.ACTIVO,
-					Datos_Producto = loteOriginal.Datos_Producto,
 					EtiquetaLote = loteOriginal.EtiquetaLote,
 					Detalles = $"Lote generado por movimiento desde lote #{loteOriginal.Id_Lote}, sucursal #{loteOriginal.Id_Sucursal}"
 				};

@@ -94,7 +94,7 @@ namespace BusinessLogic.Empresa.Contratos
                 Transactional_Configuraciones beneficioVentaE = new Transactional_Configuraciones()
                            .GetConfig(ConfiguracionesBeneficiosEnum.BENEFICIO_VENTA_ARTICULO_EMPENO.ToString());
                 var prenda = actaContrato?.Detail_Prendas?.Find(p => p.numero_prenda == Numero_Prenda);
-                Tbl_Lotes.GenerarLoteAPartirDePrenda(prenda, beneficioVentaE, dbUser, actaContrato, false);
+                Tbl_Lotes.GenerarLoteAPartirDeDevolucion(prenda, beneficioVentaE, dbUser, actaContrato, false);
                 Estado = EstadoEnum.ANULADO;
                 Update();
                 return new ResponseService()

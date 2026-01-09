@@ -1,92 +1,24 @@
 //@ts-check
 // @ts-ignore
-import { WRender, ComponentsManager } from "../WDevCore/WModules/WComponentsTools.js";
-import { StylesControlsV2, StylesControlsV3, StyleScrolls } from "../WDevCore/StyleModules/WStyleComponents.js"
+import { WRender } from "../WDevCore/WModules/WComponentsTools.js";
 // @ts-ignore
-import { WTableComponent } from "../WDevCore/WComponents/WTableComponent.js"
-import { Catalogo_Clientes, Notas_de_contrato, Transaction_Contratos_ModelComponent, Transactional_Valoracion_ModelComponent } from "../FrontModel/DBODataBaseModel.js"
+import { Notas_de_contrato, Transaction_Contratos_ModelComponent } from "../FrontModel/DBODataBaseModel.js";
+import { WTableComponent } from "../WDevCore/WComponents/WTableComponent.js";
 // @ts-ignore
-import { WFilterOptions } from "../WDevCore/WComponents/WFilterControls.js";
-import { Tbl_Cuotas, Transaction_Contratos, ValoracionesTransaction } from "../FrontModel/Model.js";
+import { Catalogo_Clientes_ModelComponent } from "../ClientModule/FrontModel/Catalogo_Clientes.js";
+import { Tbl_Cuotas, Transaction_Contratos } from "../FrontModel/Model.js";
 import { Tbl_Cuotas_ModelComponent } from "../FrontModel/ModelComponents.js";
-import { WModalForm } from "../WDevCore/WComponents/WModalForm.js";
-import { WDetailObject } from "../WDevCore/WComponents/WDetailObject.js";
-import { FilterData } from "../WDevCore/WModules/CommonModel.js";
 import { ModalMessage } from "../WDevCore/WComponents/ModalMessage.js";
-import { DateTime } from "../WDevCore/WModules/Types/DateTime.js";
-import { SystemConfigs } from "../Services/SystemConfigs.js";
-class ValoracionesSearch extends HTMLElement {
-    constructor(/** @type {Function} */ action,/** @type {Function|undefined} */ secondAction,/** @type {Boolean} */ onlyValids = false) {
-        super();
-        this.TabContainer = WRender.Create({ className: "TabContainer", id: 'TabContainer' });
-        this.Manager = new ComponentsManager({ MainContainer: this.TabContainer, SPAManage: false });
-        this.action = action;
-        this.secondAction = secondAction;
-        this.onlyValids = onlyValids;
-        this.DrawComponent();
-    }
-    DrawComponent = async () => {
-        const model = new Transactional_Valoracion_ModelComponent({ requiere_valoracion: { type: "TEXT", hiddenFilter: true } });
-        const requiere_valoracion = parseFloat((await SystemConfigs.FindByName("VENCIMIENTO_VALORACION"))?.Valor ?? "40")
-        if (this.onlyValids) {
-            // @ts-ignore`
-            model.FilterData.push(FilterData.Greater("Fecha",new DateTime().subtractDays(40).toISO() ) );
-        }
-        let dataset = await model.Get();
+import { WDetailObject } from "../WDevCore/WComponents/WDetailObject.js";
+import { WModalForm } from "../WDevCore/WComponents/WModalForm.js";
 
-        this.SearchContainer = WRender.Create({
-            className: "search-container"
-        })
-        this.MainComponent = new WTableComponent({
-            ModelObject: model,
-            Dataset: dataset.map(/**@param {Transactional_Valoracion_ModelComponent} x*/ x => {
-                // @ts-ignore
-                x.requiere_valoracion = x.requireReValoracion(requiere_valoracion) ? "SI" : "NO";
-                return x;
-            }),
-            Options: {
-                UserActions: [
-                    {
-                        name: "Seleccionar", action: (/**@type {Transactional_Valoracion_ModelComponent}*/ selected) => {
-                            this.action(selected);
-                        }
-                    }
-                ]
-            }
-        })
-        this.FilterOptions = new WFilterOptions({
-            Dataset: dataset,
-            ModelObject: model,
-            Display: true,
-            FilterFunction: (DFilt) => {
-                // @ts-ignore
-                this.MainComponent.Dataset = DFilt.map(x => {
-                    // @ts-ignore
-                    x.requiere_valoracion = (new Date().subtractDays(40) < new Date(x.Fecha)) ? "NO" : "SI";
-                    return x;
-                });
-                this.MainComponent?.DrawTable();
-            }
-        });
-        this.append(
-            StylesControlsV2.cloneNode(true),
-            StyleScrolls.cloneNode(true),
-            StylesControlsV3.cloneNode(true),
-            this.FilterOptions,
-            this.TabContainer,
-            this.MainComponent
-        );
-    }
-}
-customElements.define('w-component', ValoracionesSearch);
-export { ValoracionesSearch }
 /**
  * 
- * @param { Array } actions 
+ * @param { Array<import("../WDevCore/WModules/CommonModel.js").Actions> } actions 
  * @returns { HTMLElement }
  */
 const clientSearcher = (actions) => {
-    const model = new Catalogo_Clientes();
+    const model = new Catalogo_Clientes_ModelComponent();
     const TableComponent = new WTableComponent({
         ModelObject: model,  Options: {
             Filter: true,
@@ -96,7 +28,7 @@ const clientSearcher = (actions) => {
     })
     return WRender.Create({ className: "main-container", children: [TableComponent] });
 }
-export { clientSearcher }
+export { clientSearcher };
 
 /**
  * 
@@ -184,22 +116,9 @@ const contratosSearcher = (action, anularAction, withNotas = false) => {
             UserActions: actions
         }
     })
-    /*const FilterOptions = new WFilterOptions({
-        Dataset: [],
-        //EntityModel: model,
-        ModelObject: new Transaction_Contratos_ModelComponent(),
-        Display: true,
-        FilterFunction: (DFilt) => {
-            TableComponent.Dataset = DFilt;
-            TableComponent?.DrawTable();
-            // @ts-ignore
-            //action(DFilt, FilterOptions);
-        }
-    });*/
     return WRender.Create({
         className: "main-contratos-searcher", children: [
-            //FilterOptions,
             TableComponent]
     });
 }
-export { contratosSearcher }
+export { contratosSearcher };

@@ -57,7 +57,6 @@ namespace BusinessLogic.Facturacion.Operations
 				Id_Sucursal = dbUser?.Id_Sucursal,
 				Id_User = dbUser?.Id_User,
 				Fecha_Ingreso = DateTime.Now,
-				Datos_Producto = loteOriginal?.Datos_Producto,
 				Detalles = loteOriginal?.Detalles,
 				Id_Detalle_Compra = loteOriginal?.Id_Detalle_Compra,
 				Id_Almacen = movimiento.Tbl_Lote_Destino?.Id_Almacen,

@@ -12,6 +12,7 @@ namespace DataBaseModel
         [PrimaryKey(Identity = true)]
         public int? Id_Producto { get; set; }
         public string? Descripcion { get; set; }
+        public string? Modelo { get; set; }
         public int? Id_Categoria { get; set; }
         public int? Id_Marca { get; set; }
         [ManyToOne(TableName = "Cat_Marca", KeyColumn = "Id_Marca", ForeignKeyColumn = "Id_Marca")]

@@ -233,7 +233,7 @@ namespace DataBaseModel
 					{
 						if (prenda.en_manos_de == EnManosDe.ACREEDOR)
 						{
-							Tbl_Lotes.GenerarLoteAPartirDePrenda(prenda, beneficioVentaE, dbUser, this);
+							//Tbl_Lotes.GenerarLoteAPartirDeDevolucion(prenda, beneficioVentaE, dbUser, this);
 						}
 					});
 					Tbl_Cuotas?.ForEach(Cuota =>

@@ -20,7 +20,7 @@ namespace DataBaseModel
 		public int? Id_Almacen { get; set; }
 		public string? Lote { get; set; }
 		public int? Id_Detalle_Compra { get; set; }
-		public string? Name { get { return Datos_Producto?.Descripcion ?? "-"; } }
+		public string? Name { get { return Cat_Producto?.Descripcion ?? "-"; } }
 		public string? Detalles { get; set; }
 		public bool IsActivo
 		{
@@ -30,14 +30,15 @@ namespace DataBaseModel
 			}
 		}
 		[JsonProp]
-		public Transactional_Valoracion? Datos_Producto { get; set; }
-		[JsonProp]
 		public EtiquetaLote? EtiquetaLote { get; set; }
 
 		[ManyToOne(TableName = "Cat_Almacenes", KeyColumn = "Id_Almacen", ForeignKeyColumn = "Id_Almacen")]
 		public Cat_Almacenes? Cat_Almacenes { get; set; }
 		[ManyToOne(TableName = "Detalle_Compra", KeyColumn = "Id_Detalle_Compra", ForeignKeyColumn = "Id_Detalle_Compra")]
 		public Detalle_Compra? Detalle_Compra { get; set; }
+
+		[ManyToOne(TableName = "Cat_Producto", KeyColumn = "Id_Producto", ForeignKeyColumn = "Id_Producto")]
+		public Cat_Producto? Cat_Producto { get; set; }
 		public List<Tbl_Transaccion>? lotes { get; set; }
 		public EstadoEnum? Estado { get; set; }
 
@@ -158,80 +159,20 @@ namespace DataBaseModel
 			return GetLotes(Identify, Estado);
 		}
 
+		public static string GetLoteDesc(Cat_Producto producto)
+		{
+			return $"{producto?.Descripcion}\n Marca: {producto?.Cat_Marca?.Descripcion}\n Modelo: {producto?.Modelo}";
+		}
 
-		public static void GenerarLoteAPartirDePrenda(Detail_Prendas prenda,
-		Transactional_Configuraciones beneficioVentaE,
+        internal static void GenerarLoteAPartirDeDevolucion(Detail_Prendas? prenda, 
+		Transactional_Configuraciones beneficioVentaE, 
 		Security_Users? dbUser,
-		Transaction_Contratos contrato, bool isActive = true)
-		{
-			double? mora = prenda.Transactional_Valoracion?.Tasa_interes * 2 / 100;
-			double? precio_venta_empeño = (prenda.Transactional_Valoracion?.Valoracion_empeño_dolares)
-				* (mora + 1)
-				* (Convert.ToDouble(beneficioVentaE.Valor) / 100 + 1);
-			Cat_Producto producto = new Cat_Producto
-			{
-				Descripcion = prenda.Descripcion,
-				Cat_Marca = new Cat_Marca
-				{
-					Nombre = prenda.marca,
-					Descripcion = prenda.marca,
-					Estado = EstadoEnum.ACTIVO.ToString()
-				},
-				Cat_Categorias = new Cat_Categorias
-				{
-					Descripcion = prenda.Catalogo_Categoria?.descripcion,
-					Estado = EstadoEnum.ACTIVO.ToString()
-				}
-			};
-			Cat_Producto.SetProductData(producto);
-			Tbl_Lotes.SaveLoteByPrenda(prenda, dbUser, precio_venta_empeño, producto, contrato, isActive);
-		}
-		public static void SaveLoteByPrenda(Detail_Prendas prenda,
-			Security_Users? dbUser,
-			double? precio_venta_empeño,
-			Cat_Producto producto,
-			Transaction_Contratos contrato,
-			bool isActive = true)
-		{
-			string codigo = Tbl_Lotes.GenerarLote(contrato.numero_contrato.GetValueOrDefault().ToString());
-			int porcentajesUtilidad = Transactional_Configuraciones.GetBeneficioVentaArticulo();
-			int porcentajesApartado = Transactional_Configuraciones.GetPorcentajesApartado();
-			int Ncuotas = Transactional_Configuraciones.GetNumeroCuotasQuincenales(precio_venta_empeño.GetValueOrDefault());
-
-			new Tbl_Lotes()
-			{
-				Precio_Venta = precio_venta_empeño,
-				Precio_Compra = prenda.Transactional_Valoracion?.Valoracion_empeño_dolares,
-				Cantidad_Inicial = 1,
-				Cantidad_Existente = 1,
-				Id_Sucursal = dbUser?.Id_Sucursal,
-				Id_User = dbUser?.Id_User,
-				Fecha_Ingreso = DateTime.Now,
-				Datos_Producto = prenda.Transactional_Valoracion,
-				Detalles = $"{prenda.Transactional_Valoracion?.Descripcion},\n{GetLoteDesc(prenda.Transactional_Valoracion)},\n Existencia perteneciente a vencimineto de contrato No. {contrato.numero_contrato.GetValueOrDefault():D9}",
-				Id_Almacen = new Cat_Almacenes().GetAlmacen(dbUser?.Id_Sucursal ?? 0),
-				Lote = codigo,
-				Id_Producto = producto.Id_Producto,
-				Estado = isActive ? EstadoEnum.ACTIVO : EstadoEnum.INACTIVO,
-				EtiquetaLote = new EtiquetaLote
-				{
-					Tipo = "CV",
-					Articulo = GetLoteDesc(prenda.Transactional_Valoracion),
-					Codigo = codigo,
-					PorcentajesUtilidad = porcentajesUtilidad,
-					PorcentajesApartado = porcentajesApartado,
-					PorcentajeAdicional = 0,
-					N_Cuotas = Ncuotas,
-					Precio_compra_dolares = prenda.Transactional_Valoracion?.Valoracion_empeño_dolares,
-				}
-			}.Save();
-		}
-
-		public static string GetLoteDesc(Transactional_Valoracion transactional_Valoracion)
-		{
-			return $"{transactional_Valoracion?.Descripcion}\n Marca: {transactional_Valoracion?.Marca}\n Modelo: {transactional_Valoracion?.Modelo}\n Serie: {transactional_Valoracion?.Modelo ?? "-"} ";
-		}
-	}
+		Transaction_Contratos? actaContrato, 
+		bool v)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 
 
@@ -255,8 +196,6 @@ namespace DataBaseModel
 		public double? PorcentajeAdicional { get; set; }
 		public Catalogo_Cambio_Divisa? TasaCambio { get; }
 		public List<Transactional_Configuraciones>? Intereses { get; }
-
-		//public double? Precio_venta_Contado_cordobas { }
 		public double? Precio_venta_Contado_dolares
 		{
 			get
@@ -264,7 +203,6 @@ namespace DataBaseModel
 				return Precio_compra_dolares + (Precio_compra_dolares * ((PorcentajesUtilidad + PorcentajeAdicional) / 100));
 			}
 		}
-		//public double? Precio_venta_Apartado_cordobas { get;  set; }
 		public double? Precio_venta_Apartado_dolares
 		{
 			get
@@ -272,29 +210,12 @@ namespace DataBaseModel
 				return Precio_compra_dolares + (Precio_compra_dolares * ((PorcentajesApartado + PorcentajeAdicional) / 100));
 			}
 		}
-		//public double? Apartado_quincenal_cordobas { get; set; }
 		public double? Cuota_apartado_quincenal_dolares { get { return Precio_venta_Apartado_dolares / N_Cuotas; } }
-		//public double? Apartado_mensual_cordobas { get; set; }
 		public double? Cuota_apartado_mensual_dolares
 		{
 			get;
-			//{
-			//return Precio_compra_dolares * Transactional_Configuraciones.GetPorcentageMinimoPagoApartadoMensual();
-			/*return CuotasModule.GetPago(Precio_venta_Apartado_dolares,
-				N_Cuotas,
-				Intereses.Sum(i => Convert.ToDouble(i.Valor)));*/
-			//}
 			set;
 		}
-		/*[OnDeserialized]
-		public void OnDeserializedMethod(StreamingContext context)
-		{
-			// Recalcula las propiedades calculadas
-			var _0 = Precio_venta_Contado_dolares;
-			var _1 = Precio_venta_Apartado_dolares;
-			var _2 = Cuota_apartado_quincenal_dolares;
-			var _3 = Cuota_apartado_mensual_dolares;
-		}*/
 
 	}
 

@@ -249,13 +249,13 @@ namespace UI.CAPA_NEGOCIO.Empresa.Services.Recibos
 
 		public string? GetTipoArticulo(List<Detail_Prendas> Detail_Prendas)
 		{
-			var isVehiculo = Detail_Prendas.Find(p => p.Catalogo_Categoria?.descripcion == "vehiculos");
+			/*var isVehiculo = Detail_Prendas.Find(p => p.Catalogo_Categoria?.descripcion == "vehiculos");
 			if (isVehiculo != null) return isVehiculo?.Catalogo_Categoria?.descripcion;
 
 			var isElectronico = Detail_Prendas.Find(p => p.Catalogo_Categoria?.descripcion == "electronico");
-			if (isElectronico != null) return isElectronico?.Catalogo_Categoria?.descripcion;
+			if (isElectronico != null) return isElectronico?.Catalogo_Categoria?.descripcion;*/
 
-			return Detail_Prendas[0].Catalogo_Categoria?.descripcion;
+			return Detail_Prendas[0].Catalogo_Categoria?.Descripcion;
 		}
 
 		private enum DocType

@@ -1,35 +1,6 @@
-import { EntityClass } from "../WDevCore/WModules/EntityClass.js";
-import { Catalogo_Clientes, Transaccion_Factura } from "./DBODataBaseModel.js";
-
 //@ts-check
-class ValoracionesTransaction extends EntityClass {
-	constructor(props) {
-		super();
-		Object.assign(this, props);;
-		this.Moneda = undefined;
-	}
-	/**@type {Array<Transactional_Valoracion_ModelComponent>} */
-	valoraciones;
+import { EntityClass } from "../WDevCore/WModules/EntityClass.js";
 
-	/**@type {Transaction_Contratos} */
-	Transaction_Contratos;
-
-	SaveDataContract = async () => {
-		return await this.SaveData("Transactional_Contrato/SaveDataContract", this)
-		true;
-	}
-	SaveContract = async () => {
-		return this.SaveData("Transactional_Contrato/SaveContract", this)
-	}
-	GetValoracionContrato = async () => {
-		console.log("carajo")
-		return await this.SaveData("Transactional_Contrato/GetDataContract", this)
-	}
-	VerContrato = async () => {
-		return await this.SaveData("PDF/GeneratePdfContract", this.Transaction_Contratos)
-	}
-}
-export { ValoracionesTransaction }
 class Tbl_Cuotas extends EntityClass {
 	/**
 	 * 
