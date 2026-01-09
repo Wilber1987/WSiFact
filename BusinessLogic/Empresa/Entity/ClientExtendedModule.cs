@@ -10,20 +10,20 @@ namespace DataBaseModel
 	public class Catalogo_Clientes : ClientDataBaseModel.Catalogo_Clientes
 	{
 
-		public string? hora { get; set; }
+		public string? Hora { get; set; }
 		public string? Descripcion
 		{
 			get
 			{
-				return $"{primer_nombre} {segundo_nombre} {primer_apellido} {segundo_apellidio}";
+				return $"{Primer_nombre} {Segundo_nombre} {Primer_apellido} {Segundo_apellidio}";
 			}
 		}
-		public int? tipoc { get; set; }
-		public string? valor_cliente { get; set; }
-		public string? solo_acreedor { get; set; }
-		public double? promedio { get; set; }
-		public int? id_clasificacion { get; set; }
-		public int? id_clasificacion_interes { get; set; }
+		public int? Tipoc { get; set; }
+		public string? Valor_cliente { get; set; }
+		public string? Solo_acreedor { get; set; }
+		public double? Promedio { get; set; }
+		public int? Id_clasificacion { get; set; }
+		public int? Id_clasificacion_interes { get; set; }
 		[ManyToOne(TableName = "Catalogo_Clasificacion_Cliente", KeyColumn = "id_clasificacion", ForeignKeyColumn = "id_clasificacion")]
 		public Catalogo_Clasificacion_Cliente? Catalogo_Clasificacion_Cliente { get; set; }
 		[ManyToOne(TableName = "Catalogo_Clasificacion_Interes", KeyColumn = "id_clasificacion_interes", ForeignKeyColumn = "id_clasificacion_interes")]
@@ -38,11 +38,11 @@ namespace DataBaseModel
 				orderData = [OrdeData.Desc("porcentaje")]
 			}.Get<Catalogo_Clasificacion_Interes>();
 			
-			var objetoActual = clasificacion_Interes.FirstOrDefault(o => o.id_clasificacion_interes == this.id_clasificacion_interes);
+			var objetoActual = clasificacion_Interes.FirstOrDefault(o => o.Id_clasificacion_interes == this.Id_clasificacion_interes);
 			int indiceActual = clasificacion_Interes.IndexOf(objetoActual);
 			if (indiceActual >= 0 && indiceActual < clasificacion_Interes.Count - 1)
 			{
-				id_clasificacion_interes = clasificacion_Interes[indiceActual + 1].id_clasificacion_interes;
+				Id_clasificacion_interes = clasificacion_Interes[indiceActual + 1].Id_clasificacion_interes;
 				this.Catalogo_Clasificacion_Interes = clasificacion_Interes[indiceActual + 1];
 				Update();
 			}
@@ -50,7 +50,7 @@ namespace DataBaseModel
 
 		public object? SaveClient()
 		{
-			if (new Catalogo_Clientes { identificacion = this.identificacion }.Find<Catalogo_Clientes>() != null)
+			if (new Catalogo_Clientes { Identificacion = this.Identificacion }.Find<Catalogo_Clientes>() != null)
 			{
 				return new ResponseService
 				{

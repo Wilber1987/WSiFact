@@ -6,26 +6,26 @@ namespace ClientDataBaseModel
 	public class Catalogo_Clientes : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? codigo_cliente { get; set; }
-		public string? primer_nombre { get; set; }
-		public string? segundo_nombre { get; set; }
-		public string? primer_apellido { get; set; }
-		public string? segundo_apellidio { get; set; }
-		public int? id_tipo_identificacion { get; set; }
-		public string? identificacion { get; set; }
-		public string? sexo { get; set; }
-		public DateTime? fecha_nacimiento { get; set; }
-		public int? id_profesion { get; set; }
-		public int? id_departamento { get; set; }
-		public int? id_municipio { get; set; }
-		public string? correo { get; set; }
-		public string? telefono { get; set; }
-		public string? direccion { get; set; }
-		public DateTime? fecha { get; set; }
-		public string? observaciones { get; set; }
-		public string? estado_civil { get; set; }
-		public string? tipo_firma { get; set; }
-		public string? operadora_celular { get; set; }
+		public int? Codigo_cliente { get; set; }
+		public string? Primer_nombre { get; set; }
+		public string? Segundo_nombre { get; set; }
+		public string? Primer_apellido { get; set; }
+		public string? Segundo_apellidio { get; set; }
+		public int? Id_tipo_identificacion { get; set; }
+		public string? Identificacion { get; set; }
+		public string? Sexo { get; set; }
+		public DateTime? Fecha_nacimiento { get; set; }
+		public int? Id_profesion { get; set; }
+		public int? Id_departamento { get; set; }
+		public int? Id_municipio { get; set; }
+		public string? Correo { get; set; }
+		public string? Telefono { get; set; }
+		public string? Direccion { get; set; }
+		public DateTime? Fecha { get; set; }
+		public string? Observaciones { get; set; }
+		public string? Estado_civil { get; set; }
+		public string? Tipo_firma { get; set; }
+		public string? Operadora_celular { get; set; }
 
 		[ManyToOne(TableName = "Catalogo_Departamento", KeyColumn = "id_departamento", ForeignKeyColumn = "id_departamento")]
 		public Catalogo_Departamento? Catalogo_Departamento { get; set; }
@@ -38,6 +38,6 @@ namespace ClientDataBaseModel
 		[OneToMany(TableName = "Condicion_Laboral_Cliente", KeyColumn = "codigo_cliente", ForeignKeyColumn = "id_cliente")]
 		public List<Condicion_Laboral_Cliente>? Condicion_Laboral_Cliente { get; set; }
 
-		public string Nombre_Completo { get { return $"{primer_nombre} {segundo_nombre} {primer_apellido} {segundo_apellidio}"; } }
+		public string Nombre_Completo { get { return $"{Primer_nombre} {Segundo_nombre} {Primer_apellido} {Segundo_apellidio}"; } }
 	}
 }

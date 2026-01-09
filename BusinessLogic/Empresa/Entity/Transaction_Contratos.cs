@@ -14,54 +14,54 @@ namespace DataBaseModel
 	public class Transaction_Contratos : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? numero_contrato { get; set; }
-		public DateTime? fecha_contrato { get; set; }
-		public DateTime? fecha_cancelar { get; set; }
-		public double? monto { get; set; }
-		public double? interes { get; set; }
-		public double? mora { get; set; }
-		public Contratos_State? estado { get; set; }
-		public DateTime? fecha_vencimiento { get; set; }
-		public int? codigo_cliente { get; set; }
-		public double? saldo { get; set; }
-		public double? abonos { get; set; }
-		public Contratos_Type? tipo { get; set; }
-		public string? entregado { get; set; }
-		public double? interes_actual { get; set; }
-		public string? observaciones { get; set; }
-		public double? iva { get; set; }
-		public double? descuento { get; set; }
-		public double? taza_cambio { get; set; }
-		public double? taza_cambio_compra { get; set; }
-		public int? id_agente { get; set; }
-		public int? plazo { get; set; }
-		public double? cuotafija { get; set; }
-		public double? tasa_hoy { get; set; }
-		public string? motivo_anulacion { get; set; }
+		public int? Numero_contrato { get; set; }
+		public DateTime? Fecha_contrato { get; set; }
+		public DateTime? Fecha_cancelar { get; set; }
+		public double? Monto { get; set; }
+		public double? Interes { get; set; }
+		public double? Mora { get; set; }
+		public Contratos_State? Estado { get; set; }
+		public DateTime? Fecha_vencimiento { get; set; }
+		public int? Codigo_cliente { get; set; }
+		public double? Saldo { get; set; }
+		public double? Abonos { get; set; }
+		public Contratos_Type? Tipo { get; set; }
+		public string? Entregado { get; set; }
+		public double? Interes_actual { get; set; }
+		public string? Observaciones { get; set; }
+		public double? Iva { get; set; }
+		public double? Descuento { get; set; }
+		public double? Taza_cambio { get; set; }
+		public double? Taza_cambio_compra { get; set; }
+		public int? Id_agente { get; set; }
+		public int? Plazo { get; set; }
+		public double? Cuotafija { get; set; }
+		public double? Tasa_hoy { get; set; }
+		public string? Motivo_anulacion { get; set; }
 		public double? Valoracion_compra_dolares { get; set; }
 		public double? Valoracion_compra_cordobas { get; set; }
 		public double? Valoracion_empeño_cordobas { get; set; }
 		public double? Valoracion_empeño_dolares { get; set; }
-		public double? tasas_interes { get; set; }
-		public double? gestion_crediticia { get; set; }
-		public double? cuotafija_dolares { get; set; }
-		public DateTime? fecha { get; set; }
-		public double? total_pagar_cordobas { get; set; }
-		public double? total_pagar_dolares { get; set; }
-		public double? interes_dolares { get; set; }
+		public double? Tasas_interes { get; set; }
+		public double? Gestion_crediticia { get; set; }
+		public double? Cuotafija_dolares { get; set; }
+		public DateTime? Fecha { get; set; }
+		public double? Total_pagar_cordobas { get; set; }
+		public double? Total_pagar_dolares { get; set; }
+		public double? Interes_dolares { get; set; }
 		public int? Id_User { get; set; }
 		public bool IsAnulable
 		{
 			get
 			{
-				return estado != Contratos_State.ANULADO && estado != Contratos_State.CANCELADO
-				&& DateUtil.IsBefore(fecha, 24)
-				&& tipo != Contratos_Type.APARTADO_QUINCENAL
-				&& tipo != Contratos_Type.APARTADO_MENSUAL;
+				return Estado != Contratos_State.ANULADO && Estado != Contratos_State.CANCELADO
+				&& DateUtil.IsBefore(Fecha, 24)
+				&& Tipo != Contratos_Type.APARTADO_QUINCENAL
+				&& Tipo != Contratos_Type.APARTADO_MENSUAL;
 			}
 		}
 
-		public int? reestructurado { get; set; }
+		public int? Reestructurado { get; set; }
 		[JsonProp]
 		public DesgloseIntereses? DesgloseIntereses { get; set; }
 		[JsonProp]
@@ -86,7 +86,7 @@ namespace DataBaseModel
 				var  (User, dbUser) =  Business.Security_Users.GetUserData(Identify);
 				Transaction_Contratos? Transaction_Contratos = new Transaction_Contratos
 				{
-					numero_contrato = this.numero_contrato
+					Numero_contrato = this.Numero_contrato
 				}.Find<Transaction_Contratos>();
 				if (Transaction_Contratos == null)
 				{
@@ -101,26 +101,26 @@ namespace DataBaseModel
 				{
 					return new ResponseService { status = 403, message = "Fecha límite para anulación a caducado" };
 				}
-				Transaction_Contratos.motivo_anulacion = this.motivo_anulacion;
-				Transaction_Contratos.estado = Contratos_State.ANULADO;
+				Transaction_Contratos.Motivo_anulacion = this.Motivo_anulacion;
+				Transaction_Contratos.Estado = Contratos_State.ANULADO;
 				Transaction_Contratos.Update();
 				//ANULAR
 				var cuentaOrigen = Catalogo_Cuentas.GetCuentaRegistoContratos(dbUser);
 				var cuentaDestino = Catalogo_Cuentas.GetCuentaEgresoContratos(dbUser);
 				Transaction_Movimiento? movimientosAnterior = new Transaction_Movimiento().Find<Transaction_Movimiento>(
-					FilterData.Equal("concepto", "Desembolso de monto para, contrato No: " + Transaction_Contratos.numero_contrato)
+					FilterData.Equal("concepto", "Desembolso de monto para, contrato No: " + Transaction_Contratos.Numero_contrato)
 				);
 				ResponseService response = new Movimientos_Cuentas
 				{
 					Catalogo_Cuentas_Destino = cuentaDestino,
 					Catalogo_Cuentas_Origen = cuentaOrigen,
-					concepto = "Reembolso de monto para anulación de contrato No: " + Transaction_Contratos.numero_contrato,
-					descripcion = motivo_anulacion,
-					moneda = movimientosAnterior?.moneda,
-					monto = movimientosAnterior?.moneda == "CORDOBAS" ? Transaction_Contratos.Valoracion_empeño_cordobas : Transaction_Contratos.monto,
-					tasa_cambio = Transaction_Contratos.taza_cambio,
-					tasa_cambio_compra = Transaction_Contratos.taza_cambio_compra,
-					is_transaction = true,
+					Concepto = "Reembolso de monto para anulación de contrato No: " + Transaction_Contratos.Numero_contrato,
+					Descripcion = Motivo_anulacion,
+					Moneda = movimientosAnterior?.Moneda,
+					Monto = movimientosAnterior?.Moneda == "CORDOBAS" ? Transaction_Contratos.Valoracion_empeño_cordobas : Transaction_Contratos.Monto,
+					Tasa_cambio = Transaction_Contratos.Taza_cambio,
+					Tasa_cambio_compra = Transaction_Contratos.Taza_cambio_compra,
+					Is_transaction = true,
 					Tipo_Movimiento = TipoMovimiento.REEMBOLSO_POR_CONTRATO_ANULADO
 				}.SaveMovimiento(dbUser);
 				return new ResponseService { status = 200, message = "Contrato anulado correctamente" };
@@ -134,14 +134,14 @@ namespace DataBaseModel
 
 		public List<Tbl_Cuotas> Reestructurar(double? reestructuracion_value)
 		{
-			if (this.reestructurado == null)
+			if (this.Reestructurado == null)
 			{
-				this.reestructurado = 0;
+				this.Reestructurado = 0;
 			}
-			this.plazo += Convert.ToInt32(reestructuracion_value);
-			this.reestructurado += 1;
+			this.Plazo += Convert.ToInt32(reestructuracion_value);
+			this.Reestructurado += 1;
 			this.Update();
-			return CrearCuotas(this.saldo, reestructuracion_value);
+			return CrearCuotas(this.Saldo, reestructuracion_value);
 		}
 		public List<Tbl_Cuotas> CrearCuotas(double? monto,
 								 double? plazo,
@@ -149,11 +149,11 @@ namespace DataBaseModel
 								 bool quincenal = false)
 		{
 			var tasasCambio = new Catalogo_Cambio_Divisa().Get<Catalogo_Cambio_Divisa>()[0].Valor_de_venta;
-			this.cuotafija_dolares = this.GetPago(monto, plazo);
-			this.cuotafija = this.cuotafija_dolares * this.taza_cambio;
+			this.Cuotafija_dolares = this.GetPago(monto, plazo);
+			this.Cuotafija = this.Cuotafija_dolares * this.Taza_cambio;
 			var capital = monto;
 			List<Tbl_Cuotas> cuotas = new List<Tbl_Cuotas>();
-			DateTime fechaC = fecha.GetValueOrDefault();
+			DateTime fechaC = Fecha.GetValueOrDefault();
 
 			int totalCuotas = Convert.ToInt32(plazo);
 
@@ -171,17 +171,17 @@ namespace DataBaseModel
 					fechaC = fechaC.AddMonths(1);
 				}
 
-				var abono_capital = this.cuotafija_dolares - (capital * this.tasas_interes);
+				var abono_capital = this.Cuotafija_dolares - (capital * this.Tasas_interes);
 				var cuota = new Tbl_Cuotas
 				{
 					Estado = EstadoEnum.PENDIENTE.ToString(),
-					fecha = fechaC,
-					total = this.cuotafija_dolares,
-					interes = capital * this.tasas_interes,
-					abono_capital = abono_capital,
-					capital_restante = (capital - abono_capital) < 0 ? 0 : (capital - abono_capital),
-					tasa_cambio = tasasCambio,
-					numero_contrato = this.numero_contrato
+					Fecha = fechaC,
+					Total = this.Cuotafija_dolares,
+					Interes = capital * this.Tasas_interes,
+					Abono_capital = abono_capital,
+					Capital_restante = (capital - abono_capital) < 0 ? 0 : (capital - abono_capital),
+					Tasa_cambio = tasasCambio,
+					Numero_contrato = this.Numero_contrato
 				};
 				capital -= abono_capital;
 
@@ -198,7 +198,7 @@ namespace DataBaseModel
 		private double? GetPago(double? monto, double? cuotas)
 		{
 
-			var tasa = this.tasas_interes;
+			var tasa = this.Tasas_interes;
 			if (tasa == 0)
 			{
 				return monto / cuotas;
@@ -213,25 +213,25 @@ namespace DataBaseModel
 			try
 			{
 				var VencimientoConfig = new Transactional_Configuraciones().GetConfig(ConfiguracionesVencimientos.VENCIMIENTO_CONTRATO.ToString());
-				var cuotasPendientes = new Tbl_Cuotas { numero_contrato = numero_contrato, Estado = EstadoEnum.PENDIENTE.ToString() }.Get<Tbl_Cuotas>();
+				var cuotasPendientes = new Tbl_Cuotas { Numero_contrato = Numero_contrato, Estado = EstadoEnum.PENDIENTE.ToString() }.Get<Tbl_Cuotas>();
 				if (cuotasPendientes.Count == 0)
 				{
 					return;//todo ver el retorno
 				}
 				Tbl_Cuotas CuotaActual = cuotasPendientes.Last();
-				DateTime fechaOriginal = CuotaActual.fecha.GetValueOrDefault();
+				DateTime fechaOriginal = CuotaActual.Fecha.GetValueOrDefault();
 				TimeSpan diferencia = DateTime.Now - fechaOriginal;
 				int diasDeDiferencia = diferencia.Days;
 				if (diasDeDiferencia > Convert.ToInt32(VencimientoConfig.Valor))
 				{
-					estado = Contratos_State.VENCIDO;
+					Estado = Contratos_State.VENCIDO;
 					Update();
 					Transactional_Configuraciones beneficioVentaE = new Transactional_Configuraciones()
 						   .GetConfig(ConfiguracionesBeneficiosEnum.BENEFICIO_VENTA_ARTICULO_EMPENO.ToString());
 					var dbUser = new Security_Users { Id_User = Id_User }.Find<Security_Users>();
 					Detail_Prendas?.ForEach(prenda =>
 					{
-						if (prenda.en_manos_de == EnManosDe.ACREEDOR)
+						if (prenda.En_manos_de == EnManosDe.ACREEDOR)
 						{
 							//Tbl_Lotes.GenerarLoteAPartirDeDevolucion(prenda, beneficioVentaE, dbUser, this);
 						}
@@ -257,28 +257,28 @@ namespace DataBaseModel
 			Transaction_Contratos? contrato = Find<Transaction_Contratos>();
 			var cuotas = new Tbl_Cuotas()
 			{
-				numero_contrato = contrato?.numero_contrato
+				Numero_contrato = contrato?.Numero_contrato
 			}.Where<Tbl_Cuotas>(
 				FilterData.Equal("Estado", EstadoEnum.PENDIENTE),
 				FilterData.Less("fecha", DateTime.Now)
 			);
 			foreach (var cuota in cuotas)
 			{
-				if (tipo == Contratos_Type.APARTADO_QUINCENAL && cuota.mora != 0)
+				if (Tipo == Contratos_Type.APARTADO_QUINCENAL && cuota.Mora != 0)
 				{
-					cuota.mora = 0;
+					cuota.Mora = 0;
 					cuota.Update();
 				}
 				else
 				{
-					TimeSpan diferencia = DateTime.Now.Subtract(cuota.fecha.GetValueOrDefault());
+					TimeSpan diferencia = DateTime.Now.Subtract(cuota.Fecha.GetValueOrDefault());
 					int diasEnMora = (int)Math.Floor(diferencia.TotalDays);
 					// Si 'diasEnMora' es negativo, significa que la fecha de pago aún no ha llegado, entonces ajustamos a cero
 					diasEnMora = Math.Max(diasEnMora, 0);
-					var montoMora = cuota.total * ((cuota.Transaction_Contratos?.mora / 100) ?? 0.005) * diasEnMora;
+					var montoMora = cuota.Total * ((cuota.Transaction_Contratos?.Mora / 100) ?? 0.005) * diasEnMora;
 					if (montoMora > 0)
 					{
-						cuota.mora = montoMora;
+						cuota.Mora = montoMora;
 						cuota.Update();
 					}
 				}
@@ -309,16 +309,16 @@ namespace DataBaseModel
 					JsonPropName = "numero_contrato",
 					FilterType = "JSONPROP_EQUAL",
 					PropSQLType = "int",
-					Values = new List<string?> { numero_contrato.GetValueOrDefault().ToString() }
+					Values = new List<string?> { Numero_contrato.GetValueOrDefault().ToString() }
 				}]
 			}.SimpleGet<Transaccion_Factura>();
 		}
 
 		internal void Cancelar(Security_Users? dbUser)
 		{
-			if (estado != Contratos_State.CANCELADO)
+			if (Estado != Contratos_State.CANCELADO)
 			{
-				estado = Contratos_State.CANCELADO;
+				Estado = Contratos_State.CANCELADO;
 				Tbl_Acta_Entrega.ActasDePrendasPorCancelacionContrato(dbUser, this);
 			}
 		}
@@ -333,29 +333,29 @@ namespace DataBaseModel
 	public class Tbl_Cuotas : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_cuota { get; set; }
+		public int? Id_cuota { get; set; }
 		/**@type {Date} */
-		public DateTime? fecha { get; set; }
+		public DateTime? Fecha { get; set; }
 		/**@type {Number} Tbl_cuotas del abono*/
-		public double? total { get; set; }
+		public double? Total { get; set; }
 		/**@type {Number} valor del interes del capital*/
-		public double? interes { get; set; }
+		public double? Interes { get; set; }
 		/**@type {Number} */
-		public double? abono_capital { get; set; }
+		public double? Abono_capital { get; set; }
 		/**@type {Number} capital restante*/
-		public double? capital_restante { get; set; }
+		public double? Capital_restante { get; set; }
 		/**@type {Number} capital mora*/
-		public double? mora { get; set; }
+		public double? Mora { get; set; }
 		/**DATOS DE LA FATURA */
 		/**@type {Date} */
-		public DateTime? fecha_pago { get; set; }
+		public DateTime? Fecha_pago { get; set; }
 		/**@type {Number} Tbl_cuotas del abono*/
-		public double? pago_contado { get; set; }
+		public double? Pago_contado { get; set; }
 		/**@type {Number} Tbl_cuotas del abono*/
-		public double? descuento { get; set; }
+		public double? Descuento { get; set; }
 		/**@type {Number} Tbl_cuotas del abono*/
-		public double? tasa_cambio { get; set; }
-		public int? numero_contrato { get; set; }
+		public double? Tasa_cambio { get; set; }
+		public int? Numero_contrato { get; set; }
 		public string? Estado { get; set; }
 
 		[ManyToOne(TableName = "Transaction_Contratos", KeyColumn = "numero_contrato", ForeignKeyColumn = "numero_contrato")]

@@ -39,7 +39,7 @@ namespace DataBaseModel
 
 		[ManyToOne(TableName = "Cat_Producto", KeyColumn = "Id_Producto", ForeignKeyColumn = "Id_Producto")]
 		public Cat_Producto? Cat_Producto { get; set; }
-		public List<Tbl_Transaccion>? lotes { get; set; }
+		public List<Tbl_Transaccion>? Lotes { get; set; }
 		public EstadoEnum? Estado { get; set; }
 
 		public static string GenerarLote(string? code = null)

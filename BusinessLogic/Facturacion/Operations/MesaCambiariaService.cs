@@ -48,14 +48,14 @@ namespace BusinessLogic.Facturacion.Operations
             try
             {
                 // ✅ Solo para: factura en USD y cambio entregado en C$
-                if (recibo?.moneda?.ToUpper() != "CORDOBAS" && recibo?.Is_cambio_cordobas == true)                {
+                if (recibo?.Moneda?.ToUpper() != "CORDOBAS" && recibo?.Is_cambio_cordobas == true)                {
                     // 👇 Opción simple y segura (usa fecha + milisegundos + ID factura)
-                    string secuencia = "FACT-" + recibo.id_recibo.GetValueOrDefault().ToString("D9"); // o usa un contador global
-                    string? moneda = recibo?.moneda?.ToUpper();
+                    string secuencia = "FACT-" + recibo.Id_recibo.GetValueOrDefault().ToString("D9"); // o usa un contador global
+                    string? moneda = recibo?.Moneda?.ToUpper();
                     // 2. Determinar cuánto USD se "compra" al cliente (excedente pagado)
                     // Suponemos que el cliente pagó en USD un monto mayor al valor de la factura
-                    double montoFacturaUSD = recibo?.total_apagar_dolares ?? 0;
-                    double montoPagadoUSD = recibo?.monto_dolares ?? 0;
+                    double montoFacturaUSD = recibo?.Total_apagar_dolares ?? 0;
+                    double montoPagadoUSD = recibo?.Monto_dolares ?? 0;
                     (bool flowControl, ResponseService value) = GenerarMovimientosCambiarios(dbUser, secuencia, moneda, montoFacturaUSD, montoPagadoUSD);
                     if (!flowControl)
                     {
@@ -122,12 +122,12 @@ namespace BusinessLogic.Facturacion.Operations
             {
                 Catalogo_Cuentas_Origen = cuentaIngresoCompraUSD, // (opcional: puede ser una cuenta "neutra", o caja C$ ya que se entrega C$)
                 Catalogo_Cuentas_Destino = cuentaCajaUSD,
-                concepto = "Compra de USD (cambio)", // tipo de operación cambiaria
-                descripcion = $"{conceptoBase} - Compra de {excedenteUSD:F2} USD a tasa de cambio C$ {tasaCompra:F2}",
-                moneda = moneda ?? "DOLARES",
-                monto = excedenteUSD,
-                tasa_cambio = tasaCompra,
-                is_transaction = true,
+                Concepto = "Compra de USD (cambio)", // tipo de operación cambiaria
+                Descripcion = $"{conceptoBase} - Compra de {excedenteUSD:F2} USD a tasa de cambio C$ {tasaCompra:F2}",
+                Moneda = moneda ?? "DOLARES",
+                Monto = excedenteUSD,
+                Tasa_cambio = tasaCompra,
+                Is_transaction = true,
                 Tipo_Movimiento = TipoMovimiento.COMPRA_DE_MONEDA
             }.SaveMovimiento(dbUser); // ignorar error? o acumular
             if(responseCompra.status != 200 )
@@ -140,12 +140,12 @@ namespace BusinessLogic.Facturacion.Operations
             {
                 Catalogo_Cuentas_Origen = cuentaCajaCordobas,
                 Catalogo_Cuentas_Destino = cuentaIngresoCompraUSD, // o cuenta "cliente virtual", pero mejor usar cuentas reales
-                concepto = "Venta de C$ (cambio)",
-                descripcion = $"{conceptoBase} - Entrega de cambio: {cambioEnCordobas:F2} C$ por {excedenteUSD:F2} USD",
-                moneda = "CORDOBAS",
-                monto = cambioEnCordobas,
-                tasa_cambio = tasaCompra,
-                is_transaction = true,
+                Concepto = "Venta de C$ (cambio)",
+                Descripcion = $"{conceptoBase} - Entrega de cambio: {cambioEnCordobas:F2} C$ por {excedenteUSD:F2} USD",
+                Moneda = "CORDOBAS",
+                Monto = cambioEnCordobas,
+                Tasa_cambio = tasaCompra,
+                Is_transaction = true,
                 Tipo_Movimiento = TipoMovimiento.VENTA_DE_MONEDA
             }.SaveMovimiento(dbUser);
             if(responseVenta.status != 200 )

@@ -7,7 +7,7 @@ using APPCORE;
 namespace ClientDataBaseModel {
    public class Catalogo_Tipo_Identificacion : EntityClass {
        [PrimaryKey(Identity = true)]
-       public int? id_tipo_identificacion { get; set; }
+       public int? Id_tipo_identificacion { get; set; }
        public string? Descripcion { get; set; }
        public string? Estado { get; set; }
        //[OneToMany(TableName = "Catalogo_Clientes", KeyColumn = "id_tipo_identificacion", ForeignKeyColumn = "id_tipo_identificacion")]

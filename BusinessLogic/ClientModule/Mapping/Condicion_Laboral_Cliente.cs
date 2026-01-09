@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 namespace ClientDataBaseModel {
    public class Condicion_Laboral_Cliente : EntityClass {
        [PrimaryKey(Identity = true)]
-       public int? id { get; set; }
-       public int? id_cliente { get; set; }
-       public DateTime? fecha_ingreso { get; set; }
-       public string? ocupacion_cargo { get; set; }
-       public double? ingresos_mensuales { get; set; }
-       public string? direccion { get; set; }
-       public int? id_municipio { get; set; }
-       public int? id_departamento { get; set; }
-       public string? nombre_empresa { get; set; }
+       public int? Id { get; set; }
+       public int? Id_cliente { get; set; }
+       public DateTime? Fecha_ingreso { get; set; }
+       public string? Ocupacion_cargo { get; set; }
+       public double? Ingresos_mensuales { get; set; }
+       public string? Direccion { get; set; }
+       public int? Id_municipio { get; set; }
+       public int? Id_departamento { get; set; }
+       public string? Nombre_empresa { get; set; }
        [ManyToOne(TableName = "Catalogo_Clientes", KeyColumn = "codigo_cliente", ForeignKeyColumn = "id_cliente")]
        public Catalogo_Clientes? Catalogo_Clientes { get; set; }
        [ManyToOne(TableName = "Catalogo_Departamento", KeyColumn = "id_departamento", ForeignKeyColumn = "id_departamento")]

@@ -49,7 +49,7 @@ namespace BackgroundJob.Cron.Jobs
             {
                 var movimientos = new Transaction_Movimiento()
                 {
-                    correo_enviado = false
+                    Correo_enviado = false
                 }.Get<Transaction_Movimiento>(" correo_enviado = 0");
 
 
@@ -57,20 +57,20 @@ namespace BackgroundJob.Cron.Jobs
                 {
                     var modelo = new
                     {
-                        FechaMovimiento = item.fecha,
+                        FechaMovimiento = item.Fecha,
                         CuentaOrigen = "Cuenta origen",
                         CuentaDestino = "Cuenta destino",
-                        TipoMoneda = item.moneda,
+                        TipoMoneda = item.Moneda,
                         Monto = 100,
-                        Concepto = item.concepto,
+                        Concepto = item.Concepto,
                         Usuario = "todo usuario"
                     };
                     //MailServices.SendMailContract(new List<String>() { "wilberj1987@gmail.com", "alderhernandez@gmail.com" }, "noreply@noreply", "Notificación de movimiento entre cuentas", "NotificacionMovimientoCuentas.cshtml", modelo);//todo definir correos a enviar
                     var update = new Transaction_Movimiento()
                     {
-                        id_movimiento = item.id_movimiento
+                        Id_movimiento = item.Id_movimiento
                     }.Find<Transaction_Movimiento>();
-                    update.correo_enviado = true;
+                    update.Correo_enviado = true;
                     update.Update();
                 }
 

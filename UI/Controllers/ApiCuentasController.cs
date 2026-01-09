@@ -14,7 +14,7 @@ namespace API.Controllers
 		 [AuthController(Permissions.GESTION_MOVIMIENTOS)]
 		public List<Detail_Movimiento> getDetail_Movimiento(Detail_Movimiento Inst)
 		{
-			return Inst.Get<Detail_Movimiento>().OrderBy(p => p.id_movimiento).ToList(); ;
+			return Inst.Get<Detail_Movimiento>().OrderBy(p => p.Id_movimiento).ToList(); ;
 		}
 		[HttpPost]
 		[AuthController(Permissions.GESTION_MOVIMIENTOS)]

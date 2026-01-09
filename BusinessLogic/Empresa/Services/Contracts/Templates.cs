@@ -42,10 +42,10 @@ public class ContractsTemplates
 		<tbody>
 		<tr style='margin-top: 0px; margin-bottom: 0px;  width: 100%'> 
 			<td style='font-size: 9.5px; text-align: left;  width: 50%; border: none !important' >
-				No Contrato: {{numero_contrato}}
+				No Contrato: {{Numero_contrato}}
 			</td>       
 			<td style='font-size: 9.5px; text-align: right;  width: 50%; border: none !important'>
-			{{fecha_contrato_label}}
+			{{Fecha_contrato_label}}
 			</td>   
 		</tr> 
 		</tbody>
@@ -90,21 +90,21 @@ public class ContractsTemplates
 						<span lang='ES-NI'>TABLA DE AMORTIZACION DE DEUDA POR GARANTIA PRENDARIA</span>
 						</td>
 						<td colspan='2' class='col2'><span lang='ES-NI'>CUOTA C$</span></td>
-						<td colspan='2' class='col2'> <span lang='ES-NI'>C$ {{cuotafija}}</span></td>
+						<td colspan='2' class='col2'> <span lang='ES-NI'>C$ {{Cuotafija}}</span></td>
 					</tr>
 					<tr>
 						<td colspan='2' class='col2'> CAPITAL PRESTADO $</td>
 						<td colspan='2' class='col2'> $ {{Valoracion_empeño_dolares}}</td>
 						<td colspan='2' class='col2'><span lang='ES-NI'>CUOTA FIJA<br>$</br></span> </td>
-						<td colspan='2' class='col2'>$ {{cuotafija_dolares}}</td>
+						<td colspan='2' class='col2'>$ {{Cuotafija_dolares}}</td>
 					</tr>
 					<tr>
 						<td colspan='2' class='col2'>
-						<span lang='ES-NI'>PLAZO PARA CANCELAR: {{plazo}} mes(es)</span>
+						<span lang='ES-NI'>PLAZO PARA CANCELAR: {{Plazo}} mes(es)</span>
 						</td>
 						<td colspan='2' class='col2'>
 						<p style='margin-bottom:0cm;text-align:center;line-height:normal'>
-							<span lang='ES-NI'>INTERÉS NETO CORRIENTE(a): {{interes_inicial}}%</span>
+							<span lang='ES-NI'>INTERÉS NETO CORRIENTE(a): {{Interes_inicial}}%</span>
 						</p>
 						</td>
 						<td colspan='2' class='col2'>
@@ -162,8 +162,8 @@ public class ContractsTemplates
 					por brevedad en lo sucesivo del presente contrato se le podrá denominar el ACREEDOR; siendo el domicilio: Del
 					Instituto Juan XXIII, 20 varas al Oeste,
 					en el municipio de San Marcos, Departamento de Carazo, Dirección electrónica: empresociedadanonima@gmail.com; y
-					por otra parte el / la señor (a) :  {{primer_nombre}}  {{segundo_nombre}}  {{primer_apellido}}  {{segundo_apellidio}} mayor de edad,
-					con número de cédula: {{identificacion}}  con domicilio: {{direccion}} , Estado civil: {{estado_civil}} quien habita en
+					por otra parte el / la señor (a) :  {{Primer_nombre}}  {{Segundo_nombre}}  {{Primer_apellido}}  {{Segundo_apellidio}} mayor de edad,
+					con número de cédula: {{Identificacion}}  con domicilio: {{Direccion}} , Estado civil: {{Estado_civil}} quien habita en
 					el
 					municipio de: {{municipio}}, Departamento de {{departamento}},
 					a quien en sucesivo se le denominará el 'DEUDOR', hemos convenido en celebrar el presente 'CONTRATO DE MUTUO
@@ -172,9 +172,9 @@ public class ContractsTemplates
 
 				<p style='text-align: justify; font-size:9.5px;'><u>1. PRIMERA (MONTO DEL PRÉSTAMO):</u> El deudor confiesa tener
 					recibido de parte del acreedor, un préstamo en calidad de
-					mutuo, por la cantidad de: C$. {{monto}} , equivalente a moneda de los Estados Unidos de América: $
-					{{cuotafija_dolares}}, Según el valor de la
-					compra del dólar a la fecha de hoy {{fecha_contrato_label}} de: C$ {{taza_cambio_compra}} Suma de dinero que el deudor, se obliga a destinar,
+					mutuo, por la cantidad de: C$. {{Monto}} , equivalente a moneda de los Estados Unidos de América: $
+					{{Cuotafija_dolares}}, Según el valor de la
+					compra del dólar a la fecha de hoy {{Fecha_contrato_label}} de: C$ {{taza_cambio_compra}} Suma de dinero que el deudor, se obliga a destinar,
 					única y
 					exclusivamente
 					al pago del préstamo otorgado. El deudor acepta estar conforme de recibir mensajes de texto en su teléfono
@@ -247,11 +247,11 @@ public class ContractsTemplates
 				</p>
 				<p style='text-align: justify; font-size:9.5px;'><u>3. TERCERA (PLAZO Y FORMA DE PAGO):</u> El deudor decide en
 					cuantas cuotas mensuales cancelar su préstamo,
-					pero no podrá exceder los veinticuatro meses, los pagos se realizarán en cuotas fijas de C$ {{cuotafija}} , que
+					pero no podrá exceder los veinticuatro meses, los pagos se realizarán en cuotas fijas de C$ {{Cuotafija}} , que
 					serán  modificables al tipo de cambio del dólar, en la fecha que el cliente haga efectivo su pago. Los pagos se
-					realizarán en córdobas o el equivalente a $ {{cuotafija_dolares}}, Estadounidenses, Según tasa de cambio del
+					realizarán en córdobas o el equivalente a $ {{Cuotafija_dolares}}, Estadounidenses, Según tasa de cambio del
 					Banco Central de
-					Nicaragua, iniciando la primera cuota el día {{fecha_primera_cuota}} y la última el día {{fecha_ultima_cuota}}. 
+					Nicaragua, iniciando la primera cuota el día {{Fecha_primera_cuota}} y la última el día {{Fecha_ultima_cuota}}. 
 					El deudor se obliga a pagar al acreedor; La mora, el interés neto corriente, demás cargos a pagar en relación con lo pactado, 
 					y el capital prestado, en las
 					oficinas principales del acreedor o realizar el pago de su cuota en línea en cualquier sucursal o agente Banpro
@@ -266,8 +266,8 @@ public class ContractsTemplates
 				</p>
 				<p style='text-align: justify; font-size:9.5px;'><u>4. CUARTA (INTERES CORRIENTE Y DEMAS CARGOS MENSUALES A PAGAR EN
 						RELACION CON LO PACTADO):</u> El préstamo
-					devengará una tasa de interés corriente inicial del {{interes_inicial_label}} por ciento
-					({{interes_inicial}}%) sobre saldo, la cual será
+					devengará una tasa de interés corriente inicial del {{Interes_inicial_label}} por ciento
+					({{Interes_inicial}}%) sobre saldo, la cual será
 					verificable mensualmente de acuerdo con la tasa promedio ponderada que emita el Banco Central de Nicaragua, de
 					conformidad a
 					la ley 176. Los demás cargos a pagar en relación con lo pactado, a como lo menciona el artículo 74 numeral 4 de
@@ -285,9 +285,9 @@ public class ContractsTemplates
 					</u> El deudor podrá realizar el pago de su cuota anticipada a su fecha de pago, con el fin de
 					evitarse mora; En caso que el Deudor no pague en la fecha de cada cuota mensual,
 					automáticamente quedará constituido en mora y por el sólo hecho de incumplimiento, y desde esa fecha hasta el pago
-					efectivo de su cuota, reconocerá al acreedor un factor mora {{mora}}
+					efectivo de su cuota, reconocerá al acreedor un factor mora {{Mora}}
 					%% de aplicado a la cuota fija,
-					equivalente a {{valor_mora}}, ({{valor_mora_label}}%) por cada día transcurrido en mora hasta el pago efectivo de su cuota.
+					equivalente a {{Valor_mora}}, ({{Valor_mora_label}}%) por cada día transcurrido en mora hasta el pago efectivo de su cuota.
 				</p>
 				<p style='text-align: justify; font-size:9.5px;'><u>6. SEXTA (VENCIMIENTO ANTICIPADO):</u> No obstante al plazo
 					prefijado y la forma de pago convenida, y sin
@@ -390,8 +390,8 @@ public class ContractsTemplates
 				por brevedad en lo sucesivo del presente contrato se le podrá denominar el ACREEDOR; siendo el domicilio: Del
 				Instituto Juan XXIII, 20 varas al Oeste,
 				en el municipio de San Marcos, Departamento de Carazo, Dirección electrónica: empresociedadanonima@gmail.com; y
-				por otra parte el / la señor (a) : {{primer_nombre}}  {{segundo_nombre}}  {{primer_apellido}}  {{segundo_apellidio}} mayor de edad,
-				con número de cédula:  {{identificacion}} con domicilio: {{direccion}} , Estado civil: {{estado_civil}} quien habita en
+				por otra parte el / la señor (a) : {{Primer_nombre}}  {{Segundo_nombre}}  {{Primer_apellido}}  {{Segundo_apellidio}} mayor de edad,
+				con número de cédula:  {{Identificacion}} con domicilio: {{Direccion}} , Estado civil: {{Estado_civil}} quien habita en
 				el
 				municipio de: {{municipio}}, Departamento de {{departamento}},
 				a quien en sucesivo se le denominará el 'DEUDOR', hemos convenido en celebrar el presente 'CONTRATO DE MUTUO
@@ -402,7 +402,7 @@ public class ContractsTemplates
 			{{Valoracion_empeño_cordobas}}, ({{Valoracion_empeño_cordobas_label}}) equivalente a moneda de los Estados Unidos
 			de América: $
 			{{Valoracion_empeño_dolares}}, ({{Valoracion_empeño_dolares_label}}), Según el valor de
-			la compra del dólar a la fecha de hoy {{fecha_contrato_label_corta}} de: C$ {{taza_cambio_compra}} 
+			la compra del dólar a la fecha de hoy {{Fecha_contrato_label_corta}} de: C$ {{taza_cambio_compra}} 
 			</p>
 			<p style='text-align: justify; font-size:9.5px;'>
 				<u>2. SEGUNDA (DESCRIPCIÓN DEL VEHÍCULO ):</u> En garantía del pago a la cantidad debida, el deudor
@@ -411,7 +411,7 @@ public class ContractsTemplates
 			<div style='font-size: 10px;'>
 				{{tabla_articulos}}
 			</div>
-			<p style='text-align: left; font-weight:bold;margin-top:10px;font-size:10px;'>Observaciones: {{observaciones}}</p>
+			<p style='text-align: left; font-weight:bold;margin-top:10px;font-size:10px;'>Observaciones: {{Observaciones}}</p>
 
 			<p style='text-align: justify; font-size:9.5px;'>
 				<u>3. TERCERA (INSPECCIÓN DEL VEHÍCULO):</u> El deudor cede los derechos para que el acreedor realice una inspección al estado físico del
@@ -432,11 +432,11 @@ public class ContractsTemplates
 			<p style='text-align: justify; font-size:9.5px;'>
 				<u>5. QUINTA (PLAZO Y FORMA DE PAGO):</u>
 				El deudor decide en cuantas cuotas mensuales cancela su empeño, siendo el plazo máximo de 3 meses para artículos electrónicos, 
-				6 meses para artículos no electrónicos y 12 meses para automotores; los pagos se realizarán en cuotas fijas  <span class='sombrear'>MENSUALES</span> de  C$ {{cuotafija}} , 
-				({{cuotafija_label}}), según el cambio del córdoba a dólar a la fecha de hoy {{fecha_contrato_label_corta}} de: C$ {{taza_cambio}} que serán 
+				6 meses para artículos no electrónicos y 12 meses para automotores; los pagos se realizarán en cuotas fijas  <span class='sombrear'>MENSUALES</span> de  C$ {{Cuotafija}} , 
+				({{Cuotafija_label}}), según el cambio del córdoba a dólar a la fecha de hoy {{Fecha_contrato_label_corta}} de: C$ {{taza_cambio}} que serán 
 				modificables al tipo de cambio del dólar, en la fecha que el cliente haga efectivo su pago. Los pagos se realizarán en córdobas o el 
-				equivalente a $ {{cuotafija_dolares}}, ($ {{cuotafija_dolares_label}})  Estadounidenses, Según tasa de cambio del Banco Central de Nicaragua,  
-				iniciando la primera cuota mensual el día {{fecha_primera_cuota}} y la última el día {{fecha_ultima_cuota}}. El deudor acepta  
+				equivalente a $ {{Cuotafija_dolares}}, ($ {{Cuotafija_dolares_label}})  Estadounidenses, Según tasa de cambio del Banco Central de Nicaragua,  
+				iniciando la primera cuota mensual el día {{Fecha_primera_cuota}} y la última el día {{Fecha_ultima_cuota}}. El deudor acepta  
 				 realizar sus pagos mensuales en  las  oficinas  del acreedor, los pagos serán  todos  en  cuotas  fijas mensuales a como se muestra 
 				 en la tabla de amortización de  deuda  por garantía prendaria indicada al final de este contrato. En ningún momento el deudor podrá 
 				 cancelar el monto total de su empeño, sin antes haber pagado mora (en caso de incurrir,  <span class='sombrear'>hasta un máximo de 20 días en mora</span>), 
@@ -460,8 +460,8 @@ public class ContractsTemplates
 			</p>       
 			<p style='text-align: justify; font-size:9.5px;'>
 				<u>5. SÉPTIMA (INTERÉS CORRIENTE Y DEMÁS CARGOS MENSUALES A PAGAR EN RELACIÓN CON LO PACTADO):</u> El monto de
-				empeño devengará una tasa de interés corriente inicial del {{interes_inicial_label}} por ciento
-				({{interes_inicial}}%) sobre saldo, la cual será
+				empeño devengará una tasa de interés corriente inicial del {{Interes_inicial_label}} por ciento
+				({{Interes_inicial}}%) sobre saldo, la cual será
 				verificable mensualmente de acuerdo con la tasa promedio ponderada que emita el Banco Central de Nicaragua. Los
 				demás cargos que pagar en relación con lo pactado bajo lo cual EMPRE S. A estipula lo siguiente:
 				{{interes_gastos_administrativos_label}} por ciento
@@ -556,9 +556,9 @@ public class ContractsTemplates
 			por brevedad en lo sucesivo del presente contrato se le podrá denominar el ACREEDOR; siendo el domicilio: Del
 			Instituto Juan XXIII, 20 varas al Oeste,
 			en el municipio de San Marcos, Departamento de Carazo, Dirección electrónica: empresociedadanonima@gmail.com; y
-			por otra parte el / la señor (a) : {{primer_nombre}} {{segundo_nombre}} {{primer_apellido}} {{segundo_apellidio}}
+			por otra parte el / la señor (a) : {{Primer_nombre}} {{Segundo_nombre}} {{Primer_apellido}} {{Segundo_apellidio}}
 			mayor de edad,
-			con número de cédula: {{identificacion}} con domicilio: {{direccion}} , Estado civil: {{estado_civil}} quien
+			con número de cédula: {{Identificacion}} con domicilio: {{Direccion}} , Estado civil: {{Estado_civil}} quien
 			habita en el
 			municipio de: {{municipio}}, Departamento de {{departamento}},
 			a quien en sucesivo se le denominará el 'DEUDOR', hemos convenido en celebrar el presente 'CONTRATO DE MUTUO
@@ -569,7 +569,7 @@ public class ContractsTemplates
 			{{Valoracion_empeño_cordobas}}, ({{Valoracion_empeño_cordobas_label}}) equivalente a moneda de los Estados Unidos
 			de América: $
 			{{Valoracion_empeño_dolares}}, ({{Valoracion_empeño_dolares_label}}), Según el valor de
-			la compra del dólar a la fecha de hoy {{fecha_contrato_label_corta}} de: C$ {{taza_cambio_compra}}
+			la compra del dólar a la fecha de hoy {{Fecha_contrato_label_corta}} de: C$ {{taza_cambio_compra}}
 		</p>
 		<p style='text-align: justify; font-size:9.5px;'>
 			<u>2. SEGUNDA (DESCRIPCION DE LOS BIENES EMPEÑADOS):</u> En garantía del pago a la cantidad debida, el deudor
@@ -596,10 +596,10 @@ public class ContractsTemplates
 			<u>4. CUARTA (PLAZO Y FORMA DE PAGO):</u> El deudor decide en cuantas cuotas mensuales cancela su empeño, siendo
 			el plazo máximo de 3 meses para artículos electrónicos, 6 meses
 			para artículos no electrónicos y 12 meses para automotores; los pagos se realizarán en cuotas fijas <span class='sombrear'>MENSUALES</span> de
-			C$ {{cuotafija}}, ({{cuotafija_label}}), según el cambio del córdoba a dólar a la fecha de hoy {{fecha_contrato_label_corta}} de: C$
+			C$ {{Cuotafija}}, ({{Cuotafija_label}}), según el cambio del córdoba a dólar a la fecha de hoy {{Fecha_contrato_label_corta}} de: C$
 			{{taza_cambio}} que serán modificables al tipo de cambio del dólar, en la fecha que el cliente haga efectivo su pago. Los pagos se 
-			realizarán en córdobas o el equivalente a $ {{cuotafija_dolares}} , ({{cuotafija_dolares_label}}) Estadounidenses, 
-			Según tasa de cambio del Banco Central de Nicaragua, iniciando la primera cuota mensual el día {{fecha_primera_cuota}} 
+			realizarán en córdobas o el equivalente a $ {{Cuotafija_dolares}} , ({{Cuotafija_dolares_label}}) Estadounidenses, 
+			Según tasa de cambio del Banco Central de Nicaragua, iniciando la primera cuota mensual el día {{Fecha_primera_cuota}} 
 			y la última cuota mensual el día {{fecha_ultima_cuota}}.El deudor acepta realizar sus pagos mensuales en las oficinas del acreedor,
 			los pagos serán todos en cuotas fijas mensuales a como se muestra en la tabla de amortización de deuda por
 			garantía prendaria indicada al final de este contrato. En ningún momento el deudor podrá cancelar el
@@ -716,10 +716,10 @@ public class ContractsTemplates
 		<tr style='margin-top: 0px; margin-bottom: 0px;  width: 100%'> 
 			<td style='font-size: 9.5px; text-align: left;  width: 30%; border: none !important;'>
 				<p style='text-align:left; font-size:10px;width: 200px !important; margin-top:100px; border-top: solid 1px #000 !important; padding-bottom:0px; margin-bottom:0px; ; padding-top:10px'>
-					Deudor: {{primer_nombre}} {{segundo_nombre}} {{primer_apellido}} {{segundo_apellidio}}
+					Deudor: {{Primer_nombre}} {{Segundo_nombre}} {{Primer_apellido}} {{Segundo_apellidio}}
 				</p>
 				<p style='text-align:left; font-size:10px; margin-top:0px; padding-bottom:0px; margin-bottom:0px;'>Cédula:
-					{{identificacion}}
+					{{Identificacion}}
 				</p>
 				<p style='text-align:left; font-size:10px; margin-top:0px; padding-bottom:0px; margin-bottom:0px;'>Cel:{{telefono}}
 				</p>
@@ -769,13 +769,13 @@ public class ContractsTemplates
 						<span lang='ES-NI'>TABLA DE PAGO DEL SISTEMA DE APARTADO</span>
 						</td>
 						<td colspan='1' class='col2'><span lang='ES-NI'>CUOTA C$</span></td>
-						<td colspan='1' class='col2'> <span lang='ES-NI'>C$ {{cuotafija}}</span></td>
+						<td colspan='1' class='col2'> <span lang='ES-NI'>C$ {{Cuotafija}}</span></td>
 					</tr>
 					<tr>
 						<td colspan='1' class='col2'> PRECIO DEL ARTÍCULO EN $</td>
 						<td colspan='1' class='col2'> $ {{Valoracion_empeño_dolares}}</td>
 						<td colspan='1' class='col2'><span lang='ES-NI'>CUOTA FIJA<br>$</br></span> </td>
-						<td colspan='1' class='col2'>$ {{cuotafija_dolares}}</td>
+						<td colspan='1' class='col2'>$ {{Cuotafija_dolares}}</td>
 					</tr>
 					
 					<tr>

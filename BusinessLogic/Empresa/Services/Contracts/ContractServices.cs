@@ -79,33 +79,33 @@ namespace Model
 			}
 			foreach (var prenda in Transaction_Contratos?.Detail_Prendas ?? [])
 			{
-				if (prenda.serie != null)
+				if (prenda.Serie != null)
 				{
 					List<Detail_Prendas> prendasGuardadas = new Detail_Prendas().Where<Detail_Prendas>(
-						FilterData.Equal("serie", prenda?.serie),
+						FilterData.Equal("serie", prenda?.Serie),
 						FilterData.Distinc("serie", ""),
 						FilterData.NotNull("serie")
 					);
 					foreach (var prendaGuardada in prendasGuardadas)
 					{
-						Transaction_Contratos? contrato = new Transaction_Contratos { numero_contrato = prendaGuardada.numero_contrato }.Find<Transaction_Contratos>();
-						if (contrato?.estado == Contratos_State.ACTIVO || contrato?.estado == Contratos_State.VENCIDO)
+						Transaction_Contratos? contrato = new Transaction_Contratos { Numero_contrato = prendaGuardada.Numero_contrato }.Find<Transaction_Contratos>();
+						if (contrato?.Estado == Contratos_State.ACTIVO || contrato?.Estado == Contratos_State.VENCIDO)
 						{
 							return new ResponseService()
 							{
 								status = 403,
-								message = $"No es posible guardar el contrato ya que la Prenda con serie '{prenda?.serie}' esta incluida en un contrato {contrato?.estado}"
+								message = $"No es posible guardar el contrato ya que la Prenda con serie '{prenda?.Serie}' esta incluida en un contrato {contrato?.Estado}"
 							};
 						}
 					}
 				}
 			}
 
-			Transaction_Contratos.fecha_contrato = DateTime.Now;
-			Transaction_Contratos.fecha_cancelar = Transaction_Contratos.Tbl_Cuotas.Select(c => c.fecha).ToList().Max();
-			Transaction_Contratos.fecha_vencimiento = Transaction_Contratos.Tbl_Cuotas.Select(c => c.fecha).ToList().Max();
+			Transaction_Contratos.Fecha_contrato = DateTime.Now;
+			Transaction_Contratos.Fecha_cancelar = Transaction_Contratos.Tbl_Cuotas.Select(c => c.Fecha).ToList().Max();
+			Transaction_Contratos.Fecha_vencimiento = Transaction_Contratos.Tbl_Cuotas.Select(c => c.Fecha).ToList().Max();
 			var valoracion = Transaction_Contratos.Detail_Prendas[0];
-			Transaction_Contratos.tipo = Contratos_Type.EMPENO;
+			Transaction_Contratos.Tipo = Contratos_Type.EMPENO;
 			/*if (Transaction_Contratos?.tipo == Contratos_Type.APARTADO_QUINCENAL
 			|| Transaction_Contratos?.tipo == Contratos_Type.APARTADO_MENSUAL)
 			{
@@ -128,14 +128,14 @@ namespace Model
 				Transaction_Contratos.tipo = Contratos_Type.PRESTAMO;
 			}*/
 
-			Transaction_Contratos.monto = Transaction_Contratos.Valoracion_empeño_dolares;
-			Transaction_Contratos.saldo = Transaction_Contratos.Valoracion_empeño_dolares;
-			Transaction_Contratos.mora = Convert.ToDouble(configuraciones.Valor);
-			Transaction_Contratos.estado = Contratos_State.ACTIVO;
+			Transaction_Contratos.Monto = Transaction_Contratos.Valoracion_empeño_dolares;
+			Transaction_Contratos.Saldo = Transaction_Contratos.Valoracion_empeño_dolares;
+			Transaction_Contratos.Mora = Convert.ToDouble(configuraciones.Valor);
+			Transaction_Contratos.Estado = Contratos_State.ACTIVO;
 			Transaction_Contratos.Id_User = dbUser?.Id_User;
 			Transaction_Contratos.Tbl_Cuotas?.ForEach(c =>
 			{
-				c.pago_contado = 0;
+				c.Pago_contado = 0;
 				c.Estado = c.Estado == Contratos_State.CAPITAL_CANCELADO.ToString() ? c.Estado : "PENDIENTE";
 			});
 			var Intereses = new Transactional_Configuraciones().GetIntereses();
@@ -146,10 +146,10 @@ namespace Model
 				MANTENIMIENTO_VALOR = Convert.ToDouble(Intereses.Find(c => c.Nombre.Equals(InteresesPrestamosEnum.MANTENIMIENTO_VALOR.ToString()))?.Valor),
 				GASTOS_LEGALES = Convert.ToDouble(Intereses.Find(c => c.Nombre.Equals(InteresesPrestamosEnum.GASTOS_LEGALES.ToString()))?.Valor),
 				INTERES_NETO_CORRIENTE = Convert.ToDouble(Intereses.Find(c => c.Nombre.Equals(InteresesPrestamosEnum.INTERES_NETO_CORRIENTE.ToString()))?.Valor),
-				GESTION_CREDITICIA = Transaction_Contratos.gestion_crediticia,
+				GESTION_CREDITICIA = Transaction_Contratos.Gestion_crediticia,
 			};
 			var newContract = Transaction_Contratos.Save();
-			Transaction_Contratos.numero_contrato = ((Transaction_Contratos)newContract)?.numero_contrato;
+			Transaction_Contratos.Numero_contrato = ((Transaction_Contratos)newContract)?.Numero_contrato;
 			//CREACION
 			var cuentaOrigen = Catalogo_Cuentas.GetCuentaEgresoContratos(dbUser);
 			var cuentaDestino = Catalogo_Cuentas.GetCuentaRegistoContratos(dbUser);
@@ -165,13 +165,13 @@ namespace Model
 			{
 				Catalogo_Cuentas_Destino = cuentaDestino,
 				Catalogo_Cuentas_Origen = cuentaOrigen,
-				concepto = "Desembolso de monto para, contrato No: " + Transaction_Contratos.numero_contrato,
-				descripcion = "Desembolso de monto para, contrato No: " + Transaction_Contratos.numero_contrato,
-				moneda = Moneda ?? "DOLARES",
-				monto = Moneda == "CORDOBAS" ? Transaction_Contratos.Valoracion_empeño_cordobas : Transaction_Contratos.monto,
-				tasa_cambio = Transaction_Contratos.taza_cambio,
-				tasa_cambio_compra = Transaction_Contratos.taza_cambio_compra,
-				is_transaction = true,
+				Concepto = "Desembolso de monto para, contrato No: " + Transaction_Contratos.Numero_contrato,
+				Descripcion = "Desembolso de monto para, contrato No: " + Transaction_Contratos.Numero_contrato,
+				Moneda = Moneda ?? "DOLARES",
+				Monto = Moneda == "CORDOBAS" ? Transaction_Contratos.Valoracion_empeño_cordobas : Transaction_Contratos.Monto,
+				Tasa_cambio = Transaction_Contratos.Taza_cambio,
+				Tasa_cambio_compra = Transaction_Contratos.Taza_cambio_compra,
+				Is_transaction = true,
 				Tipo_Movimiento = TipoMovimiento.DESEMBOLSO_POR_CONTRATO
 			}.SaveMovimiento(dbUser);
 		}
@@ -206,17 +206,17 @@ namespace Model
 		{
 			List<Transaccion_Factura> transaccion_Facturas = new Transaccion_Factura
 			{
-				numero_contrato = data.numero_contrato
+				Numero_contrato = data.numero_contrato
 			}.Get<Transaccion_Factura>();
 			List<Detalle_Factura_Recibo> detalle_Factura_Recibos = transaccion_Facturas.Where(t => t.Detalle_Factura_Recibo != null).ToList()
 				.SelectMany(t => t.Detalle_Factura_Recibo).ToList();
 			List<Detalle_Factura_Recibo> detalle_Factura_Recibos_Parciales = detalle_Factura_Recibos
-					.Where(r => r.id_cuota == data.id_cuota && r.concepto.ToUpper().Contains("PAGO PARCIAL")).ToList();
+					.Where(r => r.Id_cuota == data.id_cuota && r.Concepto.ToUpper().Contains("PAGO PARCIAL")).ToList();
 
 			double pagoParciales = 0;
 			if (detalle_Factura_Recibos_Parciales.Count != 0)
 			{
-				pagoParciales = detalle_Factura_Recibos_Parciales.Select(c => Convert.ToDouble(c.monto_pagado)).ToList().Sum();
+				pagoParciales = detalle_Factura_Recibos_Parciales.Select(c => Convert.ToDouble(c.Monto_pagado)).ToList().Sum();
 			}
 			return new
 			{

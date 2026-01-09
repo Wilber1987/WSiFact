@@ -49,16 +49,16 @@ namespace BusinessLogic.Empresa.Contratos
         {
             contrato.Detail_Prendas?.ForEach(prenda =>
             {
-                prenda.en_manos_de = EnManosDe.CLIENTE;
+                prenda.En_manos_de = EnManosDe.CLIENTE;
                 new Tbl_Acta_Entrega
                 {
-                    Numero_Contrato = contrato.numero_contrato,
+                    Numero_Contrato = contrato.Numero_contrato,
                     Fecha = DateTime.Now,
                     Estado = EstadoEnum.ACTIVO,
-                    Numero_Prenda = prenda.numero_prenda,
+                    Numero_Prenda = prenda.Numero_prenda,
                     Id_Sucursal = dbUser?.Id_Sucursal,
-                    ActaType = TypeAdapter(contrato.tipo),
-                    Observaciones = @$"prenda ""{prenda.Descripcion} con serie {prenda.serie}""  entregada a cliente por cancelación de contrato #{contrato.numero_contrato}"
+                    ActaType = TypeAdapter(contrato.Tipo),
+                    Observaciones = @$"prenda ""{prenda.Descripcion} con serie {prenda.Serie}""  entregada a cliente por cancelación de contrato #{contrato.Numero_contrato}"
                 }.Save();
             });
         }
@@ -93,7 +93,7 @@ namespace BusinessLogic.Empresa.Contratos
 
                 Transactional_Configuraciones beneficioVentaE = new Transactional_Configuraciones()
                            .GetConfig(ConfiguracionesBeneficiosEnum.BENEFICIO_VENTA_ARTICULO_EMPENO.ToString());
-                var prenda = actaContrato?.Detail_Prendas?.Find(p => p.numero_prenda == Numero_Prenda);
+                var prenda = actaContrato?.Detail_Prendas?.Find(p => p.Numero_prenda == Numero_Prenda);
                 Tbl_Lotes.GenerarLoteAPartirDeDevolucion(prenda, beneficioVentaE, dbUser, actaContrato, false);
                 Estado = EstadoEnum.ANULADO;
                 Update();

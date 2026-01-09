@@ -16,18 +16,18 @@ namespace DataBaseModel
 	public class Detail_Valores : EntityClass
 	{
 		[PrimaryKey(Identity = false)]
-		public int? id_valoracion { get; set; }
+		public int? Id_valoracion { get; set; }
 		public double? Valoracion_1 { get; set; }
 		public double? Valoracion_2 { get; set; }
 		public double? Valoracion_3 { get; set; }
-		public double? dolares_1 { get; set; }
-		public double? dolares_2 { get; set; }
-		public double? dolares_3 { get; set; }
+		public double? Dolares_1 { get; set; }
+		public double? Dolares_2 { get; set; }
+		public double? Dolares_3 { get; set; }
 	}
 	public class Transactional_Valoracion : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_valoracion { get; set; }
+		public int? Id_valoracion { get; set; }
 		public string? Descripcion { get; set; }
 		public string? Marca { get; set; }
 		public string? Serie { get; set; }
@@ -36,8 +36,8 @@ namespace DataBaseModel
 		public int? Plazo { get; set; }
 		public DateTime? Fecha { get; set; }
 		public double? Tasa_de_cambio { get; set; }
-		public int? id_estado { get; set; }
-		public int? id_categoria { get; set; }
+		public int? Id_estado { get; set; }
+		public int? Id_categoria { get; set; }
 		public double? Valoracion_compra_cordobas { get; set; }
 		public double? Valoracion_compra_dolares { get; set; }
 		public double? Valoracion_empeño_cordobas { get; set; }
@@ -61,7 +61,7 @@ namespace DataBaseModel
 				this.BeginGlobalTransaction();
 				foreach (Transactional_Valoracion valoracion in valoraciones)
 				{
-					if (valoracion?.id_valoracion == null)
+					if (valoracion?.Id_valoracion == null)
 					{
 						valoracion.Fecha = DateTime.Now;
 						valoracion?.Save();
@@ -120,30 +120,30 @@ namespace DataBaseModel
 	public class Detail_Prendas : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? numero_prenda { get; set; }
-		public int? numero_contrato_OLD { get; set; }
+		public int? Numero_prenda { get; set; }
+		public int? Numero_contrato_OLD { get; set; }
 		public string? Descripcion { get; set; }
-		public double? monto_aprobado_cordobas { get; set; }
-		public double? monto_aprobado_dolares { get; set; }
+		public double? Monto_aprobado_cordobas { get; set; }
+		public double? Monto_aprobado_dolares { get; set; }
 		public string? Tipo { get; set; }
-		public string? marca { get; set; }
-		public string? serie { get; set; }
-		public string? modelo { get; set; }
-		public string? iva { get; set; }
-		public string? margen { get; set; }
-		public string? estado { get; set; }
-		public double? interesl { get; set; }
-		public double? moral { get; set; }
-		public DateTime? fliquidacion { get; set; }
-		public double? precio_venta { get; set; }
-		public EnManosDe? en_manos_de { get; set; }
-		public string? color { get; set; }
-		public string? factura { get; set; }
-		public string? tipo_movimiento { get; set; }
-		public double? v_porcentage_etiqueta { get; set; }
-		public int? id_categoria { get; set; }
-		public int? id_valoracion { get; set; }
-		public int? numero_contrato { get; set; }
+		public string? Marca { get; set; }
+		public string? Serie { get; set; }
+		public string? Modelo { get; set; }
+		public string? Iva { get; set; }
+		public string? Margen { get; set; }
+		public string? Estado { get; set; }
+		public double? Interesl { get; set; }
+		public double? Moral { get; set; }
+		public DateTime? Fliquidacion { get; set; }
+		public double? Precio_venta { get; set; }
+		public EnManosDe? En_manos_de { get; set; }
+		public string? Color { get; set; }
+		public string? Factura { get; set; }
+		public string? Tipo_movimiento { get; set; }
+		public double? V_porcentage_etiqueta { get; set; }
+		public int? Id_categoria { get; set; }
+		public int? Id_valoracion { get; set; }
+		public int? Numero_contrato { get; set; }
 		// [ManyToOne(TableName = "Transaction_Contratos", KeyColumn = "numero_contrato", ForeignKeyColumn = "numero_contrato")]
 		// public Transaction_Contratos? Transaction_Contratos { get; set; }
 		[OneToOne(TableName = "Detail_Prendas_Vehiculos", KeyColumn = "numero_prenda", ForeignKeyColumn = "numero_prenda")]
@@ -162,45 +162,45 @@ namespace DataBaseModel
 	public class Detail_Prendas_Vehiculos : EntityClass
 	{
 		[PrimaryKey(Identity = false)]
-		public int? numero_prenda { get; set; }
-		public string? capacidad_cilindros { get; set; }
-		public string? cantidad_cilindros { get; set; }
-		public string? cantidad_pasajeros { get; set; }
-		public int? year_vehiculo { get; set; }
-		public string? montor { get; set; }
-		public string? chasis { get; set; }
-		public string? placa { get; set; }
-		public string? circuacion { get; set; }
-		public string? defectuoso { get; set; }
-		public DateTime? fecha_aut_descuento { get; set; }
-		public string? defecto { get; set; }
-		public double? porcentage_descuento_maximo { get; set; }
-		public string? uso { get; set; }
-		public string? servicio { get; set; }
-		public DateTime? fecha_seguro { get; set; }
-		public string? combustible { get; set; }
+		public int? Numero_prenda { get; set; }
+		public string? Capacidad_cilindros { get; set; }
+		public string? Cantidad_cilindros { get; set; }
+		public string? Cantidad_pasajeros { get; set; }
+		public int? Year_vehiculo { get; set; }
+		public string? Montor { get; set; }
+		public string? Chasis { get; set; }
+		public string? Placa { get; set; }
+		public string? Circuacion { get; set; }
+		public string? Defectuoso { get; set; }
+		public DateTime? Fecha_aut_descuento { get; set; }
+		public string? Defecto { get; set; }
+		public double? Porcentage_descuento_maximo { get; set; }
+		public string? Uso { get; set; }
+		public string? Servicio { get; set; }
+		public DateTime? Fecha_seguro { get; set; }
+		public string? Combustible { get; set; }
 		// [OneToOne(TableName = "Detail_Prendas", KeyColumn = "numero_prenda", ForeignKeyColumn = "numero_prenda")]
 		// public Detail_Prendas? Detail_Prendas { get; set; }
 	}
 	public class Transaction_Contratos_Inversionistas : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? numero_cont { get; set; }
-		public DateTime? fecha { get; set; }
-		public double? taza { get; set; }
-		public double? monto_inicial { get; set; }
-		public string? nombre_sustituto { get; set; }
-		public string? identificacion_sustituto { get; set; }
-		public string? direccion_sustituto { get; set; }
-		public string? departamento_sus { get; set; }
-		public string? municipio_sustituto { get; set; }
-		public int? id_inversor { get; set; }
-		public DateTime? fecha_pago { get; set; }
-		public DateTime? fecha_ultimo_pago { get; set; }
-		public double? saldo { get; set; }
-		public double? montointeres { get; set; }
-		public double? interes { get; set; }
-		public DateTime? fecha_restructura { get; set; }
+		public int? Numero_cont { get; set; }
+		public DateTime? Fecha { get; set; }
+		public double? Taza { get; set; }
+		public double? Monto_inicial { get; set; }
+		public string? Nombre_sustituto { get; set; }
+		public string? Identificacion_sustituto { get; set; }
+		public string? Direccion_sustituto { get; set; }
+		public string? Departamento_sus { get; set; }
+		public string? Municipio_sustituto { get; set; }
+		public int? Id_inversor { get; set; }
+		public DateTime? Fecha_pago { get; set; }
+		public DateTime? Fecha_ultimo_pago { get; set; }
+		public double? Saldo { get; set; }
+		public double? Montointeres { get; set; }
+		public double? Interes { get; set; }
+		public DateTime? Fecha_restructura { get; set; }
 		public int? Id_User { get; set; }
 		[ManyToOne(TableName = "Catalogo_Inversores", KeyColumn = "id_inversor", ForeignKeyColumn = "id_inversor")]
 		public Catalogo_Inversores? Catalogo_Inversores { get; set; }
@@ -211,18 +211,18 @@ namespace DataBaseModel
 	public class Transaction_Movimiento : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_movimiento { get; set; }
-		public string? descripcion { get; set; }
-		public string? concepto { get; set; }
-		public int? id_usuario_crea { get; set; }
-		public DateTime? fecha { get; set; }
-		public string? tipo { get; set; }
-		public string? moneda { get; set; }
-		public double? tasa_cambio { get; set; }
-		public bool? correo_enviado { get; set; }
-		public double? tasa_cambio_compra { get; set; }
-		public bool? is_transaction { get; set; }
-		public int? id_sucursal { get; set; } 
+		public int? Id_movimiento { get; set; }
+		public string? Descripcion { get; set; }
+		public string? Concepto { get; set; }
+		public int? Id_usuario_crea { get; set; }
+		public DateTime? Fecha { get; set; }
+		public string? Tipo { get; set; }
+		public string? Moneda { get; set; }
+		public double? Tasa_cambio { get; set; }
+		public bool? Correo_enviado { get; set; }
+		public double? Tasa_cambio_compra { get; set; }
+		public bool? Is_transaction { get; set; }
+		public int? Id_sucursal { get; set; } 
 		public int? Id_cuenta_origen { get; set; }
 		public int? Id_cuenta_destino { get; set; }
 		public TipoMovimiento? Tipo_Movimiento { get; set; }
@@ -233,24 +233,24 @@ namespace DataBaseModel
 	public class Detail_Movimiento : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_detalle { get; set; }
-		public int? id_movimiento { get; set; }
-		public double? debito { get; set; }
-		public double? debito_dolares { get; set; }
-		public double? credito { get; set; }
-		public double? credito_dolares { get; set; }
-		public double? tasa_cambio { get; set; }
-		public double? tasa_cambio_compra { get; set; }
-		public string? moneda { get; set; }
+		public int? Id_detalle { get; set; }
+		public int? Id_movimiento { get; set; }
+		public double? Debito { get; set; }
+		public double? Debito_dolares { get; set; }
+		public double? Credito { get; set; }
+		public double? Credito_dolares { get; set; }
+		public double? Tasa_cambio { get; set; }
+		public double? Tasa_cambio_compra { get; set; }
+		public string? Moneda { get; set; }
 
-		public double? monto_inicial { get; set; }
-		public double? monto_final { get; set; }
-		public double? monto_inicial_dolares { get; set; }
-		public double? monto_final_dolares { get; set; }
-		public DateTime? fecha { get; set; }
+		public double? Monto_inicial { get; set; }
+		public double? Monto_final { get; set; }
+		public double? Monto_inicial_dolares { get; set; }
+		public double? Monto_final_dolares { get; set; }
+		public DateTime? Fecha { get; set; }
 		[ManyToOne(TableName = "Transaction_Movimiento", KeyColumn = "id_movimiento", ForeignKeyColumn = "id_movimiento")]
 		public Transaction_Movimiento? Transaction_Movimiento { get; set; }
-		public int? id_cuenta { get; set; }
+		public int? Id_cuenta { get; set; }
 		[ManyToOne(TableName = "Catalogo_Cuentas", KeyColumn = "id_cuentas", ForeignKeyColumn = "id_cuenta")]
 		public Catalogo_Cuentas? catalogo_Cuentas { get; set; }
 	}
@@ -258,28 +258,28 @@ namespace DataBaseModel
 	public class Transaccion_Factura : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_factura { get; set; }
-		public int? numero_contrato { get; set; }
-		public string? tipo { get; set; }
-		public string? concepto { get; set; }
-		public double? tasa_cambio { get; set; }
-		public double? total { get; set; }
-		public int? id_cliente { get; set; }
-		public int? id_sucursal { get; set; }
-		public DateTime? fecha { get; set; }
-		public int? id_usuario { get; set; }
-		public string? estado { get; set; }
-		public string? no_factura { get; set; }
-		public double? subtotal { get; set; }
-		public double? iva { get; set; }
-		public double? total_cordobas { get; set; }
+		public int? Id_factura { get; set; }
+		public int? Numero_contrato { get; set; }
+		public string? Tipo { get; set; }
+		public string? Concepto { get; set; }
+		public double? Tasa_cambio { get; set; }
+		public double? Total { get; set; }
+		public int? Id_cliente { get; set; }
+		public int? Id_sucursal { get; set; }
+		public DateTime? Fecha { get; set; }
+		public int? Id_usuario { get; set; }
+		public string? Estado { get; set; }
+		public string? No_factura { get; set; }
+		public double? Subtotal { get; set; }
+		public double? Iva { get; set; }
+		public double? Total_cordobas { get; set; }
 		public string? Moneda { get; set; }
 		public string? Motivo_Anulacion { get; set; }
 		public string? Consecutivo { get;  set; }
 		
 		public bool IsAnulable { get 
 		{
-		    return estado != "ANULADO" && estado != "CANCELADO" && !DateUtil.IsAffterNDays(fecha, 1);
+		    return Estado != "ANULADO" && Estado != "CANCELADO" && !DateUtil.IsAffterNDays(Fecha, 1);
 		}}
 
 		[JsonProp]
@@ -341,19 +341,19 @@ namespace DataBaseModel
 	public class Catalogo_Producto : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_producto { get; set; }
-		public string descripcion { get; set; }
-		public int? id_categoria { get; set; }
-		public int? id_marca { get; set; }
+		public int? Id_producto { get; set; }
+		public string Descripcion { get; set; }
+		public int? Id_categoria { get; set; }
+		public int? Id_marca { get; set; }
 	}
 
 	public class Catalogo_Marca : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_marca { get; set; }
-		public string nombre { get; set; }
-		public string descripcion { get; set; }
-		public string estado { get; set; }
+		public int? Id_marca { get; set; }
+		public string Nombre { get; set; }
+		public string Descripcion { get; set; }
+		public string Estado { get; set; }
 
 		[OneToMany(TableName = "Catalogo_Producto", KeyColumn = "id_marca", ForeignKeyColumn = "id_marca")]
 		public List<Catalogo_Producto>? Detalle_Factura { get; set; }
@@ -363,45 +363,45 @@ namespace DataBaseModel
 	public class Catalogo_Categorias : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_categoria { get; set; }
-		public string descripcion { get; set; }
-		public string estado { get; set; }
+		public int? Id_categoria { get; set; }
+		public string Descripcion { get; set; }
+		public string Estado { get; set; }
 	}
 
 	public class Transaction_Lotes : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_transaccion { get; set; }
-		public string descripcion { get; set; }
-		public DateTime? fecha { get; set; }
-		public int? id_usuario { get; set; }
-		public int? id_tipo_transaccion { get; set; }
-		public string estado { get; set; }
+		public int? Id_transaccion { get; set; }
+		public string Descripcion { get; set; }
+		public DateTime? Fecha { get; set; }
+		public int? Id_usuario { get; set; }
+		public int? Id_tipo_transaccion { get; set; }
+		public string Estado { get; set; }
 	}
 
 
 	public class Transaction_Detalle_Lotes : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_detalle_transaccion { get; set; }
-		public int? id_lote { get; set; }
-		public int? cantidad_afectada { get; set; }
-		public int? id_transaccion { get; set; }
-		public int? id_detalle_factura { get; set; }
+		public int? Id_detalle_transaccion { get; set; }
+		public int? Id_lote { get; set; }
+		public int? Cantidad_afectada { get; set; }
+		public int? Id_transaccion { get; set; }
+		public int? Id_detalle_factura { get; set; }
 	}
 
 	public class Detalle_Factura_Recibo : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id { get; set; }
+		public int? Id { get; set; }
 
-		public int? id_cuota { get; set; }
-		public double? total_cuota { get; set; }
-		public double? monto_pagado { get; set; }
-		public double? capital_restante { get; set; }
-		public string? concepto { get; set; }
-		public double? tasa_cambio { get; set; }
-		public int? id_factura { get; set; }
+		public int? Id_cuota { get; set; }
+		public double? Total_cuota { get; set; }
+		public double? Monto_pagado { get; set; }
+		public double? Capital_restante { get; set; }
+		public string? Concepto { get; set; }
+		public double? Tasa_cambio { get; set; }
+		public int? Id_factura { get; set; }
 		[JsonProp]
 		public EstadoAnteriorCuota? EstadoAnterior { get; set; }
 

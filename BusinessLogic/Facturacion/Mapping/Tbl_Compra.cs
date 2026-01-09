@@ -66,18 +66,18 @@ namespace DataBaseModel
 					{
 						var nuevoClienteproveedor = new Catalogo_Clientes
 						{
-							primer_nombre = Cat_Proveedor?.Datos_Proveedor.primer_nombre,
-							segundo_nombre = Cat_Proveedor?.Datos_Proveedor.segundo_nombre,
-							primer_apellido = Cat_Proveedor?.Datos_Proveedor.primer_apellido,
-							segundo_apellidio = Cat_Proveedor?.Datos_Proveedor.segundo_apellidio,
-							direccion = Cat_Proveedor?.Datos_Proveedor.direccion,
-							identificacion = Cat_Proveedor?.Identificacion,
-							id_departamento = Cat_Proveedor?.Datos_Proveedor.Catalogo_Municipio?.id_departamento,
-							id_municipio = Cat_Proveedor?.Datos_Proveedor.Catalogo_Municipio?.id_municipio,
-							id_tipo_identificacion =  Cat_Proveedor?.Datos_Proveedor.Catalogo_Tipo_Identificacion?.id_tipo_identificacion,
+							Primer_nombre = Cat_Proveedor?.Datos_Proveedor.primer_nombre,
+							Segundo_nombre = Cat_Proveedor?.Datos_Proveedor.segundo_nombre,
+							Primer_apellido = Cat_Proveedor?.Datos_Proveedor.primer_apellido,
+							Segundo_apellidio = Cat_Proveedor?.Datos_Proveedor.segundo_apellidio,
+							Direccion = Cat_Proveedor?.Datos_Proveedor.direccion,
+							Identificacion = Cat_Proveedor?.Identificacion,
+							Id_departamento = Cat_Proveedor?.Datos_Proveedor.Catalogo_Municipio?.Id_departamento,
+							Id_municipio = Cat_Proveedor?.Datos_Proveedor.Catalogo_Municipio?.Id_municipio,
+							Id_tipo_identificacion =  Cat_Proveedor?.Datos_Proveedor.Catalogo_Tipo_Identificacion?.Id_tipo_identificacion,
 
 						}.Save() as Catalogo_Clientes;
-						Cat_Proveedor!.Datos_Proveedor.codigo_cliente = nuevoClienteproveedor?.codigo_cliente;
+						Cat_Proveedor!.Datos_Proveedor.codigo_cliente = nuevoClienteproveedor?.Codigo_cliente;
 					}
 				}
 				foreach (var detalle in this.Detalle_Compra)
@@ -134,13 +134,13 @@ namespace DataBaseModel
 				{
 					Catalogo_Cuentas_Destino = cuentaDestino,
 					Catalogo_Cuentas_Origen = cuentaOrigen,
-					concepto = detalleT,
-					descripcion = detalleT,
-					moneda = this.Moneda?.ToUpper(),
-					monto = this.Total,
-					tasa_cambio = this.Tasa_Cambio,
+					Concepto = detalleT,
+					Descripcion = detalleT,
+					Moneda = this.Moneda?.ToUpper(),
+					Monto = this.Total,
+					Tasa_cambio = this.Tasa_Cambio,
 					//tasa_cambio_compra = this.Tasa_Cambio_Venta,
-					is_transaction = true,
+					Is_transaction = true,
 					Tipo_Movimiento = TipoMovimiento.DESEMBOLSO_POR_COMPRA
 
 				}.SaveMovimiento(dbUser);
@@ -200,7 +200,7 @@ namespace DataBaseModel
 				}
 			};
 			lotes.Save();
-			detalle!.lotes = [lotes];
+			detalle!.Lotes = [lotes];
 		}
 		
 
@@ -260,13 +260,13 @@ namespace DataBaseModel
 				{
 					Catalogo_Cuentas_Destino = cuentaDestino,
 					Catalogo_Cuentas_Origen = cuentaOrigen,
-					concepto = detalleT,
-					descripcion = detalleT,
-					moneda = this.Moneda?.ToUpper(),
-					monto = this.Total,
-					tasa_cambio = this.Tasa_Cambio,
+					Concepto = detalleT,
+					Descripcion = detalleT,
+					Moneda = this.Moneda?.ToUpper(),
+					Monto = this.Total,
+					Tasa_cambio = this.Tasa_Cambio,
 					//tasa_cambio_compra = this.Tasa_Cambio_Venta,
-					is_transaction = true,
+					Is_transaction = true,
 					Tipo_Movimiento = TipoMovimiento.REEMBOLSO_POR_COMPRA_ANULADA
 
 				}.SaveMovimiento(dbUser);

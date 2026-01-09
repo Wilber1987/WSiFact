@@ -10,7 +10,7 @@ namespace Business {
 	{
 		[PrimaryKey(Identity = true)]
 		public int? Id_Sucursal { get; set; }
-		public int? id_municipio { get; set; }
+		public int? Id_municipio { get; set; }
 		public string? Nombre { get; set; }
 		public string? Descripcion { get; set; }
 		public string? Direccion { get; set; }

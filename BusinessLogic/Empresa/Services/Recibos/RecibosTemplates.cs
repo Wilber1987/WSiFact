@@ -51,12 +51,12 @@ public class RecibosTemplates
 		<tr style='margin-top: 0px; margin-bottom: 0px;  width: 100%'> 
 			<td style='font-size: 9.5px; text-align: left;   width: 33% !important; border: none !important;'>
 				<p style='text-align: center !important; font-size:10px;width: 200px !important; margin-top:100px; border-top: solid 1px #000 !important; padding-bottom:0px; margin-bottom:0px; ; padding-top:10px'>
-					Deudor: {{ primer_nombre }} {{ segundo_nombre }} {{ primer_apellido }} {{ segundo_apellidio }}
+					Deudor: {{ Primer_nombre }} {{ Segundo_nombre }} {{ Primer_apellido }} {{ Segundo_apellidio }}
 				</p>
 				<p style='text-align: center !important; font-size:10px; margin-top:0px; padding-bottom:0px; margin-bottom:0px;'>Cédula:
-					{{ identificacion }}
+					{{ Identificacion }}
 				</p>
-				<p style='text-align: center !important; font-size:10px; margin-top:0px; padding-bottom:0px; margin-bottom:0px;'>Cel:{{ telefono }}
+				<p style='text-align: center !important; font-size:10px; margin-top:0px; padding-bottom:0px; margin-bottom:0px;'>Cel:{{ Telefono }}
 				</p>
 			</td>     
 			<td style='font-size: 9.5px; text-align: center !important;   width: 33% !important; border: none !important'>

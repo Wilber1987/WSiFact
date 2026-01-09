@@ -13,11 +13,11 @@ namespace DataBaseModel
 	public class Catalogo_Estados_Articulos : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_estado_articulo { get; set; }
-		public string? nombre { get; set; }
-		public string? descripcion { get; set; }
-		public double? porcentaje_compra { get; set; }
-		public double? porcentaje_empeno { get; set; }
+		public int? Id_estado_articulo { get; set; }
+		public string? Nombre { get; set; }
+		public string? Descripcion { get; set; }
+		public double? Porcentaje_compra { get; set; }
+		public double? Porcentaje_empeno { get; set; }
 		// [OneToMany(TableName = "Transactional_Valoracion", KeyColumn = "id_estado_articulo", ForeignKeyColumn = "id_estado")]
 		// public List<Transactional_Valoracion>? Transactional_Valoracion { get; set; }
 	}
@@ -27,12 +27,12 @@ namespace DataBaseModel
 	public class Catalogo_Agentes : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_agente { get; set; }
-		public string? identificacion { get; set; }
-		public string? nombre { get; set; }
-		public string? telefono { get; set; }
-		public string? direccion { get; set; }
-		public DateTime? fecha { get; set; }
+		public int? Id_agente { get; set; }
+		public string? Identificacion { get; set; }
+		public string? Nombre { get; set; }
+		public string? Telefono { get; set; }
+		public string? Direccion { get; set; }
+		public DateTime? Fecha { get; set; }
 		public int? Id_Tipo_Agente { get; set; }
 		public string? Estado { get; set; }
 		[ManyToOne(TableName = "Catalogo_Tipo_Agente", KeyColumn = "Id_Tipo_Agente", ForeignKeyColumn = "Id_Tipo_Agente")]
@@ -43,10 +43,10 @@ namespace DataBaseModel
 	public class Catalogo_Clasificacion_Cliente : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_clasificacion { get; set; }
+		public int? Id_clasificacion { get; set; }
 		public string? Descripcion { get; set; }
 		public string? Estado { get; set; }
-		public double? porcentaje { get; set; }
+		public double? Porcentaje { get; set; }
 
 		//[OneToMany(TableName = "Catalogo_Clientes", KeyColumn = "id_clasificacion", ForeignKeyColumn = "id_clasificacion")]
 		public List<Catalogo_Clientes>? Catalogo_Clientes { get; set; }
@@ -55,10 +55,10 @@ namespace DataBaseModel
 	public class Catalogo_Clasificacion_Interes : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_clasificacion_interes { get; set; }
+		public int? Id_clasificacion_interes { get; set; }
 		public string? Descripcion { get; set; }
 		public string? Estado { get; set; }
-		public double? porcentaje { get; set; }
+		public double? Porcentaje { get; set; }
 
 		//[OneToMany(TableName = "Catalogo_Clientes", KeyColumn = "id_clasificacion", ForeignKeyColumn = "id_clasificacion")]
 		public List<Catalogo_Clientes>? Catalogo_Clientes { get; set; }
@@ -73,7 +73,7 @@ namespace DataBaseModel
 	public class Catalogo_Tipo_Identificacion : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_tipo_identificacion { get; set; }
+		public int? Id_tipo_identificacion { get; set; }
 		public string? Descripcion { get; set; }
 		public string? Estado { get; set; }
 	}
@@ -100,24 +100,24 @@ namespace DataBaseModel
 	public class Catalogo_Cuentas : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_cuentas { get; set; }
-		public string? nombre { get; set; }
-		public string? tipo_cuenta { get; set; }
-		public double? saldo { get; set; }
-		public double? saldo_dolares { get; set; }
-		public bool? permite_cordobas { get; set; }
-		public bool? permite_dolares { get; set; }
-		public int? id_sucursal { get; set; }
+		public int? Id_cuentas { get; set; }
+		public string? Nombre { get; set; }
+		public string? Tipo_cuenta { get; set; }
+		public double? Saldo { get; set; }
+		public double? Saldo_dolares { get; set; }
+		public bool? Permite_cordobas { get; set; }
+		public bool? Permite_dolares { get; set; }
+		public int? Id_sucursal { get; set; }
 		public string? Categoria
 		{
 			get
 			{
-				return this.Categoria_Cuentas?.descripcion;
+				return this.Categoria_Cuentas?.Descripcion;
 			}
 		}
 		[ManyToOne(TableName = "Catalogo_Sucursales", KeyColumn = "Id_Sucursal", ForeignKeyColumn = "id_sucursal")]
 		public Catalogo_Sucursales? Catalogo_Sucursales { get; set; }
-		public int? id_categoria { get; set; }
+		public int? Id_categoria { get; set; }
 		[ManyToOne(TableName = "Categoria_Cuentas", KeyColumn = "id_categoria", ForeignKeyColumn = "id_categoria")]
 		public Categoria_Cuentas? Categoria_Cuentas { get; set; }
 		//externa, propia, pago
@@ -133,7 +133,7 @@ namespace DataBaseModel
 			{
 				cuenta = new Catalogo_Cuentas
 				{
-					id_sucursal = dbUser.Id_Sucursal
+					Id_sucursal = dbUser.Id_Sucursal
 				}.Find<Catalogo_Cuentas>(FilterData.Equal("id_categoria", idCategoria));
 			}
 			cuenta = CrearCuentaSiNoExiste(dbUser, idCategoria, cuenta, categoria, type);
@@ -221,22 +221,22 @@ namespace DataBaseModel
 			{
 				Categoria_Cuentas? categoria_Cuentas = (Categoria_Cuentas?)new Categoria_Cuentas
 				{
-					descripcion = categoria_CuentasEnum.ToString()
+					Descripcion = categoria_CuentasEnum.ToString()
 				}.Save();
-				idCategoria = categoria_Cuentas?.id_categoria;
+				idCategoria = categoria_Cuentas?.Id_categoria;
 			}
 			if (cuenta == null)
 			{
 				cuenta = (Catalogo_Cuentas?)new Catalogo_Cuentas
 				{
-					id_sucursal = dbUser.Id_Sucursal,
-					permite_dolares = true,
-					permite_cordobas = true,
-					saldo = 0,
-					saldo_dolares = 0,
-					id_categoria = idCategoria,
-					nombre = categoria_CuentasEnum.ToString(),
-					tipo_cuenta = tipo_cuenta
+					Id_sucursal = dbUser.Id_Sucursal,
+					Permite_dolares = true,
+					Permite_cordobas = true,
+					Saldo = 0,
+					Saldo_dolares = 0,
+					Id_categoria = idCategoria,
+					Nombre = categoria_CuentasEnum.ToString(),
+					Tipo_cuenta = tipo_cuenta
 				}.Save();
 			}
 			return cuenta;
@@ -244,7 +244,7 @@ namespace DataBaseModel
 
 		private static int? GetId_categoria(Categoria_CuentasEnum categoria_CuentasEnum)
 		{
-			return new Categoria_Cuentas { descripcion = categoria_CuentasEnum.ToString() }.Find<Categoria_Cuentas>()?.id_categoria;
+			return new Categoria_Cuentas { Descripcion = categoria_CuentasEnum.ToString() }.Find<Categoria_Cuentas>()?.Id_categoria;
 		}
 
         internal static Catalogo_Cuentas? GetCuentaIngresoCompraDolares(Security_Users dbUser)
@@ -261,22 +261,22 @@ namespace DataBaseModel
 	public class Categoria_Cuentas : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_categoria { get; set; }
-		public string? descripcion { get; set; }
+		public int? Id_categoria { get; set; }
+		public string? Descripcion { get; set; }
 	}
 
 	public class Permisos_Cuentas : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_permiso { get; set; }
-		public int? id_categoria_cuenta_origen { get; set; }
+		public int? Id_permiso { get; set; }
+		public int? Id_categoria_cuenta_origen { get; set; }
 		[ManyToOne(TableName = "Categoria_Cuentas", KeyColumn = "id_categoria", ForeignKeyColumn = "id_categoria_cuenta_origen")]
 		public Categoria_Cuentas? Categoria_Cuentas_Origen { get; set; }
-		public int? id_categoria_cuenta_destino { get; set; }
+		public int? Id_categoria_cuenta_destino { get; set; }
 		[ManyToOne(TableName = "Categoria_Cuentas", KeyColumn = "id_categoria", ForeignKeyColumn = "id_categoria_cuenta_destino")]
 		public Categoria_Cuentas? Categoria_Cuentas_Destino { get; set; }
-		public bool? permite_debito { get; set; }
-		public bool? permite_credito { get; set; }
+		public bool? Permite_debito { get; set; }
+		public bool? Permite_credito { get; set; }
 	}
 
 	public enum Tipo_Cuenta
@@ -286,26 +286,26 @@ namespace DataBaseModel
 	public class Catalogo_Categoria : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_categoria { get; set; }
-		public string? tipo { get; set; }
-		public string? descripcion { get; set; }
-		public int? plazo_limite { get; set; }
-		public int? prioridad { get; set; }
-		public bool? isEditable { get; set; }
+		public int? Id_categoria { get; set; }
+		public string? Tipo { get; set; }
+		public string? Descripcion { get; set; }
+		public int? Plazo_limite { get; set; }
+		public int? Prioridad { get; set; }
+		public bool? IsEditable { get; set; }
 	}
 
 
 	public class Catalogo_Inversores : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_inversor { get; set; }
-		public string? nombre { get; set; }
-		public string? direccion { get; set; }
-		public int? id_municipio { get; set; }
-		public string? estado_civil { get; set; }
-		public string? identificacion { get; set; }
-		public string? telefono { get; set; }
-		public int? id_nacionalidad { get; set; }
+		public int? Id_inversor { get; set; }
+		public string? Nombre { get; set; }
+		public string? Direccion { get; set; }
+		public int? Id_municipio { get; set; }
+		public string? Estado_civil { get; set; }
+		public string? Identificacion { get; set; }
+		public string? Telefono { get; set; }
+		public int? Id_nacionalidad { get; set; }
 		[ManyToOne(TableName = "Catalogo_Municipio", KeyColumn = "id_municipio", ForeignKeyColumn = "id_municipio")]
 		public Catalogo_Municipio? Catalogo_Municipio { get; set; }
 		[ManyToOne(TableName = "Catalogo_Nacionalidad", KeyColumn = "id_nacionalidad", ForeignKeyColumn = "id_nacionalidad")]
@@ -317,8 +317,8 @@ namespace DataBaseModel
 	public class Catalogo_Profesiones : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_profesion { get; set; }
-		public string? nombre { get; set; }
+		public int? Id_profesion { get; set; }
+		public string? Nombre { get; set; }
 		//[OneToMany(TableName = "Catalogo_Clientes", KeyColumn = "id_profesion", ForeignKeyColumn = "id_profesion")]
 		//public List<Catalogo_Clientes>? Catalogo_Clientes { get; set; }
 	}

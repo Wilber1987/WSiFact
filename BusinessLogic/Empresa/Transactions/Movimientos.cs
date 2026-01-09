@@ -11,16 +11,16 @@ namespace Transactions
 	public class Movimientos_Cuentas : EntityClass
 	{
 		[PrimaryKey(Identity = true)]
-		public int? id_movimiento { get; set; }
-		public string? descripcion { get; set; }
-		public string? concepto { get; set; }
-		public double? monto { get; set; }
-		public double? tasa_cambio { get; set; }
-		public double? tasa_cambio_compra { get; set; }
-		public string? moneda { get; set; }
-		public int? id_usuario_crea { get; set; }
-		public DateTime? fecha { get; set; }
-		public bool? is_transaction { get; set; }
+		public int? Id_movimiento { get; set; }
+		public string? Descripcion { get; set; }
+		public string? Concepto { get; set; }
+		public double? Monto { get; set; }
+		public double? Tasa_cambio { get; set; }
+		public double? Tasa_cambio_compra { get; set; }
+		public string? Moneda { get; set; }
+		public int? Id_usuario_crea { get; set; }
+		public DateTime? Fecha { get; set; }
+		public bool? Is_transaction { get; set; }
 		//public bool? is_anulacion { get; set; }
 
 		public int? Id_cuenta_origen { get; set; }
@@ -34,7 +34,7 @@ namespace Transactions
 			try
 			{
 				BeginGlobalTransaction();
-				if (this.is_transaction == true)
+				if (this.Is_transaction == true)
 				{
 					return new ResponseService()
 					{
@@ -47,7 +47,7 @@ namespace Transactions
 				if (response.status == 200)
 				{
 					CommitGlobalTransaction();
-					if (is_transaction != true)
+					if (Is_transaction != true)
 					{
 						SendNotification((Transaction_Movimiento)response.body);
 					}
@@ -84,29 +84,29 @@ namespace Transactions
 				filterData = this.filterData
 			}.Get<Transaction_Movimiento>().Select(z =>
 			{
-				var constOrigen = z.moneda == "DOLARES" ?
-					z.Detail_Movimiento?.Find(x => x.credito_dolares == 0) :
-					z.Detail_Movimiento?.Find(x => x.credito == 0);
-				var constDestino = z.moneda == "DOLARES" ?
-				 	z.Detail_Movimiento?.Find(x => x.debito_dolares == 0) :
-				 	z.Detail_Movimiento?.Find(x => x.debito == 0);
+				var constOrigen = z.Moneda == "DOLARES" ?
+					z.Detail_Movimiento?.Find(x => x.Credito_dolares == 0) :
+					z.Detail_Movimiento?.Find(x => x.Credito == 0);
+				var constDestino = z.Moneda == "DOLARES" ?
+				 	z.Detail_Movimiento?.Find(x => x.Debito_dolares == 0) :
+				 	z.Detail_Movimiento?.Find(x => x.Debito == 0);
 
 				return new Movimientos_Cuentas()
 				{
-					id_movimiento = z.id_movimiento,
-					descripcion = z.descripcion,
-					concepto = z.concepto,
-					monto = constDestino.moneda?.ToUpper().Equals("DOLARES") == true ? constDestino?.credito_dolares : constDestino?.credito,
-					tasa_cambio = constDestino?.tasa_cambio,
-					tasa_cambio_compra = constDestino?.tasa_cambio_compra,
-					moneda = constDestino.moneda,
-					id_usuario_crea = z.id_usuario_crea,
-					fecha = z.fecha,
+					Id_movimiento = z.Id_movimiento,
+					Descripcion = z.Descripcion,
+					Concepto = z.Concepto,
+					Monto = constDestino.Moneda?.ToUpper().Equals("DOLARES") == true ? constDestino?.Credito_dolares : constDestino?.Credito,
+					Tasa_cambio = constDestino?.Tasa_cambio,
+					Tasa_cambio_compra = constDestino?.Tasa_cambio_compra,
+					Moneda = constDestino.Moneda,
+					Id_usuario_crea = z.Id_usuario_crea,
+					Fecha = z.Fecha,
 					Catalogo_Cuentas_Origen = constOrigen?.catalogo_Cuentas,
 					Catalogo_Cuentas_Destino = constDestino?.catalogo_Cuentas,
-					Id_cuenta_origen = constOrigen?.id_cuenta,
-					Id_cuenta_destino = constDestino?.id_cuenta,
-					is_transaction = z.is_transaction
+					Id_cuenta_origen = constOrigen?.Id_cuenta,
+					Id_cuenta_destino = constDestino?.Id_cuenta,
+					Is_transaction = z.Is_transaction
 				};
 			}
 			).ToList();
@@ -118,65 +118,65 @@ namespace Transactions
 
 			var cuentaDestino = new Catalogo_Cuentas()
 			{
-				id_cuentas = this.Catalogo_Cuentas_Destino?.id_cuentas
+				Id_cuentas = this.Catalogo_Cuentas_Destino?.Id_cuentas
 			}.Find<Catalogo_Cuentas>();
 
 			var cuentaOrigen = new Catalogo_Cuentas()
 			{
-				id_cuentas = this.Catalogo_Cuentas_Origen?.id_cuentas
+				Id_cuentas = this.Catalogo_Cuentas_Origen?.Id_cuentas
 			}.Find<Catalogo_Cuentas>();
 
 			var permiso_cuenta_origen = new Permisos_Cuentas()
 			{
-				id_categoria_cuenta_destino = cuentaOrigen.Categoria_Cuentas.id_categoria
+				Id_categoria_cuenta_destino = cuentaOrigen.Categoria_Cuentas.Id_categoria
 			}.Find<Permisos_Cuentas>();
 
 			var permiso_cuenta_destino = new Permisos_Cuentas()
 			{
-				id_categoria_cuenta_destino = cuentaDestino.Categoria_Cuentas.id_categoria
+				Id_categoria_cuenta_destino = cuentaDestino.Categoria_Cuentas.Id_categoria
 			}.Find<Permisos_Cuentas>();
 
-			if (permiso_cuenta_origen != null && (bool)!permiso_cuenta_origen.permite_debito)
+			if (permiso_cuenta_origen != null && (bool)!permiso_cuenta_origen.Permite_debito)
 			{
 				return new ResponseService()
 				{
 					status = 400,
-					message = cuentaOrigen.nombre + " no permite débitos hacia la cuenta: " + cuentaDestino.nombre
+					message = cuentaOrigen.Nombre + " no permite débitos hacia la cuenta: " + cuentaDestino.Nombre
 				};
 			}
 
-			if (permiso_cuenta_destino != null && (bool)!permiso_cuenta_destino.permite_credito)
+			if (permiso_cuenta_destino != null && (bool)!permiso_cuenta_destino.Permite_credito)
 			{
 				return new ResponseService()
 				{
 					status = 400,
-					message = cuentaDestino.nombre + " no permite créditos desde la cuenta: " + cuentaOrigen.nombre
+					message = cuentaDestino.Nombre + " no permite créditos desde la cuenta: " + cuentaOrigen.Nombre
 				};
 			}
 
 			if (cuentaOrigen != null && cuentaDestino != null)
 			{
-				cuentaOrigen.saldo = cuentaOrigen?.saldo ?? 0;
-				cuentaOrigen.saldo_dolares = cuentaOrigen?.saldo_dolares ?? 0;
-				cuentaDestino.saldo = cuentaDestino?.saldo ?? 0;
-				cuentaDestino.saldo_dolares = cuentaDestino?.saldo_dolares ?? 0;
-				if (cuentaOrigen?.tipo_cuenta == Tipo_Cuenta.PROPIA.ToString())
+				cuentaOrigen.Saldo = cuentaOrigen?.Saldo ?? 0;
+				cuentaOrigen.Saldo_dolares = cuentaOrigen?.Saldo_dolares ?? 0;
+				cuentaDestino.Saldo = cuentaDestino?.Saldo ?? 0;
+				cuentaDestino.Saldo_dolares = cuentaDestino?.Saldo_dolares ?? 0;
+				if (cuentaOrigen?.Tipo_cuenta == Tipo_Cuenta.PROPIA.ToString())
 				{
 					var response = new ResponseService()
 					{
 						status = 403,
-						message = $"{this.Catalogo_Cuentas_Origen?.nombre} no cuenta con saldo suficiente"
+						message = $"{this.Catalogo_Cuentas_Origen?.Nombre} no cuenta con saldo suficiente"
 					};
-					if (moneda == "DOLARES" && cuentaOrigen.saldo_dolares < monto)
+					if (Moneda == "DOLARES" && cuentaOrigen.Saldo_dolares < Monto)
 					{
 						return response;
 					}
-					else if (moneda == "CORDOBAS" && cuentaOrigen.saldo < monto)
+					else if (Moneda == "CORDOBAS" && cuentaOrigen.Saldo < Monto)
 					{
 						return response;
 					}
 				}
-				if (this.Catalogo_Cuentas_Origen?.id_cuentas == this.Catalogo_Cuentas_Destino?.id_cuentas 
+				if (this.Catalogo_Cuentas_Origen?.Id_cuentas == this.Catalogo_Cuentas_Destino?.Id_cuentas 
 				&& this.Tipo_Movimiento != TipoMovimiento.COMPRA_DE_MONEDA
 				&& this.Tipo_Movimiento != TipoMovimiento.VENTA_DE_MONEDA)
 				{
@@ -186,7 +186,7 @@ namespace Transactions
 						message = "La cuenta de origen debe ser distinta a la cuenta de destino"
 					};
 				}
-				if (this.Catalogo_Cuentas_Destino?.permite_dolares == false && this.moneda?.ToUpper() == "DOLARES")
+				if (this.Catalogo_Cuentas_Destino?.Permite_dolares == false && this.Moneda?.ToUpper() == "DOLARES")
 				{
 					return new ResponseService()
 					{
@@ -194,7 +194,7 @@ namespace Transactions
 						message = "La cuenta de destino no permite dolares"
 					};
 				}
-				if (this.Catalogo_Cuentas_Destino?.permite_cordobas == false && this.moneda?.ToUpper() == "CORDOBAS")
+				if (this.Catalogo_Cuentas_Destino?.Permite_cordobas == false && this.Moneda?.ToUpper() == "CORDOBAS")
 				{
 					return new ResponseService()
 					{
@@ -205,53 +205,53 @@ namespace Transactions
 				//var dbUser = new Business.Security_Users { Id_User = user.UserId }.Find<Business.Security_Users>();
 				var encabezado = new Transaction_Movimiento()
 				{
-					descripcion = this.descripcion,
-					concepto = this.concepto,
-					id_usuario_crea = dbUser.Id_User,
-					tipo = "pendiente",
-					moneda = this.moneda?.ToUpper(),
-					tasa_cambio = this.tasa_cambio,
+					Descripcion = this.Descripcion,
+					Concepto = this.Concepto,
+					Id_usuario_crea = dbUser.Id_User,
+					Tipo = "pendiente",
+					Moneda = this.Moneda?.ToUpper(),
+					Tasa_cambio = this.Tasa_cambio,
 					//tasa_cambio_compra = this.tasa_cambio_compra,
-					correo_enviado = false,
-					is_transaction = this.is_transaction,
-					Id_cuenta_origen = this.Catalogo_Cuentas_Origen?.id_cuentas,
-					Id_cuenta_destino = this.Catalogo_Cuentas_Destino?.id_cuentas,
-					id_sucursal = dbUser?.Id_Sucursal,
+					Correo_enviado = false,
+					Is_transaction = this.Is_transaction,
+					Id_cuenta_origen = this.Catalogo_Cuentas_Origen?.Id_cuentas,
+					Id_cuenta_destino = this.Catalogo_Cuentas_Destino?.Id_cuentas,
+					Id_sucursal = dbUser?.Id_Sucursal,
 					Tipo_Movimiento = this.Tipo_Movimiento,
 					Detail_Movimiento = new List<Detail_Movimiento>(){
 							new Detail_Movimiento(){
 								catalogo_Cuentas = this.Catalogo_Cuentas_Origen,
-								debito = this.moneda?.ToUpper() == "CORDOBAS" ? this.monto : 0,
-								debito_dolares = this.moneda?.ToUpper() == "DOLARES" ? this.monto : 0,
-								credito = 0,
-								credito_dolares = 0,
-								monto_inicial = cuentaOrigen?.saldo,
-								monto_inicial_dolares = cuentaOrigen?.saldo_dolares,
-								monto_final = cuentaOrigen?.saldo - (this.moneda?.ToUpper() == "CORDOBAS" ? this.monto : 0),
-								monto_final_dolares = cuentaOrigen?.saldo_dolares - (this.moneda?.ToUpper() == "DOLARES" ? this.monto : 0),
-								tasa_cambio = this.tasa_cambio,
-								tasa_cambio_compra = this.tasa_cambio_compra,
-								moneda = this.moneda?.ToUpper()
+								Debito = this.Moneda?.ToUpper() == "CORDOBAS" ? this.Monto : 0,
+								Debito_dolares = this.Moneda?.ToUpper() == "DOLARES" ? this.Monto : 0,
+								Credito = 0,
+								Credito_dolares = 0,
+								Monto_inicial = cuentaOrigen?.Saldo,
+								Monto_inicial_dolares = cuentaOrigen?.Saldo_dolares,
+								Monto_final = cuentaOrigen?.Saldo - (this.Moneda?.ToUpper() == "CORDOBAS" ? this.Monto : 0),
+								Monto_final_dolares = cuentaOrigen?.Saldo_dolares - (this.Moneda?.ToUpper() == "DOLARES" ? this.Monto : 0),
+								Tasa_cambio = this.Tasa_cambio,
+								Tasa_cambio_compra = this.Tasa_cambio_compra,
+								Moneda = this.Moneda?.ToUpper()
 							},new Detail_Movimiento(){
 								catalogo_Cuentas = this.Catalogo_Cuentas_Destino,
-								debito = 0,
-								debito_dolares = 0,
-								credito =  this.moneda?.ToUpper() == "CORDOBAS" ? this.monto : 0,
-								credito_dolares = this.moneda?.ToUpper() == "DOLARES" ? this.monto : 0,
-								monto_inicial = cuentaDestino?.saldo,
-								monto_inicial_dolares = cuentaDestino?.saldo_dolares,
-								monto_final = cuentaDestino?.saldo + (this.moneda?.ToUpper() == "CORDOBAS" ? this.monto : 0),
-								monto_final_dolares = cuentaDestino?.saldo_dolares + (this.moneda?.ToUpper() == "DOLARES" ? this.monto : 0),
-								tasa_cambio = this.tasa_cambio,
-								tasa_cambio_compra = this.tasa_cambio_compra,
-								moneda = this.moneda?.ToUpper()
+								Debito = 0,
+								Debito_dolares = 0,
+								Credito =  this.Moneda?.ToUpper() == "CORDOBAS" ? this.Monto : 0,
+								Credito_dolares = this.Moneda?.ToUpper() == "DOLARES" ? this.Monto : 0,
+								Monto_inicial = cuentaDestino?.Saldo,
+								Monto_inicial_dolares = cuentaDestino?.Saldo_dolares,
+								Monto_final = cuentaDestino?.Saldo + (this.Moneda?.ToUpper() == "CORDOBAS" ? this.Monto : 0),
+								Monto_final_dolares = cuentaDestino?.Saldo_dolares + (this.Moneda?.ToUpper() == "DOLARES" ? this.Monto : 0),
+								Tasa_cambio = this.Tasa_cambio,
+								Tasa_cambio_compra = this.Tasa_cambio_compra,
+								Moneda = this.Moneda?.ToUpper()
 							}
 						}
 				};
-				cuentaOrigen.saldo = cuentaOrigen.saldo - (this.moneda?.ToUpper() == "CORDOBAS" ? this.monto : 0);
-				cuentaOrigen.saldo_dolares = cuentaOrigen.saldo_dolares - (this.moneda?.ToUpper() == "DOLARES" ? this.monto : 0);
-				cuentaDestino.saldo = cuentaDestino.saldo + (this.moneda?.ToUpper() == "CORDOBAS" ? this.monto : 0);
-				cuentaDestino.saldo_dolares = cuentaDestino.saldo_dolares + (this.moneda?.ToUpper() == "DOLARES" ? this.monto : 0);
+				cuentaOrigen.Saldo = cuentaOrigen.Saldo - (this.Moneda?.ToUpper() == "CORDOBAS" ? this.Monto : 0);
+				cuentaOrigen.Saldo_dolares = cuentaOrigen.Saldo_dolares - (this.Moneda?.ToUpper() == "DOLARES" ? this.Monto : 0);
+				cuentaDestino.Saldo = cuentaDestino.Saldo + (this.Moneda?.ToUpper() == "CORDOBAS" ? this.Monto : 0);
+				cuentaDestino.Saldo_dolares = cuentaDestino.Saldo_dolares + (this.Moneda?.ToUpper() == "DOLARES" ? this.Monto : 0);
 
 				cuentaDestino.Update();
 				cuentaOrigen.Update();
@@ -274,19 +274,19 @@ namespace Transactions
 			try
 			{
 
-				var dbUser = new Business.Security_Users { Id_User = item.id_usuario_crea }.Find<Business.Security_Users>();
-				var constOrigen = item.Detail_Movimiento?.Find(x => x.credito == 0);
-				var constDestino = item.Detail_Movimiento?.Find(x => x.debito == 0);
+				var dbUser = new Business.Security_Users { Id_User = item.Id_usuario_crea }.Find<Business.Security_Users>();
+				var constOrigen = item.Detail_Movimiento?.Find(x => x.Credito == 0);
+				var constDestino = item.Detail_Movimiento?.Find(x => x.Debito == 0);
 				var modelo = new
 				{
-					FechaMovimiento = item.fecha,
-					CuentaOrigen = $"{constOrigen?.catalogo_Cuentas?.nombre} ({constOrigen?.catalogo_Cuentas?.id_sucursal?.ToString("D9")}) de la sucursal: {constOrigen?.catalogo_Cuentas?.Catalogo_Sucursales?.Descripcion}",
-					CuentaDestino = $"{constDestino?.catalogo_Cuentas?.nombre} ({constDestino?.catalogo_Cuentas?.id_sucursal?.ToString("D9")}) de la sucursal: {constDestino?.catalogo_Cuentas?.Catalogo_Sucursales?.Descripcion}",
-					TipoMoneda = item.moneda?.ToUpper() == "DOLARES" ? "$" : "C$",
-					Monto = NumberUtility.ConvertToMoneyString(constDestino?.moneda?.ToUpper().Equals("DOLARES") == true
-					? constDestino?.credito_dolares : constDestino?.credito),
-					Concepto = item.concepto,
-					Usuario = $"{dbUser?.Nombres} ({item.id_usuario_crea?.ToString("D9")})"
+					FechaMovimiento = item.Fecha,
+					CuentaOrigen = $"{constOrigen?.catalogo_Cuentas?.Nombre} ({constOrigen?.catalogo_Cuentas?.Id_sucursal?.ToString("D9")}) de la sucursal: {constOrigen?.catalogo_Cuentas?.Catalogo_Sucursales?.Descripcion}",
+					CuentaDestino = $"{constDestino?.catalogo_Cuentas?.Nombre} ({constDestino?.catalogo_Cuentas?.Id_sucursal?.ToString("D9")}) de la sucursal: {constDestino?.catalogo_Cuentas?.Catalogo_Sucursales?.Descripcion}",
+					TipoMoneda = item.Moneda?.ToUpper() == "DOLARES" ? "$" : "C$",
+					Monto = NumberUtility.ConvertToMoneyString(constDestino?.Moneda?.ToUpper().Equals("DOLARES") == true
+					? constDestino?.Credito_dolares : constDestino?.Credito),
+					Concepto = item.Concepto,
+					Usuario = $"{dbUser?.Nombres} ({item.Id_usuario_crea?.ToString("D9")})"
 				};
 				MailServices.SendMailContract(new List<String>() {
 					"wilberj1987@gmail.com",
@@ -299,7 +299,7 @@ namespace Transactions
 				);//todo definir correos a enviar
 				var update = new Transaction_Movimiento()
 				{
-					id_movimiento = item.id_movimiento
+					Id_movimiento = item.Id_movimiento
 				}.Find<Transaction_Movimiento>();
 			}
 			catch (System.Exception ex)

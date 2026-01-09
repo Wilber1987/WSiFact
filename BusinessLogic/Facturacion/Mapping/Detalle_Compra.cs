@@ -27,6 +27,6 @@ namespace DataBaseModel {
         //[ManyToOne(TableName = "Tbl_Compra", KeyColumn = "Id_Compra", ForeignKeyColumn = "Id_Compra")]
         public Tbl_Compra? Tbl_Compra { get; set; }
         //[OneToMany(TableName = "Tbl_Lotes", KeyColumn = "Id_Detalle_Compra", ForeignKeyColumn = "Id_Detalle_Compra")]
-        public List<Tbl_Lotes>? lotes { get; set; }
+        public List<Tbl_Lotes>? Lotes { get; set; }
     }
 }
